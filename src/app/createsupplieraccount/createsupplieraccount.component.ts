@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreatesupplieraccountComponent implements OnInit {
 
+  public title: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.title = 'Supplier Account';
   }
 
 }
