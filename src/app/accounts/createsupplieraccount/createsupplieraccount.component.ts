@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class CreatesupplieraccountComponent implements OnInit {
 
   public title: string;
+  public userAccount: any;
 
   constructor() { }
 
