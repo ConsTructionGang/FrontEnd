@@ -3,17 +3,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { CreatesupplieraccountComponent } from './createsupplieraccount/createsupplieraccount.component';
-import { CreateuseraccountComponent } from './createuseraccount/createuseraccount.component';
+import { AccountsModule } from './accounts/accounts.module';
+
 
 
 @NgModule({
   declarations: [ AppComponent,
-     CreatesupplieraccountComponent,
-     CreateuseraccountComponent],
+     ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AccountsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
