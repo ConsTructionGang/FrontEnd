@@ -19,6 +19,6 @@ export class CreateuseraccountComponent implements OnInit {
       id: 0,
       username: '',
       password: ''
-    }
+    };
   }
 }
