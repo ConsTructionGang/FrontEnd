@@ -14,12 +14,12 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  	this.title = 'Login'
-    this.account = {
+  this.title = 'Login';
+  this.account = {
       id: 0,
       username: '',
       password: ''
-    }
+    };
   }
 
 }
