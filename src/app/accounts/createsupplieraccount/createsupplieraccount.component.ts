@@ -22,7 +22,7 @@ export class CreatesupplieraccountComponent implements OnInit {
       id: 0,
       username: '',
       password: ''
-    }
+    };
     this.supplies = [
       { id: 1, name: 'Steel' },
       { id: 2, name: 'Wood' },
