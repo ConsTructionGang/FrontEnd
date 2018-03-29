@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Supply } from '../../domain/models/supply';
-import { Account } from '../../domain/models/userAccount';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
+import { Account } from '../../domain/models/account';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-createsupplieraccount',
@@ -30,6 +30,5 @@ export class CreatesupplieraccountComponent implements OnInit {
     ];
   }
 
-  }
 
 }

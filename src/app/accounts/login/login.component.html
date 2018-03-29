@@ -1,0 +1,25 @@
+<div>
+	<h1>{{ title }}</h1>
+	<div class="card">
+        <h5 class="card-header">Sign In</h5>
+        <div class= "card-body">
+	        <form>
+	            <div class="form-group">
+	              <label for="username"></label>
+	              <input name="loginusername" type="text" class="form-control" required id="username" aria-describedby="emailHelp" placeholder="Username" [(ngModel)]="account.username">
+	            </div>
+	            <div class="form-group">
+	              <label for="password"></label>
+	              <input name="loginpassword" type="password" class="form-control" required id="password" aria-describedby="emailHelp" placeholder="Password" [(ngModel)]="account.password">
+	            </div>
+	            <button type="Login" class="btn btn-success">Login</button>
+	            <a href="#forgotPassword">Forgot Password</a>
+	            <br>
+	            <p> Don't have an account?
+	            	<a routerLink="/useraccount">Sign up as a Construction Company</a>
+								<a routerLink="/supplieraccount">Sign up as a Supplier</a>
+	        	</p>
+	        </form>
+	    </div>
+    </div>
+</div>
