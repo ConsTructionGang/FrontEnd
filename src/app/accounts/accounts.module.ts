@@ -4,9 +4,10 @@ import { CreatesupplieraccountComponent } from './createsupplieraccount/createsu
 import { CreateuseraccountComponent } from './createuseraccount/createuseraccount.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
 
   declarations: [CreatesupplieraccountComponent, CreateuseraccountComponent, LoginComponent],
 

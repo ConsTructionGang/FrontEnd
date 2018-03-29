@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AccountsModule } from './accounts/accounts.module';
+import { AppRoutingModule } from './/app-routing.module';
 
 
 
@@ -13,7 +14,8 @@ import { AccountsModule } from './accounts/accounts.module';
   imports: [
     BrowserModule,
     FormsModule,
-    AccountsModule
+    AccountsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
