@@ -8,19 +8,19 @@
           <form name="supplierForm">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">@</span>
+                <span class="input-group-text" required id="basic-addon1">@</span>
                 <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="userAccount.username"
                   name="userfield" required>
               </div>
             </div>
             <div class="form-group">
               <label for="inputCompanyName">Company Name</label>
-              <input class="form-control" id="inputCompanyName" placeholder="Enter company name" [(ngModel)]="userAccount.companyname"
+              <input class="form-control" required id="inputCompanyName" placeholder="Enter company name" [(ngModel)]="userAccount.companyname"
                 name="companyfield">
             </div>
             <div class="form-group">
               <label for="inputLocation">Location</label>
-              <input class="form-control" id="inputLocation" placeholder="Enter location" [(ngModel)]="userAccount.location" name="locationfield">
+              <input class="form-control" required id="inputLocation" placeholder="Enter location" [(ngModel)]="userAccount.location" name="locationfield">
             </div>
             <div class="form-group">
               <label for="inputSupplies">Supplies</label>
@@ -52,6 +52,9 @@
             </div>
 
             <button type="submit" class="btn btn-success">Register</button>
+            <p> Already have an account?
+	            	<a routerLink="/login">Sign in</a>
+	        	</p>
           </form>
         </div>
       </div>

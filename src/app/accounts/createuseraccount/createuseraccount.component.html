@@ -17,7 +17,7 @@
             </div>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">@</span>
+                <span class="input-group-text" required id="basic-addon1">@</span>
                 <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="userAccount.username" name="usernamefield">
               </div>
             </div>
@@ -32,8 +32,10 @@
               <label for="exampleInputPassword2">Confirm Password</label>
               <input type="password" class="form-control" required id="exampleInputPassword2" placeholder="Password" [(ngModel)]="userAccount.password" name="confirmpasswordfield">
             </div>
-
             <button type="submit" class="btn btn-success">Register</button>
+            <p> Already have an account?
+              <a routerLink="/login">Sign in</a>
+            </p>
           </form>
         </div>
       </div>
