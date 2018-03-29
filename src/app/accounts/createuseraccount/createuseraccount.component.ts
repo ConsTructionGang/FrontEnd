@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Account } from '../../domain/models/userAccount';
 
 @Component({
   selector: 'app-createuseraccount',
@@ -8,11 +9,16 @@ import { Component, OnInit } from '@angular/core';
 export class CreateuseraccountComponent implements OnInit {
 
   public title: string;
-  public userAccount: any;
+  public userAccount: Account;
 
   constructor() {}
 
   ngOnInit() {
     this.title = 'User Account';
+    this.userAccount = {
+      id: 0,
+      username: '',
+      password: ''
+    }
   }
 }

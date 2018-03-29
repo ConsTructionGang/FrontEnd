@@ -5,40 +5,46 @@
       <div class="card">
         <h5 class="card-header">Create a supplier Account</h5>
         <div class="card-body">
-          <form>
+          <form name="supplierForm">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">@</span>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="userAccount.username">
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="userAccount.username" name="userfield" required>
               </div>
             </div>
             <div class="form-group">
               <label for="inputCompanyName">Company Name</label>
-              <input class="form-control" id="inputCompanyName" placeholder="Enter company name">
+              <input class="form-control" id="inputCompanyName" placeholder="Enter company name" [(ngModel)]="userAccount.companyname" name="companyfield">
             </div>
             <div class="form-group">
               <label for="inputLocation">Location</label>
-              <input class="form-control" id="inputLocation" placeholder="Enter location">
+              <input class="form-control" id="inputLocation" placeholder="Enter location" [(ngModel)]="userAccount.location" name="locationfield">
             </div>
             <div class="form-group">
               <label for="inputSupplies">Supplies</label>
-              <input class="form-control" id="inputSupplies" placeholder="Enter supplies">
+              <select class="form-control" id="inputSupplies" [(ngModel)]="userAccount.supply" name="supplyfield">
+                <option></option>
+                <option [value]="supply.id" *ngFor="let supply of supplies" >
+                  {{ supply.name }}
+                </option>
+              </select>
             </div>
             <div class="form-group">
               <label for="inputEmail">Email address</label>
-              <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+              <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email"
+              [(ngModel)]="userAccount.email" type="email" name="emailfield" required>
               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group">
               <label for="inputPassword">Password</label>
-              <input type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp" placeholder="Password">
+              <input name="passwordfield" ng-model="passwordfield" type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp" placeholder="Password" required>
               <small id="passwordHelp" class="form-text text-muted">
                 Passwords should be at least 8 characters and should contain numbers and letters.
               </small>
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword2">Confirm Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" [(ngModel)]="userAccount.password">
+              <label for="confirmPassword">Confirm Password</label>
+              <input type="password" class="form-control" id="confirmPassword" placeholder="Password" [(ngModel)]="userAccount.password" name="confirmfield" required>
             </div>
 
             <button type="submit" class="btn btn-success">Register</button>
