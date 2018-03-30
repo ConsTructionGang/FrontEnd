@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-8">
       <div class="card">
-        <h5 class="card-header">Create a user account</h5>
+        <h5 class="card-header">Create an Account</h5>
         <div class="card-body">
           <form>
             <div class="form-group">
@@ -15,12 +15,11 @@
               <input type="email" class="form-control" required id="userEmail" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="userAccount.email" name="emailfield">
               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" required id="basic-addon1">@</span>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="userAccount.username" name="usernamefield">
-              </div>
-            </div>
+          <form>
+            <input type="radio" name="user" value="user" checked> User
+            <input type="radio" name="user" value="supplier"> Supplier
+
+          </form>
             <div class="form-group">
               <label for="inputPassword">Password</label>
               <input name="passwordfield" ng-model="passwordfield" type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp"
@@ -37,8 +36,7 @@
 
             <button type="submit" class="btn btn-success">Register</button>
             <p> Already have an account?
-              <a routerLink="/login">Sign in</a> or
-              <a routerLink="/supplieraccount">Sign up as a Supplier Company</a>
+              <a routerLink="/login">Sign in</a>
             </p>
           </form>
         </div>
