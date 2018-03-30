@@ -17,8 +17,9 @@ export class LoginComponent implements OnInit {
   this.title = 'Login';
   this.account = {
       id: 0,
-      username: '',
-      password: ''
+      email: '',
+      password: '',
+      type: ''
     };
   }
 
