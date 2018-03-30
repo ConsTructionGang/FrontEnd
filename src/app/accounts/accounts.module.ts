@@ -5,11 +5,12 @@ import { CreateuseraccountComponent } from './createuseraccount/createuseraccoun
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import {RouterModule} from '@angular/router';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, RouterModule],
 
-  declarations: [CreatesupplieraccountComponent, CreateuseraccountComponent, LoginComponent],
+  declarations: [CreatesupplieraccountComponent, CreateuseraccountComponent, LoginComponent, ForgotpasswordComponent],
 
   exports: [
     CreatesupplieraccountComponent, CreateuseraccountComponent, LoginComponent
