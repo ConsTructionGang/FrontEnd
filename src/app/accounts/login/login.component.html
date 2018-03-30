@@ -7,20 +7,15 @@
         <div class= "card-body">
 	        <form>
 	            <div class="form-group">
-                <label for="username"></label>
+                <label for="username">Username or Email</label>
                 <input name="loginusername" type="text" class="form-control" required id="username" aria-describedby="emailHelp" placeholder="Username or Email" [(ngModel)]="account.username">
 	            </div>
 	            <div class="form-group">
-	              <label for="password"></label>
+	              <label for="password">Password</label>
                 <input name="loginpassword" type="password" class="form-control" required id="password" aria-describedby="emailHelp" placeholder="Password" [(ngModel)]="account.password">
                 <small id="passwordHelp" class="form-text text-muted">
                   Passwords should be at least 8 characters and should contain numbers and letters.
                 </small>
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword2">Confirm Password</label>
-                <input type="password" class="form-control" required id="exampleInputPassword2" placeholder="Password" [(ngModel)]="account.password"
-                  name="confirmpasswordfield">
               </div>
 	            <button type="Login" class="btn btn-success">Sign in</button>
 	            <a href="#forgotPassword">Forgot Password</a>
