@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from '../../domain/models/account';
+import { Supply } from '../../domain/models/supply';
 
 @Component({
   selector: 'app-createuseraccount',
@@ -10,6 +11,7 @@ export class CreateuseraccountComponent implements OnInit {
 
   public title: string;
   public userAccount: Account;
+  public supplies: Supply[];
 
   constructor() {}
 
@@ -17,8 +19,13 @@ export class CreateuseraccountComponent implements OnInit {
     this.title = 'User Account';
     this.userAccount = {
       id: 0,
-      username: '',
-      password: ''
+      password: '',
+      type: 'user'
     };
+    this.supplies = [
+      { id: 1, name: 'Steel' },
+      { id: 2, name: 'Wood' },
+      { id: 3, name: 'Aluminium' }
+    ];
   }
 }

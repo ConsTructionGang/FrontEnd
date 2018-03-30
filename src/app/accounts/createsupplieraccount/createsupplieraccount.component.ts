@@ -20,8 +20,8 @@ export class CreatesupplieraccountComponent implements OnInit {
     this.title = 'Supplier Account';
     this.userAccount = {
       id: 0,
-      username: '',
-      password: ''
+      password: '',
+      type: 'supplier'
     };
     this.supplies = [
       { id: 1, name: 'Steel' },
