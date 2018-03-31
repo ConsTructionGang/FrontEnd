@@ -31,4 +31,14 @@ export class CreateuseraccountComponent implements OnInit {
     ];
   }
 
+  setSupplier(){
+    this.userAccount.type = 'supplier';
+    console.log(this.userAccount.type);
+  }
+
+  setUser(){
+    this.userAccount.type = 'user';
+    console.log(this.userAccount.type);
+  }
+
 }

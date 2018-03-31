@@ -11,87 +11,140 @@
     font-family: Georgia, serif;
 }
 
+h1{
+    position:absolute;
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    top:.75%;
+    left:12%;
+    font-size: 400%;
+    z-index: 2;
+}
+
 #signupImg{
     position:relative;
-    /overflow: hidden;
+    overflow: hidden;
     box-shadow: .5em .5em 3em black;
-    width:115em;
-    height:55em;
+    width:80%;
+    height:80%;
+    border-radius:.75em;
 }
 
 #img{
-    width:115em;
-    height:55em;
+    width:100%;
+    height:100%;
 }
 
 .slider{
     position:absolute;
-    background-color: white;
-    height:55em;
-    margin-top: -55em;
+    background-color: #536872;
+    height:100%;
+    top:-0%;
 }
 
-#leftUser{
-    margin-left: 40em;
-    width:75em;
+.userSlide #left{
+    left:40%;
+    width:60%;
+    transition: left linear .3s;
 }
 
-#leftSupplier{
-    margin-left: 40em;
-    width:0em;
+
+
+.supplierSlide #left{
+    left: 100%;
+    width:60%;
+    transition: left linear .3s;
 }
 
-#rightUser{
-    width:0em;
+.userSlide #right{
+    width:60%;
+    left:-60%;
+    transition: left linear .3s;
+
 }
 
-#rightSupplier{
-    width:75em;
+.supplierSlide #right{
+    left:0%;
+    width:60%;
+    transition: left linear .3s;
 }
 
 #supplierLogin{
     color:white;
-    text-shadow: 2px 2px 5px grey;
-    font-size:1.5em;
+    text-shadow: 1px 1px 2px black, 0 0 25px grey, 0 0 5px  #505050;
+    font-size:120%;
     position:absolute;
-    margin-top: -25em;
-    margin-left: 2em;
+    top: 20%;
+    left: 3%;
 }
 
 #userLogin{
     color:white;
-    text-shadow: 2px 2px 5px grey;
-    font-size:1.5em;
+    text-shadow: 1px 1px 2px black, 0 0 25px grey, 0 0 5px darkgrey;
+    font-size:120%;
     position:absolute;
-    margin-top: -25em;
-    margin-left: 55em;
+    top: 20%;
+    left: 65%;
 }
 
+
 #signupText{
-    color:black;
+    color:white;
     position:relative;
-    height:40em;
-    width:45em;
-    z-index: 1;
+    height:100%;
+    width:45%;
+    z-index: 3;
     
 
 }
 
+
 .userSignup{
-    font-size:1.25em;
-    top:-40em;
-    left:38em;
+    font-size:95%;
+    top:-97%;
+    left: 43%;
 
 
 }
 
 .supplierSignup{
-    font-size: 1em;
-    top:-52em;
-    left:6em;
+    display: hidden;
+    font-size:80%;
+    line-height: 1em;
+    top:-97%;
+    left:5%;
+    display: visible;
+}
+
+.userSignup input{
+
+}
+
+.supplierSignup input{
+    height:1.5em;
+}
+
+
+.supplierSignup #inputSupplies{
+    height:1.5em;
 }
 
 #signin{
-    padding-top: .5em;
-    font-size:1em;
+    padding: 3%;
+    font-size:100%;
+}
+
+#register{
+    margin-top: -1em;
+    margin-right:1em;
+}
+
+a{
+    color:#D3D3D3;
+}
+
+
+small{
+    color:  #E0E0E0;
+    font-size:90%;
 }

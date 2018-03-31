@@ -9,50 +9,56 @@
     align-items: center; /*centers items on the cross-axis (y by default)*/
     background: linear-gradient(to bottom right, #F8F9F9, grey);
     font-family: Georgia, serif;
+
 }
 
 
-#loginText{
-	height:25em;
-	width:35em;
+#loginTextContainer{
 	position:relative;
-	left:20em;
+	left:100%;
 	border-radius:1em;
 	color:white;
-	background: #536872;
-	padding: 3em;	
+	background: #536872;	
 	box-shadow: .5em .5em 3em black;
+	width:128%;
+	padding: 10%;
+
 }
 
+
 #loginImg{
+
+	width:220%;
 	position:absolute;
 	z-index: -1;
-	right:30em;
-	top:-3.5em;
+	right:80%;
+	top:-10%;
 	box-shadow: .5em .5em 3em black;
 	border-radius:1em;
 }
 
 #img{
+	height:100%;
+	width:100%;
 	border-radius:1em;
 }
 
 #loginMessage{
 	position:absolute;
-	width:40em;
-	right:30em;
-	top:5em;
-	text-shadow: 2px 2px 5px grey;
+	width:100%;
+	right:175%;
+	top:20%;
+	text-shadow: .25em .25em .75em grey;
 }
 
 #compName{
-	font-size:5em;
+	font-size:500%;
 }
 
 #info{
 	position:relative;
-	font-size:2em;
-	left:2.3em;
+	font-size:150%;
+	left:15%;
 }
 
 a{
@@ -70,5 +76,5 @@ a{
 }
 
 #password{
-	padding-left: .5em;
+	padding-left: 3%;
 }
