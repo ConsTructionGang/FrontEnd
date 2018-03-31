@@ -1,7 +1,6 @@
 import { Account } from './../../domain/models/account';
 import { Component, OnInit } from '@angular/core';
 import { Supply } from '../../domain/models/supply';
-import {DpDatePickerModule} from 'ng2-date-picker';
 
 
 
