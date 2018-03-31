@@ -1,5 +1,12 @@
 <div id="pageBody">
-  <h1> Sign Up </h1>
+  <h1> Sign Up: </h1>
+
+  <div  *ngIf="userAccount.type=='user'">
+    <h2 class ="headerType">User</h2>
+  </div>
+  <div *ngIf="userAccount.type=='supplier'">
+    <h2 class ="headerType">Supplier</h2>
+  </div>
   <div id="signupImg">
     <img id="img" src="\assets\images\signup.jpg">
     <div [ngClass]="{'userSlide':userAccount.type==='user',
@@ -29,7 +36,7 @@
 
    <div id="signupText" [ngClass]="{'userSignup':userAccount.type==='user',
                                     'supplierSignup':userAccount.type=='supplier'}">
-                                    
+
 
       
 

@@ -21,6 +21,16 @@ h1{
     z-index: 2;
 }
 
+.headerType{
+    position:absolute;
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    top: 3%;
+    left:30%;
+    font-size: 300%;
+    z-index: 2;
+}
+
 #signupImg{
     position:relative;
     overflow: hidden;
@@ -126,7 +136,8 @@ h1{
 
 
 .supplierSignup #inputSupplies{
-    height:1.5em;
+    font-size: 90%;
+    height:2.4em;
 }
 
 #signin{
