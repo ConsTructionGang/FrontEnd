@@ -1,31 +1,31 @@
-<div class="container">
-	<h1>{{ title }}</h1>
-	<div class="row">
-		<div class="col-md-8">
-	<div class="card">
-        <h5 class="card-header">Sign In</h5>
-        <div class= "card-body">
-	        <form>
-	            <div class="form-group">
-                <label for="username">Email</label>
-                <input name="loginusername" type="text" class="form-control" required id="email" aria-describedby="emailHelp" placeholder="Email" [(ngModel)]="account.email">
-	            </div>
-	            <div class="form-group">
-	              <label for="password">Password</label>
-                <input name="loginpassword" type="password" class="form-control" required id="password" aria-describedby="emailHelp" placeholder="Password" [(ngModel)]="account.password">
-                <small id="passwordHelp" class="form-text text-muted">
-                  Passwords should be at least 8 characters and should contain numbers and letters.
-                </small>
-              </div>
-	            <button type="Login" class="btn btn-success">Sign in</button>
-	            <a routerLink="/forgotpassword">Forgot Password</a>
-	            <br>
-	            <p> Don't have an account?
-	            	<a routerLink="/useraccount">Sign up</a>
-	        	</p>
-	        </form>
-	    </div>
+<div id="pageBody">
+	<div class="loginScreen">
+		<div id="loginText">
+		    <h2>Sign In</h2>
+		    <form>
+		        <div class="form-group">
+		        <label for="username">Email</label>
+		        <input name="loginusername" type="text" class="form-control" required id="email" aria-describedby="emailHelp" placeholder="Email" [(ngModel)]="account.email">
+		        </div>
+		        <div class="form-group">
+		          <label for="password">Password</label>
+		        <input name="loginpassword" type="password" class="form-control" required id="password" aria-describedby="emailHelp" placeholder="Password" [(ngModel)]="account.password">
+		      </div>
+		        <button type="Login" class="btn btn-success">Sign in</button>
+		        <a id="password" routerLink="/forgotpassword">Forgot Password</a>
+		        <br>
+		        <br>
+		        <p> Don't have an account?
+		        	<a routerLink="/useraccount">Sign up</a>
+		    	</p>
+		    </form>
+		    <div id="loginImg">
+				<img id="img" src="\assets\images\login.jpg" height="500">
+			</div>
+			<div id="loginMessage">
+				<p id="compName"> Construction </p>
+				<p id="info"> Here is some filler text </p>
+			</div>
 		</div>
-		</div>
-  </div>
+	</div>
 </div>

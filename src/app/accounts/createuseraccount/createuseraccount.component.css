@@ -1,0 +1,80 @@
+#pageBody{
+	z-index: -5;
+	overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center; /*centers items on the line (the x-axis by default)*/
+    align-items: center; /*centers items on the cross-axis (y by default)*/
+    background: linear-gradient(to bottom right, #F8F9F9, grey);
+    font-family: Georgia, serif;
+}
+
+#signupImg{
+    position:relative;
+    margin-left: -15em;
+    overflow: hidden;
+    box-shadow: .5em .5em 3em black;
+}
+
+#img{
+    width:100em;
+    height:40em;
+}
+
+.slider{
+    position:absolute;
+    background-color: white;
+    height:40em;
+    margin-top: -40em;
+}
+
+#leftUser{
+    margin-left: 40em;
+    width:60em;
+}
+
+#leftSupplier{
+    margin-left: 40em;
+    width:0em;
+}
+
+#rightUser{
+    width:0em;
+}
+
+#rightSupplier{
+    width:60em;
+}
+
+#supplierLogin{
+    color:white;
+    text-shadow: 2px 2px 5px grey;
+    font-size:1.5em;
+    position:absolute;
+    margin-top: -20em;
+    margin-left: 2em;
+}
+
+#userLogin{
+    color:white;
+    text-shadow: 2px 2px 5px grey;
+    font-size:1.5em;
+    position:absolute;
+    margin-top: -20em;
+    margin-left: 45em;
+}
+
+#userSignUp{
+    color:black;
+    font-size: 1.2em;
+    position:absoulte;
+    margin-left: -42em;
+    z-index: 1;
+
+}
+
+#signin{
+    padding-top: .5em;
+}
