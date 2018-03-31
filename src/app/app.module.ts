@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AccountsModule } from './accounts/accounts.module';
 import { AppRoutingModule } from './/app-routing.module';
+import { JobsModule } from './jobs/jobs.module';
 
 
 
@@ -15,8 +16,9 @@ import { AppRoutingModule } from './/app-routing.module';
     BrowserModule,
     FormsModule,
     AccountsModule,
-    AppRoutingModule
-  ],
+    AppRoutingModule,
+    JobsModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -8,9 +8,13 @@ import { Account } from '../../domain/models/account';
 })
 export class ForgotpasswordComponent implements OnInit {
 
-  constructor() { }
+  public title: string;
+  constructor() {
+
+  }
 
   ngOnInit() {
+    this.title = 'Forgot Password';
   }
 
 }

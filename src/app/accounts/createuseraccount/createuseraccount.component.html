@@ -36,9 +36,12 @@
 
    <div id="signupText" [ngClass]="{'userSignup':userAccount.type==='user',
                                     'supplierSignup':userAccount.type=='supplier'}">
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6f1314648a865ed0534ded21042b0dd1fb40fcf9
 
 
-      
 
       <form>
         <div class="form-group">
@@ -48,7 +51,6 @@
         <div class="form-group">
           <label for="userEmail">Email address</label>
           <input type="email" class="form-control" required id="userEmail" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="userAccount.email" name="emailfield">
-          <br>
           <small id="emailHelp">We'll never share your email with anyone else.</small>
         </div>
         <div *ngIf="userAccount.type=='supplier'">
@@ -77,7 +79,6 @@
           <label for="inputPassword">Password</label>
           <input name="passwordfield" ng-model="passwordfield" type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp"
                   placeholder="Password" required>
-          <br>
           <small id="passwordHelp">
             Passwords should be at least 8 characters and should contain numbers and letters.
           </small>
@@ -88,9 +89,9 @@
                   name="confirmfield" required>
         </div>
 
-        
 
-        <p id="signin"> 
+
+        <p id="signin">
           <button id="register" type="submit" class="btn btn-success">Register</button>
           Already have an account?
           <a routerLink="/login">Sign in</a>
