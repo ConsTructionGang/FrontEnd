@@ -6,6 +6,7 @@ import { Supply } from '../../domain/models/supply';
   selector: 'app-createuseraccount',
   templateUrl: './createuseraccount.component.html',
   styleUrls: ['./createuseraccount.component.css']
+
 })
 export class CreateuseraccountComponent implements OnInit {
 
@@ -14,6 +15,7 @@ export class CreateuseraccountComponent implements OnInit {
   public supplies: Supply[];
 
   constructor() {}
+
 
   ngOnInit() {
     this.title = 'User Account';
@@ -28,4 +30,15 @@ export class CreateuseraccountComponent implements OnInit {
       { id: 3, name: 'Aluminium' }
     ];
   }
+
+  setSupplier(){
+    this.userAccount.type = 'supplier';
+    console.log(this.userAccount.type);
+  }
+
+  setUser(){
+    this.userAccount.type = 'user';
+    console.log(this.userAccount.type);
+  }
+
 }

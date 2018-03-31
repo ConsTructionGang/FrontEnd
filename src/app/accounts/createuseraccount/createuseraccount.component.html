@@ -1,29 +1,54 @@
-<div class="container">
-  <h1>{{ title }}</h1>
-  <div class="row">
-    <div class="col-md-8">
-      <div class="card">
-        <h5 class="card-header">Create an Account</h5>
-        <div class="card-body">
-          <form>
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="name" class="form-control" required id="name" aria-describedby="emailHelp" placeholder="Enter full name" [(ngModel)]="userAccount.name" name="namefield">
-            </div>
-            <div class="form-group">
-              <label for="userEmail">Email address</label>
-              <input type="email" class="form-control" required id="userEmail" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="userAccount.email" name="emailfield">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-          <form>
-            <input type="radio" name="user" value="user" checked [(ngModel)]="userAccount.type"> User
-            <input type="radio" name="user" value="supplier" [(ngModel)]="userAccount.type"> Supplier
-          </form>
-          <div *ngIf="userAccount.type=='supplier'">
+<div id="pageBody">
+  <h1> Sign Up </h1>
+  <div id="signupImg">
+    <img id="img" src="\assets\images\signup.jpg">
+    <div [ngClass]="{'userSlide':userAccount.type==='user',
+                      'supplierSlide':userAccount.type=='supplier'}">
+      <div id="left" class="slider"></div>
+      <div id ="right" class="slider"></div>
+    </div>
+    <div *ngIf="userAccount.type=='user'">
+      <div id="supplierLogin">
+        <h3> Not a Construction Company?</h3>
+        <p> No problem! </p>
+        <p> Click below to create a supplier account. </p>
+        <button  type="SignUp" class="btn btn-success" (click)="setSupplier()">Create Supplier Account</button>
+      </div>
+    </div>
+
+    <div *ngIf="userAccount.type=='supplier'">
+      <div id="userLogin">
+        <h3> Not a Supplier?</h3>
+        <p> No problem! </p>
+        <p> Click below to create an user account. </p>
+        <button  type="SignUp" class="btn btn-success" (click)="setUser()">Create User Account</button>
+      </div>
+    </div>
+
+
+
+   <div id="signupText" [ngClass]="{'userSignup':userAccount.type==='user',
+                                    'supplierSignup':userAccount.type=='supplier'}">
+                                    
+
+      
+
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="name" class="form-control" required id="name" aria-describedby="emailHelp" placeholder="Enter full name" [(ngModel)]="userAccount.name" name="namefield">
+        </div>
+        <div class="form-group">
+          <label for="userEmail">Email address</label>
+          <input type="email" class="form-control" required id="userEmail" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="userAccount.email" name="emailfield">
+          <br>
+          <small id="emailHelp">We'll never share your email with anyone else.</small>
+        </div>
+        <div *ngIf="userAccount.type=='supplier'">
           <div class="form-group">
             <label for="inputCompanyName">Company Name</label>
             <input class="form-control" required id="inputCompanyName" placeholder="Enter company name" [(ngModel)]="userAccount.companyname"
-              name="companyfield">
+                name="companyfield">
           </div>
           <div class="form-group">
             <label for="inputLocation">Location</label>
@@ -41,27 +66,35 @@
         </div>
 
 
-            <div class="form-group">
-              <label for="inputPassword">Password</label>
-              <input name="passwordfield" ng-model="passwordfield" type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp"
-                placeholder="Password" required>
-              <small id="passwordHelp" class="form-text text-muted">
-                Passwords should be at least 8 characters and should contain numbers and letters.
-              </small>
-            </div>
-            <div class="form-group">
-              <label for="confirmPassword">Confirm Password</label>
-              <input type="password" class="form-control" id="confirmPassword" placeholder="Password" [(ngModel)]="userAccount.password"
-                name="confirmfield" required>
-            </div>
-
-            <button type="submit" class="btn btn-success">Register</button>
-            <p> Already have an account?
-              <a routerLink="/login">Sign in</a>
-            </p>
-          </form>
+        <div class="form-group">
+          <label for="inputPassword">Password</label>
+          <input name="passwordfield" ng-model="passwordfield" type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp"
+                  placeholder="Password" required>
+          <br>
+          <small id="passwordHelp">
+            Passwords should be at least 8 characters and should contain numbers and letters.
+          </small>
         </div>
-      </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" class="form-control" id="confirmPassword" placeholder="Password" [(ngModel)]="userAccount.password"
+                  name="confirmfield" required>
+        </div>
+
+        
+
+        <p id="signin"> 
+          <button id="register" type="submit" class="btn btn-success">Register</button>
+          Already have an account?
+          <a routerLink="/login">Sign in</a>
+        </p>
+      </form>
     </div>
-  </div>
+
+</div>
+
+
+
+
+
 </div>
