@@ -11,4 +11,5 @@ export class AppComponent {
   login = true;
   createsupplier = false;
   createuser = false;
+  addjobs = false;
 }

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AccountsModule } from './accounts/accounts.module';
 import { AppRoutingModule } from './/app-routing.module';
 import { JobsModule } from './jobs/jobs.module';
+import { DpDatePickerModule } from 'ng2-date-picker';
 
 
 
@@ -17,7 +18,8 @@ import { JobsModule } from './jobs/jobs.module';
     FormsModule,
     AccountsModule,
     AppRoutingModule,
-    JobsModule
+    JobsModule,
+     DpDatePickerModule
     ],
   providers: [],
   bootstrap: [AppComponent]
