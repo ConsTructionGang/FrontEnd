@@ -11,7 +11,8 @@
         <button  type="SignUp" class="btn btn-success" >Create Supplier Account</button>
       </div>
     </div>
-    <div *ngIf="userAccount.type=='supplier'">
+
+        <div *ngIf="userAccount.type=='supplier'">
       <div id="rightSupplier" class="slider"></div>
       <div id="leftSupplier" class="slider"></div>
       <div id="userLogin">
@@ -21,12 +22,15 @@
         <button  type="SignUp" class="btn btn-success">Create User Account</button>
       </div>
     </div>
-  </div>
 
 
- <div id="userSignUp" >
+
+
+ <div id="signupText" [ngClass]="{'userSignup':userAccount.type==='user',
+                                  'supplierSignup':userAccount.type=='supplier'}">
+
     
-    <h3 >Create an Account</h3>
+    <h1 >Create an Account</h1>
 
     <form>
       <div class="form-group">
@@ -85,5 +89,11 @@
       </p>
     </form>
   </div>
+
+
+
+  </div>
+
+
 
 </div>

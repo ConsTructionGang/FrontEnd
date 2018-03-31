@@ -13,26 +13,27 @@
 
 #signupImg{
     position:relative;
-    margin-left: -15em;
-    overflow: hidden;
+    /overflow: hidden;
     box-shadow: .5em .5em 3em black;
+    width:115em;
+    height:55em;
 }
 
 #img{
-    width:100em;
-    height:40em;
+    width:115em;
+    height:55em;
 }
 
 .slider{
     position:absolute;
     background-color: white;
-    height:40em;
-    margin-top: -40em;
+    height:55em;
+    margin-top: -55em;
 }
 
 #leftUser{
     margin-left: 40em;
-    width:60em;
+    width:75em;
 }
 
 #leftSupplier{
@@ -45,7 +46,7 @@
 }
 
 #rightSupplier{
-    width:60em;
+    width:75em;
 }
 
 #supplierLogin{
@@ -53,7 +54,7 @@
     text-shadow: 2px 2px 5px grey;
     font-size:1.5em;
     position:absolute;
-    margin-top: -20em;
+    margin-top: -25em;
     margin-left: 2em;
 }
 
@@ -62,19 +63,35 @@
     text-shadow: 2px 2px 5px grey;
     font-size:1.5em;
     position:absolute;
-    margin-top: -20em;
-    margin-left: 45em;
+    margin-top: -25em;
+    margin-left: 55em;
 }
 
-#userSignUp{
+#signupText{
     color:black;
-    font-size: 1.2em;
-    position:absoulte;
-    margin-left: -42em;
+    position:relative;
+    height:40em;
+    width:45em;
     z-index: 1;
+    
 
+}
+
+.userSignup{
+    font-size:1.25em;
+    top:-40em;
+    left:38em;
+
+
+}
+
+.supplierSignup{
+    font-size: 1em;
+    top:-52em;
+    left:6em;
 }
 
 #signin{
     padding-top: .5em;
+    font-size:1em;
 }
