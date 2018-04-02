@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  this.title = 'Login';
+  this.title = 'Sign In';
   this.account = {
       id: 0,
       email: '',
