@@ -13,7 +13,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
   declarations: [CreatesupplieraccountComponent, CreateuseraccountComponent, LoginComponent, ForgotpasswordComponent],
 
   exports: [
-    CreatesupplieraccountComponent, CreateuseraccountComponent, LoginComponent
+    CreatesupplieraccountComponent, CreateuseraccountComponent, LoginComponent, ForgotpasswordComponent
   ]
 })
 
