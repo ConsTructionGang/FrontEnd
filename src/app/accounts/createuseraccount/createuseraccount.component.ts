@@ -31,8 +31,8 @@ import {
             state('active', style({
                 transform: 'translateX(168%)',
             })),
-            transition('inactive => active', animate('0.1s ease-in')),
-            transition('active => inactive', animate('0.1s ease-out'))
+            transition('inactive => active', animate('0.15s ease-in')),
+            transition('active => inactive', animate('0.15s ease-out'))
         ]),
         trigger('slideForm', [
             state('inactive', style({
@@ -41,8 +41,8 @@ import {
             state('active', style({
                 transform: 'translateX(-80%)',
             })),
-            transition('inactive => active', animate('0.2s .7s ease-in')),
-            transition('active => inactive', animate('0.2s .7s ease-out'))
+            transition('inactive => active', animate('0.15s  ease-in')),
+            transition('active => inactive', animate('0.15s  ease-out'))
         ]),
         trigger('fade', [
             state('inactive', style({
@@ -63,6 +63,7 @@ export class CreateuseraccountComponent implements OnInit {
   public title: string;
   public userAccount: Account;
   public supplies: Supply[];
+  public changeTypeTitle: string = 'Not a Construction Company?';
   public state: string = 'inactive';
   public fadeState: string = 'inactive';
 
@@ -75,9 +76,6 @@ export class CreateuseraccountComponent implements OnInit {
       id: 0,
       password: '',
       type: 'User',
-      changeTypeTitle: 'Not a Construction Company?',
-      state: 'inactive',
-      fadeState: 'inactive'
     };
     this.supplies = [
       { id: 1, name: 'Steel' },
@@ -90,14 +88,14 @@ export class CreateuseraccountComponent implements OnInit {
     this.state = (this.state === 'inactive' ? 'active' : 'inactive');
     this.fadeState = (this.fadeState === 'inactive' ? 'active' : 'inactive');
     this.userAccount.type = 'Supplier';
-    this.userAccount.changeTypeTitle = 'Not a Supplier?';
+    this.changeTypeTitle = 'Not a Supplier?';
   }
 
   setUser(){
     this.state = (this.state === 'inactive' ? 'active' : 'inactive');
     this.fadeState = (this.fadeState === 'inactive' ? 'active' : 'inactive');
     this.userAccount.type = 'User';
-    this.userAccount.changeTypeTitle = 'Not a Construction Company?';
+    this.changeTypeTitle = 'Not a Construction Company?';
   }
 
   fadeIn(){

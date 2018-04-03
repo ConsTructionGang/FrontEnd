@@ -1,59 +1,63 @@
 
 .fill{
-    position: absolute;
-    height: 100%;
-    display: flex;
-    justify-content: center; /*centers items on the line (the x-axis by default)*/
-    align-items: center; /*centers items on the cross-axis (y by default)*/
-    align-items: center; /*centers items on the cross-axis (y by default)*/
-    background: linear-gradient(to bottom right, #F8F9F9, 	#505050);
     font-family: Georgia, serif;
     font-size:100%;
 }
 
+.d-flex{
+    margin-top: 8rem;
+    margin-bottom: 8rem;
+}
 
+#loginContainer{
+	width:55rem;
+	height: 26.75rem;
+}
 
 #loginTextContainer{
-	position:relative;
-	left:-5rem;
+	position: relative;
+	width:36.5%;
+	height:84%;
+	right:-63.5%;
+	top:-92%;
 	border-radius:1rem;
 	color:white;
-	background: #536872;	
+	background-color: #536872;	
 	box-shadow: .5rem .5rem 3rem black;
-	width:20rem;
-	padding: 2rem;
-
+	padding:2rem;
 }
 
 #loginImg{
-	width:40rem;
+	width:73%;
+	height: 100%;
 	box-shadow: .5rem .5rem 3rem black;
 	border-radius:1rem;
 }
 
 #img{
-	width:40rem;
+	width:100%;
+	height: 100%;
 	border-radius:1rem;
 }
 
 #loginMessage{
 	color:white;
-	position:absolute;
-	width:20rem;
-	right:50rem;
-	top:15rem;
+	position:relative;
+	width:72%;
+	right:-10%;
+	top:-70%;
 	text-shadow: .25rem .25rem .75rem grey;
 }
 
 #compName{
-	font-size:5rem;
+	font-size:500%;
 }
 
 a{
 	color: #D3D3D3;
 }
 
-.btn-primary, .btn-primary:active, .btn-primary:visited {
+/*.btn-primary, .btn-primary:active, .btn-primary:visited {
     background-color: 	#A0A0A0;
     border-color: 	#A0A0A0;
 }
@@ -61,7 +65,7 @@ a{
 .btn-primary:hover{
 	background-color:	#787878;
 	border-color:	#787878;
-}
+}*/
 
 #password{
 	padding-left: 3%;

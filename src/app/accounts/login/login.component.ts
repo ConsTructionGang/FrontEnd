@@ -4,12 +4,13 @@ import { Account } from '../../domain/models/account';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
 
   public title: string;
   public account: Account;
+  public state: string = 'inactive';
 
   constructor() { }
 
