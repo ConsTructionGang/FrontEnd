@@ -1,0 +1,37 @@
+<div class="container">
+  <h2> Your Jobs </h2>
+  <div *ngIf="jobs.length==0" class="alert alert-dark" role="alert">
+    You currently don't have any jobs!
+  </div>
+  <table *ngIf="jobs.length>0" class="table">
+    <thead>
+      <tr>
+        <th scope="col">Job</th>
+        <!--<th scope="col">Location</th>-->
+        <th scope="col">Estimated Cost</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Status</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let job of jobs" [ngClass]="{'table-dark': job.status.statusString == 'Complete'}">
+        <th scope="row"><a href="#"> {{job.title}} </a></th>
+        <!--<td>{{job.location}}</td>-->
+        <td>{{job.cost | currency}}</td>
+        <td>{{job.startDate | date:"longDate"}}</td>
+        <td>{{job.endDate | date:"longDate"}}</td>
+        <td>{{job.status.statusString}}</td>
+        <td>
+        <button *ngIf="job.status.statusId==0" type="button" class="btn btn-secondary btn-sm" (click)="jobStatus(job.id, 1, 'Complete')">Mark as Complete</button>
+        <button *ngIf="job.status.statusId!=0" type="button" class="btn btn-secondary btn-sm" (click)="jobStatus(job.id, 0, 'In Progress')">Mark as In Progress</button></td>
+        <td><button type="button" class="btn btn-secondary btn-sm" (click)="deleteJob(job.id)">Delete</button></td>
+        <td><button type="button" class="btn btn-secondary btn-sm" (click)="deleteJob(job.id)">Edit</button></td>
+      </tr>
+  </table>
+  <a routerLink="/addjobs"> Add a Job </a>
+  <a href="#"> Back to Homepage </a>
+</div>
