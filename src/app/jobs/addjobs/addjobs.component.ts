@@ -19,8 +19,11 @@ export class AddjobsComponent implements OnInit {
 
   ngOnInit() {
       this.title = 'Add Jobs';
-
-
+      this.account = {
+          id: 0,
+          password: '',
+          type: 'User',
+      }
   }
 
 }
