@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AccountsModule } from './accounts/accounts.module';
 import { AppRoutingModule } from './/app-routing.module';
 import { JobsModule } from './jobs/jobs.module';
+import { ReviewsModule } from './reviews/reviews.module';
 
 
 
@@ -21,6 +22,7 @@ import { JobsModule } from './jobs/jobs.module';
     AppRoutingModule,
     JobsModule,
     BrowserAnimationsModule,
+    ReviewsModule,
     ],
   providers: [],
   bootstrap: [AppComponent]
