@@ -1,0 +1,14 @@
+.stars {
+  font-size: 1.5rem;;
+  color: black;
+}
+
+.full-star:after {
+  content: "\2605";
+  color: blue;
+}
+
+.empty-star:after {
+  content: "\2606";
+}
+

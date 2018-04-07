@@ -23,7 +23,7 @@ export class AddjobsComponent implements OnInit {
           id: 0,
           password: '',
           type: 'User',
-      }
+      };
   }
 
 }
