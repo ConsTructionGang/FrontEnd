@@ -1,8 +1,8 @@
 <div class="container">
-  <h4> Leave a review ({{allReview.length}})</h4>
+  <h4> Customer Reviews ({{allReview.length}})</h4>
   <div>
     <div class="card bg-light">
-      <div class="card-body text-left text-muted" *ngIf="!allReview.length">Give suppilier a review below!
+      <div class="card-body text-left text-muted" *ngIf="!allReview.length">Leave a review!
       </div>
     </div>
     <div *ngFor="let review of allReview;">
@@ -27,7 +27,7 @@
 
 <div class="container">
   <div class="card">
-    <div class="card-header text-white bg-secondary">Add Review</div>
+    <div class="card-header text-white bg-primary">Add Review</div>
     <div class="card-body">
       <form>
         <div class="form-row">
