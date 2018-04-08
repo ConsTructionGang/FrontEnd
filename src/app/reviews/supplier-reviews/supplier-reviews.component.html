@@ -1,0 +1,61 @@
+<div class="container">
+  <h4> Customer Reviews ({{allReview.length}})</h4>
+  <div>
+    <div class="card bg-light">
+      <div class="card-body text-left text-muted" *ngIf="!allReview.length">Leave a review!
+      </div>
+    </div>
+    <div *ngFor="let review of allReview;">
+      <div class="card mb-4 bg-light">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-10">
+              <h4 class="card-title">{{review.userName}}</h4>
+              <app-rating [rating]="review.rating"></app-rating>
+            </div>
+            <div class="col-2">
+              <p class="card-text">{{review.date | date}}</p>
+            </div>
+          </div>
+          <p class="card-text">"{{review.comment}}"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="container">
+  <div class="card">
+    <div class="card-header text-white bg-primary">Add Review</div>
+    <div class="card-body">
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="input4Name">Your Name</label>
+            <input type="text" class="form-control" id="input4Name" name="UserName" [(ngModel)]="newReview.userName" />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputRating">Rating</label>
+            <br/>
+            <select class="form-control d-inline mr-4" id="inputRating" name="select" [(ngModel)]="newReview.rating" style="width: 140px;">
+              <option value="" disabled selected></option>
+              <option value="1">1 star</option>
+              <option value="2">2 stars</option>
+              <option value="3">3 stars</option>
+              <option value="4">4 stars</option>
+              <option value="5">5 stars</option>
+            </select>
+            <app-rating [rating]="newReview.rating"></app-rating>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="commentBox">Comment</label>
+          <textarea class="form-control" id="commentBox" rows="3" name="comment" [(ngModel)]="newReview.comment"></textarea>
+        </div>
+      </form>
+      <button type="button" class="btn btn-success" (click)="addReview()" [disabled]="!newReview.userName || !newReview.rating || !newReview.comment">Submit</button>
+      <button type="submit" class="btn btn-danger">Cancel</button>
+    </div>
+  </div>
+</div>

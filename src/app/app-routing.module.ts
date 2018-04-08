@@ -1,3 +1,4 @@
+import { SupplierReviewsComponent } from './reviews/supplier-reviews/supplier-reviews.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './accounts/login/login.component';
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'useraccount', component: CreateuseraccountComponent },
   { path: 'forgotpassword', component: ForgotpasswordComponent },
   { path: 'addjobs', component: AddjobsComponent },
-  { path: 'viewjobs', component: ViewJobsComponent }
+  { path: 'viewjobs', component: ViewJobsComponent },
+  { path: 'reviews', component: SupplierReviewsComponent }
 ];
 @NgModule({
   imports: [ RouterModule.forRoot(routes)],
