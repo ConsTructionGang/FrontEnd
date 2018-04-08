@@ -5,7 +5,7 @@
 
 .full-star:after {
   content: "\2605";
-  color: blue;
+  color: darkorange;
 }
 
 .empty-star:after {
