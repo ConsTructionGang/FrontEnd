@@ -1,0 +1,13 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { SupplierProductsComponent } from './supplier-products/supplier-products.component';
+
+@NgModule({
+  imports: [
+    CommonModule, RouterModule, FormsModule
+  ],
+  declarations: [SupplierProductsComponent]
+})
+export class ProductsModule { }
