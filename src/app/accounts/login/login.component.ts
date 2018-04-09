@@ -1,6 +1,6 @@
-import { Status, LoginHttpService } from '../../domain';
+import { Account, Status, LoginHttpService } from '../../domain';
 import { Component, OnInit } from '@angular/core';
-import { Account } from '../../domain/models/account';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit {
   public state: string = 'inactive';
 
   constructor(
-    private logginHttpService: LoginHttpService
+    private logginHttpService: LoginHttpService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -31,13 +32,15 @@ export class LoginComponent implements OnInit {
     //can perform form validation here
 
     this.logginHttpService.update(this.account).subscribe(resp => {
-      if(resp.status == 200) {
-        console.log(resp.body);
-        //login succesful
+      if(resp.status == 200) {                    //login succesful
+        //print http response body
+        console.log(resp.body);        
+
+        //change route
+        this.router.navigateByUrl('viewjobs');
       }
-      else {
-        //login failed
-        //check status code for more info
+      else {                                      //login failed
+        //check http status code for more info
       }
     });
   }
