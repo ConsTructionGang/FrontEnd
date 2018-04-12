@@ -1,37 +1,110 @@
-<div class="container">
-  <h2> Your Jobs </h2>
-  <div *ngIf="jobs.length==0" class="alert alert-dark" role="alert">
-    You currently don't have any jobs!
-  </div>
-  <table *ngIf="jobs.length>0" class="table">
-    <thead>
-      <tr>
-        <th scope="col">Job</th>
-        <!--<th scope="col">Location</th>-->
-        <th scope="col">Estimated Cost</th>
-        <th scope="col">Start Date</th>
-        <th scope="col">End Date</th>
-        <th scope="col">Status</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let job of jobs" [ngClass]="{'table-dark': job.status.statusString == 'Complete'}">
-        <th scope="row"><a href="#"> {{job.title}} </a></th>
-        <!--<td>{{job.location}}</td>-->
-        <td>{{job.cost | currency}}</td>
-        <td>{{job.startDate | date:"longDate"}}</td>
-        <td>{{job.endDate | date:"longDate"}}</td>
-        <td>{{job.status.statusString}}</td>
-        <td>
-        <button *ngIf="job.status.statusId==0" type="button" class="btn btn-secondary btn-sm" (click)="jobStatus(job.id, 1, 'Complete')">Mark as Complete</button>
-        <button *ngIf="job.status.statusId!=0" type="button" class="btn btn-secondary btn-sm" (click)="jobStatus(job.id, 0, 'In Progress')">Mark as In Progress</button></td>
-        <td><button type="button" class="btn btn-secondary btn-sm" (click)="deleteJob(job.id)">Delete</button></td>
-        <td><button type="button" class="btn btn-secondary btn-sm" (click)="deleteJob(job.id)">Edit</button></td>
-      </tr>
-  </table>
-  <a routerLink="/addjobs"> Add a Job </a>
-  <a href="#"> Back to Homepage </a>
+<div class="container-fluid">
+  <div class="d-flex justify-content-center">
+    <div class="card">
+      <div class="card-header bg-secondary text-white">
+        <h2> Active Jobs </h2>
+      </div>
+      <div class="card-body">
+        <div *ngIf="account.jobs.length==0" class="alert alert-dark" role="alert">
+          You currently don't have any jobs!
+        </div>
+
+        <table id="jobTable" *ngIf="account.jobs.length>0" class="table">
+          <thead>
+            <tr id="table-head">
+              <th> </th>
+              <th scope="col">Est. Cost</th>
+              <th scope="col">Start Date</th>
+              <th scope="col">End Date</th>
+              <th scope="col">Status</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="table-body" *ngFor="let job of account.jobs; let i = index" [ngClass]="{'text-muted': job.status.statusString == 'Complete'}">
+              <th scope="row" data-toggle="modal" data-target="#viewModal"><a > {{job.title}} </a></th>
+              <!--<td>{{job.location}}</td>-->
+              <td>{{job.cost | currency}}</td>
+              <td>{{job.startDate | date:"longDate"}}</td>
+              <td>{{job.endDate | date:"longDate"}}</td>
+              <td>{{job.status.statusString}}</td>
+              <td>
+              <button *ngIf="job.status.statusId==0" type="button" class="btn btn-secondary btn-sm statusBtn" (click)="jobStatus(job.id, 1, 'Complete')">Mark as Complete</button>
+              <button *ngIf="job.status.statusId!=0" type="button" class="btn btn-secondary btn-sm statusBtn" (click)="jobStatus(job.id, 0, 'In Progress')">Mark as In Progress</button></td>
+              <td><button type="button" class="btn btn-secondary btn-sm" (click)="deleteJob(job.id)">Delete</button></td>
+              <td>
+                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#editModal" (click)="fillTempJob(i)">
+                  Edit 
+                </button>
+              </td>
+              <!-- Modal -->
+              <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Edit {{job.title}} Job</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <app-addjobs [indexJob]="i" [tempJob]="tempJob" [fromView]="true"></app-addjobs>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateJob(i)">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal -->
+              <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">{{job.title}}</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <br>
+                        <p><strong>Title:</strong>{{job.title}}</p>
+                        <p><strong>Location:</strong>{{job.location}}</p>
+                        <p><strong>Est. Cost:</strong>{{job.cost | currency}}</p>
+                        <p><strong>Start Date:</strong>{{job.startDate | date:"longDate"}}</p>
+                        <p><strong>End Date:</strong>{{job.endDate | date:"longDate"}}</p>
+                        <span><strong>Supplies:</strong></span>
+                        <table class="table">
+                            <tbody>
+                              <tr *ngFor="let supply of job.supplies; let i = index">
+                                <td>
+                                  {{supply}}
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal"data-toggle="modal" data-target="#editModal" (click)="fillTempJob(i)">
+                          Edit 
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </tr>
+        </table>
+        <hr>
+        <button id="create" type="button" class="btn btn-primary" routerLink="/addjobs">Create a new job</button>
+      </div>
+    </div>
+  </div>   
 </div>
+
+  
+  

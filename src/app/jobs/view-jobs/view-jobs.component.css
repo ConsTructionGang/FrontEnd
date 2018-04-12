@@ -1,0 +1,31 @@
+.container-fluid{
+    padding-top:3rem;
+}
+* {
+    font-family: Georgia, serif;
+}
+.card{
+    width:85%;
+}
+#table-head > th{
+    border:none;
+}
+#table-body:hover > th{
+    background-color:#E8E8E8;
+    cursor: pointer;
+
+}
+
+#table-body:hover > td{
+    background-color:whitesmoke;
+
+}
+
+.statusBtn{
+    width:9rem;
+}
+
+#create{
+    position: relative;
+    left:87%;
+}

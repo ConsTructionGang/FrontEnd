@@ -1,5 +1,5 @@
 .container-fluid{
-    padding-top:2rem;
+    padding-top:3rem;
 }
 d-flex{
     width:100%;
@@ -43,7 +43,11 @@ h4{
 }
 
 #addJobs{
-    width:45rem
+    width:45rem;
+}
+.viewAddJobs{
+    background-color: red;
+    width:30rem !important;
 }
 #viewJobsCard{
     width:18rem;
