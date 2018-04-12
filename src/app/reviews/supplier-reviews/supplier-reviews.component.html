@@ -1,61 +1,64 @@
 <div class="container">
-  <h4> Customer Reviews ({{allReview.length}})</h4>
+  <h4> Customer Reviews ({{allReview.length}})
+    <button class="btn btn-light" *ngIf="allReview.length != 0" (click)="showHide = !showHide">Add Review</button>
+  </h4>
+      <div *ngIf="showHide == true" class="card">
+        <div class="card-header text-white bg-secondary">Add Review</div>
+        <div class="card-body">
+          <form>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="input4Name">Your Name</label>
+                <input type="text" class="form-control" id="input4Name" name="UserName" [(ngModel)]="newReview.userName" />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputRating">Rating</label>
+                <br/>
+                <select class="form-control d-inline mr-4" id="inputRating" name="select" [(ngModel)]="newReview.rating" style="width: 140px;">
+                  <option value="" disabled selected></option>
+                  <option value="1">1 star</option>
+                  <option value="2">2 stars</option>
+                  <option value="3">3 stars</option>
+                  <option value="4">4 stars</option>
+                  <option value="5">5 stars</option>
+                </select>
+                <app-rating [rating]="newReview.rating"></app-rating>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="commentBox">Comment</label>
+              <textarea class="form-control" id="commentBox" rows="3" name="comment" [(ngModel)]="newReview.comment"></textarea>
+            </div>
+          </form>
+          <button type="button" class="btn btn-success" (click)="addReview()" (click)="showHide = !showHide" [disabled]="!newReview.userName || !newReview.rating || !newReview.comment">Submit</button>
+          <button type="submit" class="btn btn-danger" (click)="showHide = !showHide">Cancel</button>
+        </div>
+      </div>
+      <br *ngIf="showHide">
   <div>
     <div class="card bg-light">
-      <div class="card-body text-left text-muted" *ngIf="!allReview.length">Leave a review!
+      <div class="card-body text-left text-muted" *ngIf="!allReview.length">Be the first to leave a review!
+          <button class="btn btn-outline-secondary" (click)="showHide = !showHide">Add Review</button>
       </div>
     </div>
-    <div *ngFor="let review of allReview;">
-      <div class="card mb-4 bg-light">
+    <div *ngFor="let review of allReview; let i = index">
+      <br>
+      <div class="card" [ngClass]="{'bg-light': i % 2 == 0, 'bg-white': i % 2 != 0}">
         <div class="card-body">
           <div class="row">
             <div class="col-10">
-              <h4 class="card-title">{{review.userName}}</h4>
-              <app-rating [rating]="review.rating"></app-rating>
+              <h4 class="card-title">{{review.userName}} <app-rating [rating]="review.rating"></app-rating> </h4>
             </div>
-            <div class="col-2">
+            <div class="float-right">
               <p class="card-text">{{review.date | date}}</p>
             </div>
           </div>
-          <p class="card-text">"{{review.comment}}"</p>
+          <p id ="reviewComment" class="card-text">"{{review.comment}}"</p>
         </div>
       </div>
     </div>
   </div>
 </div>
-<br>
 
-<div class="container">
-  <div class="card">
-    <div class="card-header text-white bg-primary">Add Review</div>
-    <div class="card-body">
-      <form>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="input4Name">Your Name</label>
-            <input type="text" class="form-control" id="input4Name" name="UserName" [(ngModel)]="newReview.userName" />
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputRating">Rating</label>
-            <br/>
-            <select class="form-control d-inline mr-4" id="inputRating" name="select" [(ngModel)]="newReview.rating" style="width: 140px;">
-              <option value="" disabled selected></option>
-              <option value="1">1 star</option>
-              <option value="2">2 stars</option>
-              <option value="3">3 stars</option>
-              <option value="4">4 stars</option>
-              <option value="5">5 stars</option>
-            </select>
-            <app-rating [rating]="newReview.rating"></app-rating>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="commentBox">Comment</label>
-          <textarea class="form-control" id="commentBox" rows="3" name="comment" [(ngModel)]="newReview.comment"></textarea>
-        </div>
-      </form>
-      <button type="button" class="btn btn-success" (click)="addReview()" [disabled]="!newReview.userName || !newReview.rating || !newReview.comment">Submit</button>
-      <button type="submit" class="btn btn-danger">Cancel</button>
-    </div>
-  </div>
-</div>
+
+
