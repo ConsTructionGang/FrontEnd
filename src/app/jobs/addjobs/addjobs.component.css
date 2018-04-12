@@ -7,6 +7,9 @@ d-flex{
 * {
     font-family: Georgia, serif;
 }
+.card-body > a, .card-body > a:visited{
+    color:gainsboro;
+}
 h4{
     padding-left:.5rem;
     padding-right:.5rem;
