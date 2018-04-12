@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Job } from '../../domain/models/job';
 import { Account } from '../../domain/models/account';
 import { DataService } from "../data.service";
@@ -14,6 +14,7 @@ export class ViewJobsComponent implements OnInit {
 
   constructor() { }
   public jobs:  Job[];
+  @Input()
   public account: Account;
   public tempJob: Job;
 

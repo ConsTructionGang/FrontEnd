@@ -9,6 +9,7 @@ import { ForgotpasswordComponent } from './accounts/forgotpassword/forgotpasswor
 import { AddjobsComponent } from './jobs/addjobs/addjobs.component';
 import { ViewJobsComponent } from './jobs/view-jobs/view-jobs.component';
 import { HomeComponent } from './general/home/home.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent},
