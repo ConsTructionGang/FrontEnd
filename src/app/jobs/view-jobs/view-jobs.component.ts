@@ -21,7 +21,8 @@ export class ViewJobsComponent implements OnInit {
         endDate: new Date(2018,2,4),
         status: {
           statusId: 0, statusString: "In Progress"
-        }
+        },
+        supplies:[]
       },
       {
         id: 12,
@@ -32,7 +33,8 @@ export class ViewJobsComponent implements OnInit {
         endDate: new Date(2020,3,24),
         status: {
           statusId: 0, statusString: "In Progress"
-        }
+        },
+        supplies:[]
       },
       {
         id: 13,
@@ -43,7 +45,8 @@ export class ViewJobsComponent implements OnInit {
         endDate: new Date(2019,1,13),
         status: {
           statusId: 0, statusString: "In Progress"
-        }
+        },
+        supplies:[]
       }
     ]
   }

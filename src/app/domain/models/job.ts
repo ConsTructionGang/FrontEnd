@@ -1,4 +1,5 @@
 import { Status } from './status';
+
 export class Job {
   id: number;
   title: string;
@@ -7,4 +8,5 @@ export class Job {
   startDate: Date;
   endDate: Date;
   status: Status;
+  supplies: string[];
 }

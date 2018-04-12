@@ -1,0 +1,64 @@
+.container-fluid{
+    padding-top:2rem;
+}
+d-flex{
+    width:100%;
+}
+* {
+    font-family: Georgia, serif;
+}
+h4{
+    padding-left:.5rem;
+    padding-right:.5rem;
+}
+.tab-content
+{
+    min-height:25rem;
+    padding:1rem;
+    border: 1px solid gainsboro;
+    border-top: none; 
+    border-top-left-radius: 0px; 
+    border-top-right-radius: 0px;
+}
+
+#tableContainer{
+    min-height: 13.6rem;
+}
+
+#add{
+    position: relative;
+    top:2.25rem;
+}
+
+.endbtn{
+    position:relative;
+    left:80%;
+}
+
+#create{
+    position: absolute;
+}
+
+#addJobs{
+    width:45rem
+}
+#viewJobsCard{
+    width:18rem;
+    padding-top:2.55rem;
+}
+#viewJobsCard > .card{
+    color:white;
+    background-color: #536872;
+    width:100%;
+    min-height:26rem;
+    border-radius:0;
+}
+
+.btn-outline-light{
+    line-height: .5rem;
+    border:none;
+}
+
+#pencil{
+    fill:currentColor;
+}
