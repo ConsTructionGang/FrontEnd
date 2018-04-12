@@ -1,5 +1,6 @@
 <div class="container">
   <button class="btn btn-danger" (click)="changeUser()">Switch Account Type</button>
+  <hr>
   <h4> Customer Reviews ({{supplier.review.length}})
     <button class="btn btn-light" *ngIf="supplier.review.length != 0 && pageViewer.id != supplier.id" (click)="showHide = !showHide">Add Review</button>
   </h4>
