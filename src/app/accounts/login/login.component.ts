@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
 
   public title: string;
   public account: Account;
-  public state: string = 'inactive';
+  public state = 'inactive';
 
   constructor(
     private logginHttpService: LoginHttpService,
@@ -29,21 +29,17 @@ export class LoginComponent implements OnInit {
   }
 
   public authenticateUser() {
-    //can perform form validation here
+    // can perform form validation here
 
     this.logginHttpService.update(this.account).subscribe(resp => {
-      if(resp.status == 200) {                    //login succesful
-        //print http response body
+      if(resp.status === 200) {                    // login succesful
+        // print http response body
         console.log(resp.body);
 
-        //change route
-        // this.router.navigateByUrl('viewjobs');
-
-        //maybe reroute back to sign up page for them to create account if they dont have one
-         this.router.navigateByUrl("useraccount");
-      }
-      else {                                      //login failed
-        //check http status code for more info
+        // change route
+        this.router.navigateByUrl('viewjobs');
+      } else {                                      // login failed
+        // check http status code for more info
       }
     });
   }

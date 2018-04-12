@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  public title: string = 'HoneyScape';
+  public title = 'HoneyScape';
   public slideNum: number;
   public slideTitle: string;
   public slideDesc: string;
@@ -15,30 +15,30 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.slideNum = 0;
+    this.slideNum = 1;
     this.slideTitle = "Welcome to HoneyScape";
     this.slideDesc = "If you do not have an account, Please sign up.\nAlready have an account? log in";
   }
 
-  goRight(){
+  goRight() {
     this.slideNum++;
     this.updateSlide();
   }
 
-  goLeft(){
+  goLeft() {
     this.slideNum--;
     this.updateSlide();
   }
 
-  updateSlide(){
-    if(this.slideNum == 0){
-      this.slideTitle='Welcome to HoneyScape';
-      this.slideDesc = 'If you do not have an account, Please sign up.\nAlready have an account? log in';
-    } else if(this.slideNum == 1){
-      this.slideTitle='HoneyScape';
+  updateSlide() {
+   if (this.slideNum === 0) {
+      this.slideTitle = 'HoneyScape';
       this.slideDesc = "Your image is part of your reputation";
-    } else if(this.slideNum == 2){
-      this.slideTitle='HoneyScape';
+    } else if (this.slideNum === 1) {
+      this.slideTitle = "Welcome to HoneyScape";
+      this.slideDesc = "If you do not have an account, Please sign up.\nAlready have an account? log in";
+    } else if (this.slideNum === 2) {
+      this.slideTitle = "HoneyScape";
       this.slideDesc = "Building the future..Restoring the past";
     }
   }
