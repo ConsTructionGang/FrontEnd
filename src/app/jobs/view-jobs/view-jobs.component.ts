@@ -75,9 +75,10 @@ export class ViewJobsComponent implements OnInit {
   }
   deleteJob(id: number) {
     var i: number;
-      for (i = 0; i < this.jobs.length; i++) {
-        if (this.jobs[i].id === id) {
-          this.jobs.splice(i,1);
+    console.log('delete job');
+      for (i = 0; i < this.account.jobs.length; i++) {
+        if (this.account.jobs[i].id === id) {
+          this.account.jobs.splice(i,1);
           break;
         }
       }

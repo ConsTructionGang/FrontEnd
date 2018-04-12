@@ -5,7 +5,7 @@
     font-family: Georgia, serif;
 }
 .card{
-    width:85%;
+    width:45%;
 }
 #table-head > th{
     border:none;
@@ -27,5 +27,19 @@
 
 #create{
     position: relative;
-    left:87%;
+    left:72%;
+}
+
+.btn{
+    fill:currentColor;
+}
+
+.icon{
+    position:relative;
+    top:.2rem;
+}
+
+#editApp{
+    position: relative;
+    top:-2.5rem;
 }
