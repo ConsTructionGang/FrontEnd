@@ -34,10 +34,13 @@ export class LoginComponent implements OnInit {
     this.logginHttpService.update(this.account).subscribe(resp => {
       if(resp.status == 200) {                    //login succesful
         //print http response body
-        console.log(resp.body);        
+        console.log(resp.body);
 
         //change route
-        this.router.navigateByUrl('viewjobs');
+        // this.router.navigateByUrl('viewjobs');
+
+        //maybe reroute back to sign up page for them to create account if they dont have one
+         this.router.navigateByUrl("useraccount");
       }
       else {                                      //login failed
         //check http status code for more info

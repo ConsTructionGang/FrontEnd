@@ -15,9 +15,9 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.slideNum = 1;
-    this.slideTitle='Slide Two';
-    this.slideDesc = 'Slide two text.\nSlide Second Line.';
+    this.slideNum = 0;
+    this.slideTitle = "Welcome to HoneyScape";
+    this.slideDesc = "If you do not have an account, Please sign up.\nAlready have an account? log in";
   }
 
   goRight(){
@@ -32,14 +32,14 @@ export class HomeComponent implements OnInit {
 
   updateSlide(){
     if(this.slideNum == 0){
-      this.slideTitle='Slide One';
-      this.slideDesc = 'Slide one text.\nSlide Second Line.';
+      this.slideTitle='Welcome to HoneyScape';
+      this.slideDesc = 'If you do not have an account, Please sign up.\nAlready have an account? log in';
     } else if(this.slideNum == 1){
-      this.slideTitle='Slide Two';
-      this.slideDesc = 'Slide two text.\nSlide Second Line.';
+      this.slideTitle='HoneyScape';
+      this.slideDesc = "Your image is part of your reputation";
     } else if(this.slideNum == 2){
-      this.slideTitle='Slide Three';
-      this.slideDesc = 'Slide three text.\nSlide Second Line.';
+      this.slideTitle='HoneyScape';
+      this.slideDesc = "Building the future..Restoring the past";
     }
   }
 

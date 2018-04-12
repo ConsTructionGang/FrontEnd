@@ -12,7 +12,7 @@
         <table id="jobTable" *ngIf="account.jobs.length>0" class="table">
           <thead>
             <tr id="table-head">
-              <th> </th>
+              <th>Job Title</th>
               <th scope="col">Est. Cost</th>
               <th scope="col">Start Date</th>
               <th scope="col">End Date</th>
@@ -36,7 +36,7 @@
               <td><button type="button" class="btn btn-secondary btn-sm" (click)="deleteJob(job.id)">Delete</button></td>
               <td>
                 <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#editModal" (click)="fillTempJob(i)">
-                  Edit 
+                  Edit
                 </button>
               </td>
               <!-- Modal -->
@@ -86,12 +86,12 @@
                               </tr>
                             </tbody>
                           </table>
-                      
+
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                       <button type="button" class="btn btn-primary" data-dismiss="modal"data-toggle="modal" data-target="#editModal" (click)="fillTempJob(i)">
-                          Edit 
+                          Edit
                       </button>
                     </div>
                   </div>
@@ -103,8 +103,8 @@
         <button id="create" type="button" class="btn btn-primary" routerLink="/addjobs">Create a new job</button>
       </div>
     </div>
-  </div>   
+  </div>
 </div>
 
-  
-  
+
+
