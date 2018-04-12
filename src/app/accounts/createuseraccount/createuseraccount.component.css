@@ -14,8 +14,7 @@ small{
 }
 
 .d-flex{
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-top: 3rem;
 }
 
 #flexContainer{
@@ -33,13 +32,13 @@ small{
 
 #headers{
     position: relative;
-    color: white;
-    text-shadow: 2px 2px 5px black;
+    color: gainsboro;
+    text-shadow: 1.5px 1.5px 2px black;
     top:-113%;
 }
 
 #title{
-    color:white;
+    color:gainsboro;
     font-size: 350%;
 }
 

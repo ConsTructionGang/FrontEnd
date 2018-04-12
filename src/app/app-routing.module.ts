@@ -8,8 +8,11 @@ import { CreateuseraccountComponent } from './accounts/createuseraccount/createu
 import { ForgotpasswordComponent } from './accounts/forgotpassword/forgotpassword.component';
 import { AddjobsComponent } from './jobs/addjobs/addjobs.component';
 import { ViewJobsComponent } from './jobs/view-jobs/view-jobs.component';
+import { HomeComponent } from './general/home/home.component';
+
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'supplieraccount', component: CreatesupplieraccountComponent },
   { path: 'useraccount', component: CreateuseraccountComponent },

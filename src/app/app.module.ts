@@ -11,6 +11,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { JobsModule } from './jobs/jobs.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { ProductsModule } from './products/products.module';
+import { GeneralModule } from './general/general.module';
 
 
 
@@ -27,7 +28,8 @@ import { ProductsModule } from './products/products.module';
     BrowserAnimationsModule,
     HttpClientModule,
     ReviewsModule,
-    ProductsModule
+    ProductsModule,
+    GeneralModule
     ],
   providers: [LoginHttpService],
   bootstrap: [AppComponent]
