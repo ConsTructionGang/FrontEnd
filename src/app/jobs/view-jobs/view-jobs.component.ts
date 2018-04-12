@@ -29,55 +29,13 @@ export class ViewJobsComponent implements OnInit {
       status: new Status(),
       supplies:[]
     };
-    this.account={
-      id: 0,
-      password: '',
-      type: 'User',
-      jobs:[
-        {
-          id: 11,
-          title: "Expressway Tower",
-          location: "North Central Expressway",
-          cost :100000,
-          startDate: new Date(2017,11,12),
-          endDate: new Date(2018,2,4),
-          status: {
-            statusId: 0, statusString: "In Progress"
-          },
-          supplies:['bricks', 'wood']
-        },
-        {
-          id: 12,
-          title: "Ulta",
-          location: "Mockingbird Lane",
-          cost :250000,
-          startDate: new Date(2018,8,8),
-          endDate: new Date(2020,3,24),
-          status: {
-            statusId: 0, statusString: "In Progress"
-          },
-          supplies:['bricks', 'wood']
-        },
-        {
-          id: 13,
-          title: "Elizabeth's Cakes",
-          location: "Preston",
-          cost :50000,
-          startDate: new Date(2018,5,4),
-          endDate: new Date(2019,1,13),
-          status: {
-            statusId: 0, statusString: "In Progress"
-          },
-          supplies:['bricks', 'wood']
-        }
-      ]
-    }
   }
   deleteJob(id: number) {
     var i: number;
-      for (i = 0; i < this.jobs.length; i++) {
-        if (this.jobs[i].id === id) {
-          this.jobs.splice(i,1);
+    console.log('delete job');
+      for (i = 0; i < this.account.jobs.length; i++) {
+        if (this.account.jobs[i].id === id) {
+          this.account.jobs.splice(i,1);
           break;
         }
       }

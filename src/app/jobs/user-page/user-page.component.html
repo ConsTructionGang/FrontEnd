@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="nav flex-column col-md-2 nav-pills .pills-gray-gradient" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-details-tab" data-toggle="pill" href="#v-pills-details" role="tab" aria-controls="v-pills-details" aria-selected="true">Account Details</a>
+        <a class="nav-link" id="v-pills-jobs-tab" data-toggle="pill" href="#v-pills-jobs" role="tab" aria-controls="v-pills-jobs" aria-selected="false">View Active Jobs</a>
+        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+      </div>
+      <div class="tab-content col-md-8" id="v-pills-tabContent">
+        <div class="tab-pane fade show active col-md-8" id="v-pills-details" role="tabpanel" aria-labelledby="v-pills-details-tab">
+          <div id="details" class= "card">
+            <div class="card-header bg-dark text-white">
+              <h4>My Account</h4>
+            </div>
+            <div class= "card-body">
+              <p> <strong>Name:</strong> {{user.name}}</p>
+              <p> <strong>Email:</strong> {{user.email}}</p>
+              <a href="#">Change Password</a>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade col-md-12" id="v-pills-jobs" role="tabpanel" aria-labelledby="v-pills-jobs-tab">
+            <app-view-jobs [account]="user"></app-view-jobs> 
+        </div>
+        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+      </div>
+      </div>
+  <!--<div id="viewJobs">
+    <app-view-jobs [account]="user"></app-view-jobs>  
+  </div>-->
+</div>
+  

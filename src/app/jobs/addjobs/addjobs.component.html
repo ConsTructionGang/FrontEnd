@@ -60,7 +60,7 @@
                           </select>
                         </div>
                         <div class="col">
-                            <button id="add" type="add" class="btn btn-primary btn-sm" (click)="addSupply()">Add Supply</button>
+                            <button [ngClass]="{'fromViewAdd': fromView == true, 'add': fromView != false}" type="add" class="btn btn-primary btn-sm" (click)="addSupply()">Add Supply</button>
                         </div>
                       </div>
                   </form>

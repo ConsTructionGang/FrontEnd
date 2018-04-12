@@ -3,4 +3,6 @@ export class Reviews {
   rating?: number;
   date?: number;
   comment?: string;
+  response?:string;
+  hideResponse?:boolean;
 }

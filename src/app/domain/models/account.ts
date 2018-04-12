@@ -8,6 +8,6 @@ export class Account {
   email?: string;
   name?: string;
   supply?: string;
-  review?: Reviews;
+  review?: Reviews[];
   jobs?: Job[];
 }

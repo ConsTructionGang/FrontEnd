@@ -11,3 +11,8 @@
     border-left: .25rem solid gray;
     padding:.5rem;
 }
+
+.indent{
+    position: relative;
+    left:1rem;
+}
