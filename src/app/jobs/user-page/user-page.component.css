@@ -1,0 +1,27 @@
+.container-fluid{
+    padding-top:3rem;
+}
+* {
+    font-family: Georgia, serif;
+}
+
+.nav-item {
+    background-color:red;
+    background: linear-gradient(white, lightgray, gray);
+}
+
+#viewJobs{
+    position: relative;
+    left:15rem;
+    top:-16.1rem;
+}
+
+#details{
+    position: relative;
+    left:1.5rem;
+    top:3rem;
+}
+
+li{
+    background-color:grey;
+}
