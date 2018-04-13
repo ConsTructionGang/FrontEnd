@@ -40,10 +40,11 @@ export class LoginComponent implements OnInit {
         // this.router.navigateByUrl('viewjobs');
 
         //maybe reroute back to sign up page for them to create account if they dont have one
-         this.router.navigateByUrl("useraccount");
+        this.router.navigateByUrl("useraccount");
       }
       else {                                      //login failed
         //check http status code for more info
+        console.log(resp);        
       }
     });
   }
