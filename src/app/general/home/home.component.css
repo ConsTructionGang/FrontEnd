@@ -1,23 +1,48 @@
 
+*{
+    font-size:100%;
+    /*fdd378*/
+}
+.btn-outline-dark, btn-outline-dark:hover, btn-outline-dark:active, btn-outline-dark:visited {
+    background-color: #fdd378;
+    border-color:#fdd378;
+}
 .fill{
     font-family: Georgia, serif;
     font-size:100%;
-    height:40rem;
-}
 
+}
+.d-flex{
+    padding-top:1.5rem;
+    padding-bottom:1rem;
+}
+#backImg{
+    width:52.5rem;
+    height:35rem;
+}
+#float-slide{
+    position: absolute;
+}
 .arr{
     position: absolute;
-    top:20rem;
+    top:16.5rem;
 }
 
 #right{
-    right:1rem;
+    left:23.5rem;
 }
 
-
-#dotContainer{
+#left{
+    right:23.5rem;
+}
+#slide{
     position: absolute;
-    bottom:-2rem;
+    left:-13rem;
+    top:12rem;
+}
+#dotContainer{
+    position: relative;
+    top:33rem;
 }
 
 .dot {
@@ -27,31 +52,19 @@
     border: .1rem solid #536872;
     display: inline-block;
 }
-
 .full-circle{
     background-color: #536872;
 }
 
-
-#slide{
-    position: relative;
-    top:10rem;
-    color:lightgrey;
-}
-
 #title{
-    font-size:3rem;
+    font-size:2.5rem;
+    color:white;
+    text-shadow: 2px 2px 8px #fdd378;
 }
 
 #desc{
     font-family: Georgia, serif;
-    color:lightgrey;
-    font-size: 2rem;
-}
-
-button{
-    position:relative;
-    top:3rem;
-    font-weight: bold;
-
+    color:white;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 8px #fdd378;
 }

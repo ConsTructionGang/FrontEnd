@@ -1,27 +1,30 @@
 
-<div class="container-fluid fill" [ngStyle]="{background: 'url(./assets/images/home2blur.jpg)', 'background-size': '105rem'}">
-  <div *ngIf="slideNum != 0">
-      <input id="left" class="arr" type="image" src="/assets/images/leftArrow.png" (click)="goLeft()">
-  </div>
-  <div *ngIf="slideNum != 2">
-      <input id="right"class="arr" type="image" src="/assets/images/rightArrow.png" (click)="goRight()">
-    </div>
-  <div class="d-flex p-2 justify-content-center">
-    <div id="slide" style="text-align:center">
-      <p id="title">{{slideTitle}}</p>
-      <pre id="desc">{{slideDesc}}</pre>
-      <button routerLink="/login" type="nav" class="btn btn-dark btn-lg">Login</button>
-      <button routerLink="/useraccount" type="nav" class="btn btn-outline-dark btn-lg">Sign Up</button>
-    </div>
+<div class="container-fluid fill">
+  <div class="d-flex justify-content-center">
+      <img id ="backImg" src="./assets/images/home2blur.jpg">
+      <div id="float-slide">
+        <div *ngIf="slideNum != 0">
+          <input id="left" class="arr" type="image" src="/assets/images/leftArrow.png" (click)="goLeft()">
+        </div>
+        <div *ngIf="slideNum != 2">
+          <input id="right"class="arr" type="image" src="/assets/images/rightArrow.png" (click)="goRight()">
+        </div>
+        <div id="slide" style="text-align:center">
+            <p id="title">{{slideTitle}}</p>
+            <pre id="desc">{{slideDesc}}</pre>
+            <button routerLink="/login" type="nav" class="btn btn-dark btn-lg">Login</button>
+            <button routerLink="/useraccount" type="nav" class="btn btn-outline-dark btn-lg">Sign Up</button>
+        </div>
 
-      <div id="dotContainer" style="text-align:center">
-          <span class="dot" [ngClass]="{
-            'full-circle':slideNum === 0}"></span>
-          <span class="dot" [ngClass]="{
-            'full-circle':slideNum === 1}"></span>
-          <span class="dot" [ngClass]="{
-            'full-circle':slideNum === 2}"></span>
+        <div id="dotContainer" style="text-align:center">
+            <span class="dot" [ngClass]="{
+              'full-circle':slideNum === 0}"></span>
+            <span class="dot" [ngClass]="{
+              'full-circle':slideNum === 1}"></span>
+            <span class="dot" [ngClass]="{
+              'full-circle':slideNum === 2}"></span>
+        </div>
       </div>
-
+      
   </div>
 </div>
