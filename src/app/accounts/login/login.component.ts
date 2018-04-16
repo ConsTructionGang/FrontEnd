@@ -37,10 +37,12 @@ export class LoginComponent implements OnInit {
         console.log(resp.body);
 
         // change route
-        this.router.navigateByUrl('viewjobs');
+        this.router.navigateByUrl('userpage');
       } else {                                      // login failed
+        console.log(typeof resp);
         // check http status code for more info
       }
-    });
+    },
+    err => console.log(err),);
   }
 }
