@@ -2,8 +2,8 @@ import { Reviews } from './reviews';
 import { Job } from './job';
 
 export class Account {
-  id: number;
-  password: string;
+  id?: number;
+  password?: string;
   type: string;
   email?: string;
   name?: string;
