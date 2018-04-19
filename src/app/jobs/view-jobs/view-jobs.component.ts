@@ -41,19 +41,15 @@ export class ViewJobsComponent implements OnInit {
     this.viewJobs = this.incompleteJobs;
   }
 
-  deleteJob(id: number) {
-    var i: number;
-    console.log('delete job');
-      for (i = 0; i < this.account.jobs.length; i++) {
-        if (this.account.jobs[i].id === id) {
-          if(this.account.jobs[i].status.statusString == 'In Progress'){
-            this.incompleteJobs--;
-          } else {
-            this.completeJobs--;
-          }
-          this.account.jobs.splice(i,1);
-          break;
-        }
+  deleteJob(i: number) {
+    var r = confirm("Are you sure you want to delete" + this.account.jobs[i].title + "?");
+    if(r){
+      if(this.account.jobs[i].status.statusString == 'In Progress'){
+        this.incompleteJobs--;
+      } else {
+        this.completeJobs--;
+      }
+      this.account.jobs.splice(i,1);
       }
     }
   /*jobStatus(id: number, statusId: number, statusString:string) {

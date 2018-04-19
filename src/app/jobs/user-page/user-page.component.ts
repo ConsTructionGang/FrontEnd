@@ -65,17 +65,23 @@ export class UserPageComponent implements OnInit {
         {
           title:'Buy Wood',
           description: 'Buy cedar wood for under $100',
-          status: false
+          status: false,
+          startDate: new Date(2018,5,4),
+          endDate: new Date(2019,1,13),
         },
         {
           title:'Make Sandwich',
           description: 'Make PB&J sandwich',
-          status: true
+          status: true,
+          startDate: new Date(2018,5,4),
+          endDate: new Date(2019,1,13),
         },
         {
           title:'Eat Lunch',
           description: 'Eat awesome PB&J sandwich',
-          status: false
+          status: false,
+          startDate: new Date(2018,5,4),
+          endDate: new Date(2019,1,13),
         }
       ]
     }
