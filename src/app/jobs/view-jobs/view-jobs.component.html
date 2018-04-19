@@ -39,8 +39,8 @@
               </span>
             </td>
             <td>
-              <button *ngIf="job.status.statusId==0" type="button" class="btn btn-sm statusBtn btn-dark" (click)="changeStatus(i)">Mark as Complete</button>
-              <button *ngIf="job.status.statusId!=0" type="button" class="btn  btn-sm statusBtn btn-dark" (click)="changeStatus(i)">Mark as In Progress</button>
+              <button *ngIf="job.status.statusString == 'In Progress'" type="button" class="btn btn-sm statusBtn btn-dark" (click)="changeStatus(i)">Mark as Complete</button>
+              <button *ngIf="job.status.statusString == 'Complete'" type="button" class="btn  btn-sm statusBtn btn-dark" (click)="changeStatus(i)">Mark as In Progress</button>
             </td>
             <td><button type="button" class="btn btn-sm btn-dark" (click)="deleteJob(i)">
                 <span class="icon">
