@@ -61,7 +61,8 @@ export class AddjobsComponent implements OnInit {
                 startDate: new Date(),
                 endDate: new Date(),
                 status: new Status(),
-                supplies:['wood', 'brick']
+                supplies:[{id: 1, name: 'bricks', supplier:null},
+              {id: 2, name: 'wood', supplier:null}]
               },
               {id:1,
                 title:'Project 2',
@@ -70,7 +71,8 @@ export class AddjobsComponent implements OnInit {
                 startDate: new Date(),
                 endDate: new Date(),
                 status: new Status(),
-                supplies:['wood', 'brick']
+                supplies:[{id: 1, name: 'bricks', supplier:null},
+              {id: 2, name: 'wood', supplier:null}]
               },
             ]
         };
@@ -89,7 +91,8 @@ export class AddjobsComponent implements OnInit {
   }
 
   addSupply(){
-    this.tempJob.supplies.push(this.supplies[this.tempSupply-1].name);
+    this.tempJob.supplies.push({ id: this.supplies[this.tempSupply-1].id, name: this.supplies[this.tempSupply-1].name });
+
   }
 
   addJob(){
@@ -154,4 +157,3 @@ export class AddjobsComponent implements OnInit {
     }
   }
 }
-

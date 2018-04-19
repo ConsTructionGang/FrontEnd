@@ -36,11 +36,11 @@
                           </div>
                         </div>
                       </div>
-          
+
                       <form>
                         <label for="date title">Estimated Completion Date</label>
                         <br> Start Date:
-                        <input type="date" name="day" max="2020-12-31" [(ngModel)]="tempJob.startDate" name="startdatefield"> 
+                        <input type="date" name="day" max="2020-12-31" [(ngModel)]="tempJob.startDate" name="startdatefield">
                         <br *ngIf="fromView == true"> End Date:
                         <input type="date" name="day" min="2000-01-02" [(ngModel)]="tempJob.endDate" name="enddatefield">
                         <br>
@@ -77,7 +77,7 @@
                             <button type="button" class="btn btn-outline-light btn-sm" (click)="removeSupply(i)">
                               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"/></svg>
                             </button>
-                          {{supply}}
+                          {{supply.name}}
                         </td>
                       </tr>
                     </tbody>
@@ -117,4 +117,3 @@
     </div>
     </div>
   </div>
-  
