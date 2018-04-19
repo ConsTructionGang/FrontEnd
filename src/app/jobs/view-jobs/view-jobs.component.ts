@@ -17,8 +17,16 @@ export class ViewJobsComponent implements OnInit {
   @Input()
   public account: Account;
   public tempJob: Job;
+  public visibleJobs: string;
+  public completeJobs: number;
+  public incompleteJobs: number;
+  public viewJobs: number;
 
   ngOnInit() {
+    this.visibleJobs = 'In Progress';
+    this.viewJobs = 0;
+    this.incompleteJobs = 0;
+    this.completeJobs = 0;
     this.tempJob={
       id:0,
       title:'',
@@ -29,6 +37,8 @@ export class ViewJobsComponent implements OnInit {
       status: new Status(),
       supplies:[]
     };
+    this.countListForStatus();
+    this.viewJobs = this.incompleteJobs;
   }
 
   deleteJob(id: number) {
@@ -41,7 +51,7 @@ export class ViewJobsComponent implements OnInit {
         }
       }
     }
-  jobStatus(id: number, statusId: number, statusString:string) {
+  /*jobStatus(id: number, statusId: number, statusString:string) {
     var i: number;
       for (i = 0; i < this.account.jobs.length; i++) {
         if (this.account.jobs[i].id === id) {
@@ -56,7 +66,7 @@ export class ViewJobsComponent implements OnInit {
     if (a.last_nom > b.last_nom)
       return 1;
     return 0;
-    }
+    }*/
 
 
   fillTempJob(i){
@@ -87,5 +97,45 @@ export class ViewJobsComponent implements OnInit {
         for(j = 0; j < this.tempJob.supplies.length; j++){
           this.account.jobs[i].supplies[j] = this.tempJob.supplies[j];
         }
+  }
+
+  changeStatus(i){
+    if(this.account.jobs[i].status.statusString == 'In Progress'){
+      this.account.jobs[i].status.statusString  = 'Complete';
+      this.completeJobs++;
+      this.incompleteJobs--;
+    } else {
+      this.account.jobs[i].status.statusString  = 'In Progress';
+      this.completeJobs--;
+      this.incompleteJobs++;
+    }
+    this.updateVisibleTasks();
+  }
+
+  changeVisible(){
+    if(this.visibleJobs == 'In Progress'){
+      this.visibleJobs = 'Complete';
+    } else {
+      this.visibleJobs = 'In Progress';
+    }
+    this.updateVisibleTasks();
+  }
+
+  countListForStatus(){
+    for(var i = 0; i < this.account.jobs.length; i++){
+      if(this.account.jobs[i].status.statusString == 'In Progress'){
+        this.incompleteJobs++;
+      } else {
+        this.completeJobs++;
+      }
+    }
+  }
+
+  updateVisibleTasks(){
+    if(this.visibleJobs == 'In Progress'){
+      this.viewJobs = this.incompleteJobs;
+    } else {
+      this.viewJobs = this.completeJobs;
+    }
   }
 }

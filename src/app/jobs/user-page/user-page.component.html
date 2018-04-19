@@ -1,37 +1,34 @@
 <div class="container-fluid">
   <div class="row">
     <div class="nav flex-column col-md-2 nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <a class="nav-link active" id="v-pills-details-tab" data-toggle="pill" href="#v-pills-details" role="tab" aria-controls="v-pills-details" aria-selected="true">Account Details</a>
-        <a class="nav-link" id="v-pills-jobs-tab" data-toggle="pill" href="#v-pills-jobs" role="tab" aria-controls="v-pills-jobs" aria-selected="false">View Active Jobs</a>
-        <a class="nav-link" id="v-pills-pastJobs-tab" data-toggle="pill" href="#v-pills-pastJobs" role="tab" aria-controls="v-pills-pastJobs" aria-selected="false">View Job History</a>
-        <a class="nav-link" id="v-pills-purchases-tab" data-toggle="pill" href="#v-pills-purchases" role="tab" aria-controls="v-pills-purchases" aria-selected="false">Purchase History</a>
-      </div>
-      <div class="tab-content col-md-8" id="v-pills-tabContent">
-        <div class="tab-pane fade show active col-md-8" id="v-pills-details" role="tabpanel" aria-labelledby="v-pills-details-tab">
-          <div id="details" class= "card">
-            <div class="card-header bg-dark text-white">
-              <h4>My Account</h4>
-            </div>
-            <div class= "card-body">
-              <p> <strong>Name:</strong> {{user.name}}</p>
-              <p> <strong>Email:</strong> {{user.email}}</p>
-              <a href="#">Change Password</a>
-            </div>
+      <a class="nav-link active" id="v-pills-details-tab" data-toggle="pill" href="#v-pills-details" role="tab" aria-controls="v-pills-details" aria-selected="true">Account Details</a>
+      <a class="nav-link" id="v-pills-jobs-tab" data-toggle="pill" href="#v-pills-jobs" role="tab" aria-controls="v-pills-jobs" aria-selected="false">View Jobs</a>
+      <a class="nav-link" id="v-pills-tasks-tab" data-toggle="pill" href="#v-pills-tasks" role="tab" aria-controls="v-pills-tasks" aria-selected="false">View Tasks</a>
+      <a class="nav-link" id="v-pills-purchases-tab" data-toggle="pill" href="#v-pills-purchases" role="tab" aria-controls="v-pills-purchases" aria-selected="false">Purchase History</a>
+    </div>
+    <div class="tab-content col-md-8" id="v-pills-tabContent">
+      <div class="tab-pane fade show active col-md-8" id="v-pills-details" role="tabpanel" aria-labelledby="v-pills-details-tab">
+        <div id="details" class= "card">
+          <div class="card-header bg-dark text-white">
+            <h4>My Account</h4>
+          </div>
+          <div class= "card-body">
+            <p> <strong>Name:</strong> {{user.name}}</p>
+            <p> <strong>Email:</strong> {{user.email}}</p>
+            <a href="#">Change Password</a>
           </div>
         </div>
-        <div class="tab-pane fade col-md-12" id="v-pills-jobs" role="tabpanel" aria-labelledby="v-pills-jobs-tab">
-            <app-view-jobs [account]="user"></app-view-jobs> 
-        </div>
-        <div class="tab-pane fade" id="v-pills-pastJobs" role="tabpanel" aria-labelledby="v-pills-pastJobs-tab">
-          <p>Somto enter the stuff here</p>
-        </div>
-        <div class="tab-pane fade" id="v-pills-purchases" role="tabpanel" aria-labelledby="v-pills-purchases-tab">
-          <p> Purchase History here</p>
-        </div>
       </div>
+      <div class="tab-pane fade col-md-12" id="v-pills-jobs" role="tabpanel" aria-labelledby="v-pills-jobs-tab">
+          <app-view-jobs [account]="user"></app-view-jobs> 
       </div>
-  <!--<div id="viewJobs">
-    <app-view-jobs [account]="user"></app-view-jobs>  
-  </div>-->
+      <div class="tab-pane fade" id="v-pills-purchases" role="tabpanel" aria-labelledby="v-pills-purchases-tab">
+        <p> Purchase History here</p>
+      </div>
+      <div class="tab-pane fade" id="v-pills-tasks" role="tabpanel" aria-labelledby="v-pills-tasks-tab">
+        <app-tasks [account]="user"></app-tasks> 
+      </div>
+     </div>
+  </div>
 </div>
   

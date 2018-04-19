@@ -1,0 +1,46 @@
+<div>
+  <div class="card">
+    <div class="card-header bg-dark text-white">
+      <div *ngIf="visibleStatus==false" class="d-flex">
+        <h3>Active Tasks</h3>
+        <button class="btn btn-outline-light float-right changeButton ml-auto" (click)="changeVisible()">View Tasks History</button>
+      </div>
+      <div *ngIf="visibleStatus==true" class="d-flex">
+        <h3>Tasks History</h3>
+        <button class="btn btn-outline-light float-right changeButton ml-auto" (click)="changeVisible()">View Active Tasks</button>
+      </div>  
+    </div>
+    <div class="card-body">
+      <div *ngIf="!account.tasks || visibileTasks == 0">
+        <div *ngIf="visibleStatus==true">
+            <p>You have no completed tasks.</p>
+        </div>
+        <div *ngIf="visibleStatus==false">
+            <p>You have no active tasks.</p>
+        </div>
+      </div>
+      <div *ngIf="account.tasks && visibileTasks != 0">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col" *ngIf="visibleStatus == false">Mark as Complete</th>
+                <th scope="col" *ngIf="visibleStatus == true">Mark as Incomplete</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let task of account.tasks; let i = index">
+              <tr *ngIf="task.status == visibleStatus">
+                <td>{{task.title}}</td>
+                <td>{{task.description}}</td>
+                <td>
+                  <button *ngIf="task.status == false" type="button" class="btn btn-sm statusBtn btn-dark" (click)="changeStatus(i)">Mark as Complete</button>
+                  <button *ngIf="task.status == true" type="button" class="btn btn-sm statusBtn btn-dark" (click)="changeStatus(i)">Mark as Incomplete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>
