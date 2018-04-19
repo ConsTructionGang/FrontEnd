@@ -10,6 +10,7 @@ import { AddjobsComponent } from './jobs/addjobs/addjobs.component';
 import { ViewJobsComponent } from './jobs/view-jobs/view-jobs.component';
 import { HomeComponent } from './general/home/home.component';
 import { UserPageComponent } from './jobs/user-page/user-page.component';
+import { SuppliersComponent } from './products/suppliers/suppliers.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'addjobs', component: AddjobsComponent },
   { path: 'viewjobs', component: ViewJobsComponent },
   { path: 'reviews', component: SupplierReviewsComponent },
-  { path: 'products', component: SupplierProductsComponent }
+  { path: 'products', component: SupplierProductsComponent },
+  { path: 'suppliers/:supplyId', component: SuppliersComponent }
 ];
 @NgModule({
   imports: [ RouterModule.forRoot(routes)],
