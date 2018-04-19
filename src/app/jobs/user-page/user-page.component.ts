@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from '../../domain/models/account';
+import { Supply } from '../../domain/models/supply';
 
 @Component({
   selector: 'app-user-page',
@@ -30,7 +31,8 @@ export class UserPageComponent implements OnInit {
           status: {
             statusId: 0, statusString: "In Progress"
           },
-          supplies:['bricks', 'wood']
+          supplies:[{id: 1, name: 'bricks', supplier: null},
+        {id: 2, name: 'wood', supplier: null}]
         },
         {
           id: 12,
@@ -42,7 +44,8 @@ export class UserPageComponent implements OnInit {
           status: {
             statusId: 0, statusString: "In Progress"
           },
-          supplies:['bricks', 'wood']
+          supplies:[{id: 1, name: 'bricks', supplier:null},
+        {id: 2, name: 'wood', supplier:null}]
         },
         {
           id: 13,
@@ -54,7 +57,8 @@ export class UserPageComponent implements OnInit {
           status: {
             statusId: 0, statusString: "In Progress"
           },
-          supplies:['bricks', 'wood']
+          supplies:[{id: 1, name: 'bricks', supplier:null},
+        {id: 2, name: 'wood', supplier:null}]
         }
       ]
     }

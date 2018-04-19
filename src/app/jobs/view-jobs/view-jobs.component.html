@@ -8,7 +8,7 @@
           <div *ngIf="account.jobs.length==0" class="alert alert-dark" role="alert">
             You currently don't have any jobs!
           </div>
-  
+
           <table id="jobTable" *ngIf="account.jobs.length>0" class="table">
             <thead>
               <tr id="table-head">
@@ -27,7 +27,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M12 5.5l-8 8-4-4L1.5 8 4 10.5 10.5 4 12 5.5z"/></svg>
                   </span>
                 </td>
-                <td align="center" *ngIf="job.status.statusString == 'In Progress'"> 
+                <td align="center" *ngIf="job.status.statusString == 'In Progress'">
                   <span class="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M8 8h3v2H7c-.55 0-1-.45-1-1V4h2v4zM7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7z"/></svg>
                   </span>
@@ -91,18 +91,22 @@
                           <table class="table">
                               <tbody>
                                 <tr *ngFor="let supply of job.supplies; let i = index">
-                                  <td>
-                                    {{supply}}
+                                  <td class="clearfix">
+                                    {{supply.name}}
+                                    <div class="float-right">
+                                      <h6 *ngIf="!supply.supplier"> No supplier </h6>
+                                      <a href [routerLink]="'/suppliers/'+ supply.id" data-dismiss="modal"> Add </a>
+                                    </div>
                                   </td>
                                 </tr>
                               </tbody>
                             </table>
-                        
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal"data-toggle="modal" data-target="#editModal" (click)="fillTempJob(i)">
-                            Edit 
+                            Edit
                         </button>
                       </div>
                     </div>
@@ -114,8 +118,5 @@
           <button id="create" type="button" class="btn btn-primary" routerLink="/addjobs">Create a new job</button>
         </div>
       </div>
-    </div>   
+    </div>
   </div>
-  
-    
-    

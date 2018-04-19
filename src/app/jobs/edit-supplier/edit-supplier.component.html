@@ -1,0 +1,13 @@
+<tr>
+  <td class="clearfix">
+    {{supply.name}}
+    <button class="btn btn-primary float-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      More
+    </button>
+    <div class="collapse" id="collapseExample">
+      <div *ngIf="!supply.supplier" class="alert alert-dark" role="alert">
+        This supply isn't linked to a supplier!  <a href [routerLink]="'/suppliers/'+ supply.id" data-dismiss="modal"> Find one here. </a>
+      </div>
+    </div>
+  </td>
+</tr>

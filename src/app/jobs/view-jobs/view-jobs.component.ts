@@ -30,6 +30,7 @@ export class ViewJobsComponent implements OnInit {
       supplies:[]
     };
   }
+
   deleteJob(id: number) {
     var i: number;
     console.log('delete job');
