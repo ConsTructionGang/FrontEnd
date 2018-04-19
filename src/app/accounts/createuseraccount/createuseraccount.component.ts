@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Account, Supply,  } from '../../domain/';
+import { Router } from '@angular/router';
+
+import { Account, Supply, } from '../../domain/';
 import { CreateAccountHttpService } from '../../domain';
 
 import {
@@ -69,7 +71,8 @@ export class CreateuseraccountComponent implements OnInit {
     public fadeState: string = 'inactive';
 
     constructor(
-        private createAccountHttpService: CreateAccountHttpService
+        private createAccountHttpService: CreateAccountHttpService,
+        private router: Router
     ) { }
 
 
@@ -105,26 +108,26 @@ export class CreateuseraccountComponent implements OnInit {
 
     public createUser() {
         // can perform form validation here
-        console.log(this.userAccount);
 
         //casts supply dropdown number to the supply name 
-        if(this.userAccount.supply)
+        if (this.userAccount.supply)
             this.userAccount.supply = this.supplies[Number(this.userAccount.supply) - 1]['name'];
 
-        this.createAccountHttpService.add(this.userAccount).subscribe(resp => {
-            if (resp.status === 201) {
-                //account created
-            } else {
-                // check http status code for more info
-            }
-        },
-            err => console.log(err), 
+        this.createAccountHttpService.add(this.userAccount).subscribe(
+            resp => {
+                if (resp.status === 201) {
+                    //account created
+                    this.router.navigateByUrl('/login');
+                    this.userAccount = { type: 'User' };
+                }
+            },
+            
+            err => {
+                //handle errors here (including HTTP)
+
+                //clear user Account
+                this.userAccount = { type: this.userAccount.type };
+            },
         );
-
-        //clear user account
-        //will cange routing depending on type of user
-        this.userAccount = {type: 'User'};
-
-        //route to login page
     }
 }
