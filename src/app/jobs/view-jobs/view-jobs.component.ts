@@ -46,6 +46,11 @@ export class ViewJobsComponent implements OnInit {
     console.log('delete job');
       for (i = 0; i < this.account.jobs.length; i++) {
         if (this.account.jobs[i].id === id) {
+          if(this.account.jobs[i].status.statusString == 'In Progress'){
+            this.incompleteJobs--;
+          } else {
+            this.completeJobs--;
+          }
           this.account.jobs.splice(i,1);
           break;
         }

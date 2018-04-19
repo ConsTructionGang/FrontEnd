@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Account} from '../../domain/index'
+import { Account, Task } from '../../domain/index'
 
 @Component({
   selector: 'app-tasks',
@@ -15,6 +15,8 @@ export class TasksComponent implements OnInit {
   public incompleteTasks: number;
   public visibileTasks:number;
 
+  public tempTask: Task;
+
   constructor() { }
 
   ngOnInit() {
@@ -23,6 +25,11 @@ export class TasksComponent implements OnInit {
     this.completeTasks = 0;
     this.countListForStatus();
     this.visibileTasks == this.incompleteTasks;
+    this.tempTask={
+      title:'',
+      description:'',
+      status:false
+    };
   }
 
   countListForStatus(){
@@ -38,7 +45,7 @@ export class TasksComponent implements OnInit {
   changeStatus(i){
     if(this.account.tasks[i].status == true){
       this.completeTasks--;
-      this.incompleteTasks--;
+      this.incompleteTasks++;
     } else {
       this.completeTasks++;
       this.incompleteTasks--;
@@ -58,5 +65,24 @@ export class TasksComponent implements OnInit {
     } else {
       this.visibileTasks = this.completeTasks;
     }
+  }
+
+  addTask(){
+    this.account.tasks.push(this.tempTask);
+    this.tempTask={
+      title:'',
+      description:'',
+      status:false
+    };
+  }
+
+  deleteTask(i){
+    if(this.account.tasks[i].status == true){
+      this.completeTasks--;
+    } else {
+      this.incompleteTasks--;
+    }
+    this.account.tasks.splice(i, 1);
+    this.updateVisibleTasks();
   }
 }

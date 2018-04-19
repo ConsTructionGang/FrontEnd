@@ -1,9 +1,8 @@
-/*.changeButton{
-    position: relative;
-    top: -1rem;
+.btn{
+    fill:currentColor;
 }
 
-h3{
-    position: relative;
-    top: 1.5rem;
-}*/
+.icon{
+    position:relative;
+    top:.2rem;
+}
