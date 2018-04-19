@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Account } from '../../domain/models/account';
-import { Supply } from '../../domain/models/supply';
+import { Supply, Account} from '../../domain/index'
+
 
 @Component({
   selector: 'app-user-page',
@@ -58,7 +58,30 @@ export class UserPageComponent implements OnInit {
             statusId: 0, statusString: "In Progress"
           },
           supplies:[{id: 1, name: 'bricks', supplier:null},
-        {id: 2, name: 'wood', supplier:null}]
+        {id: 2, name: 'wood', supplier:null}],
+        }
+      ],
+      tasks:[
+        {
+          title:'Buy Wood',
+          description: 'Buy cedar wood for under $100',
+          status: false,
+          startDate: new Date(2018,5,4),
+          endDate: new Date(2019,1,13),
+        },
+        {
+          title:'Make Sandwich',
+          description: 'Make PB&J sandwich',
+          status: true,
+          startDate: new Date(2018,5,4),
+          endDate: new Date(2019,1,13),
+        },
+        {
+          title:'Eat Lunch',
+          description: 'Eat awesome PB&J sandwich',
+          status: false,
+          startDate: new Date(2018,5,4),
+          endDate: new Date(2019,1,13),
         }
       ]
     }
