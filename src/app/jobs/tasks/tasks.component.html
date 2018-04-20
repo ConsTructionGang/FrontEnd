@@ -1,0 +1,123 @@
+<div *ngIf="!viewDelete">
+  <div class="card">
+    <div class="card-header bg-dark text-white">
+      <div *ngIf="visibleStatus==false" class="d-flex">
+        <h3>Active Tasks</h3>
+        <button class="btn btn-outline-light float-right changeButton ml-auto" (click)="changeVisible()">View Tasks History</button>
+        <button type="button" class="btn btn-sm btn-outline-light float-right ml-2" (click)="viewDelete = !viewDelete">
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z"/></svg>
+            </span>
+          </button> 
+      </div>
+      <div *ngIf="visibleStatus==true" class="d-flex">
+        <h3>Tasks History</h3>
+        <button class="btn btn-outline-light float-right changeButton ml-auto" (click)="changeVisible()">View Active Tasks</button>
+        <button type="button" class="btn btn-sm btn-outline-light float-right ml-2" (click)="viewDelete = !viewDelete">
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z"/></svg>
+            </span>
+          </button> 
+      </div> 
+    </div>
+    <div class="card-body">
+      <div *ngIf="!account.tasks || visibileTasks == 0">
+        <div *ngIf="visibleStatus==true">
+            <p>You have no completed tasks.</p>
+        </div>
+        <div *ngIf="visibleStatus==false">
+            <p>You have no active tasks.</p>
+        </div>
+      </div>
+      <div *ngIf="account.tasks && visibileTasks != 0">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let task of account.tasks; let i = index">
+              <tr *ngIf="task.status == visibleStatus">
+                <td>{{task.title}}</td>
+                <td>{{task.description}}</td>
+                <td>{{task.startDate | date:"longDate"}}</td>
+                <td>{{task.endDate | date:"longDate"}}</td>
+                <td>
+                  <button *ngIf="task.status == false" type="button" class="btn btn-sm statusBtn btn-dark" (click)="changeStatus(i)">Mark as Complete</button>
+                  <button *ngIf="task.status == true" type="button" class="btn btn-sm statusBtn btn-dark" (click)="changeStatus(i)">Mark as Incomplete</button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-sm btn-dark" (click)="deleteTask(i)">
+                    <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z"/></svg>
+                    </span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="showHide">
+            <div class="form-group">
+                <label for="usr">Title:</label>
+                <input type="text" class="form-control" id="usr" [(ngModel)]="tempTask.title">
+            </div>
+            <div class="form-group">
+              <label for="comment">Description:</label>
+              <textarea class="form-control" rows="5" id="comment" [(ngModel)]="tempTask.description"></textarea>
+            </div>
+            <label>Start Date:</label>
+            <input type="date" name="day" max="2020-12-31" [(ngModel)]="tempTask.startDate" name="startdatefield">
+            <label> End Date:</label>
+            <input type="date" name="day" min="2000-01-02" [(ngModel)]="tempTask.endDate" name="enddatefield">
+            <div *ngIf="tempTask.title != '' && tempTask.description != ''">
+                <button id="add" type="button" class="btn btn-primary float-right" (click)="showHide=!showHide" (click)="addTask()">Add task</button>
+            </div>
+            <div *ngIf="tempTask.title == '' || tempTask.description == ''">
+                <button id="add" type="button" class="btn btn-primary float-right" (click)="showHide=!showHide" (click)="addTask()" disabled>Add task</button>
+            </div>
+          </div>
+          <button *ngIf="!showHide" id="create" type="button" class="btn btn-primary float-right" (click)="showHide=!showHide">Create a new task</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="viewDelete">
+  <div class="card">
+    <div class="card-header bg-dark text-white d-flex">
+        <h3>Deleted Tasks</h3>
+        <button type="button" class="btn btn-sm btn-outline-light float-right ml-auto" (click)="viewDelete = !viewDelete"> View Saved Jobs</button>
+    </div>
+    <div class="card-body">
+      <div *ngIf="deletedTasks.length==0">
+        <p>No deleted tasks.</p>
+      </div>
+        <table *ngIf="deletedTasks.length!=0"class="table">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let task of deletedTasks; let i = index">
+                <td>{{task.title}}</td>
+                <td>{{task.description}}</td>
+                <td>{{task.startDate | date:"longDate"}}</td>
+                <td>{{task.endDate | date:"longDate"}}</td>
+                <td>
+                  <button type="button" class="btn btn-dark" (click)="undelete(i)">Restore Task</button>             
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+</div>

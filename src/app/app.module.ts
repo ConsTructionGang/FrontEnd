@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { LoginHttpService } from './domain';
 import { AppComponent } from './app.component';
 import { AccountsModule } from './accounts/accounts.module';
 import { AppRoutingModule } from './/app-routing.module';
@@ -13,6 +12,7 @@ import { ReviewsModule } from './reviews/reviews.module';
 import { ProductsModule } from './products/products.module';
 import { GeneralModule } from './general/general.module';
 
+import { LoginHttpService, CreateAccountHttpService } from './domain';
 
 
 
@@ -31,7 +31,10 @@ import { GeneralModule } from './general/general.module';
     ProductsModule,
     GeneralModule
     ],
-  providers: [LoginHttpService],
+  providers: [
+    LoginHttpService,
+    CreateAccountHttpService  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
