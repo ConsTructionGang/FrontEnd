@@ -101,7 +101,6 @@
                                 {{supply.name}}
                                 <div class="float-right">
                                   <h6 *ngIf="!supply.supplier"> No supplier </h6>
-                                  <a href [routerLink]="'/suppliers/'+ supply.id" data-dismiss="modal"> Add </a>
                                 </div>
                               </td>
                             </tr>
@@ -124,4 +123,3 @@
       <button id="create" type="button" class="btn btn-primary" routerLink="/addjobs">Create a new job</button>
     </div>
   </div>
-
