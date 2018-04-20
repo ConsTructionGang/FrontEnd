@@ -42,7 +42,11 @@ export class ViewJobsComponent implements OnInit {
   }
 
   deleteJob(i: number) {
+<<<<<<< HEAD
     var r = confirm("Are you sure you want to delete " + this.account.jobs[i].title + "?");
+=======
+    var r = confirm("Are you sure you want to delete" + this.account.jobs[i].title + "?");
+>>>>>>> f7bfc66056325eb916612aa0544ee0cf3336279d
     if(r){
       if(this.account.jobs[i].status.statusString == 'In Progress'){
         this.incompleteJobs--;

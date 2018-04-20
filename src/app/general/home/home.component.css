@@ -19,6 +19,8 @@
 #backImg{
     width:52.5rem;
     height:35rem;
+    box-shadow: 5px 5px 8px darkgray;
+    border-radius:.5rem;
 }
 #float-slide{
     position: absolute;

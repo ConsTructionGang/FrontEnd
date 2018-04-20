@@ -38,14 +38,14 @@ export class HomeComponent implements OnInit {
 
   updateSlide() {
    if (this.slideNum === 0) {
-      this.slideTitle = 'HoneyScape';
-      this.slideDesc = "For all your construction project needs. \n Plan projects, organize tasks, and order supplies \n all in one place!";
+      this.slideTitle = 'Welcome to HoneyScape';
+      this.slideDesc = "For all your construction project needs. \n Plan projects, organize tasks, and order supplies \n All in one place!";
     } else if (this.slideNum === 1) {
       this.slideTitle = "Welcome to HoneyScape";
       this.slideDesc = "A place for suppliers and construcion companies to connect. \n If you do not have an account, Please sign up.\nAlready have an account? log in";
     } else if (this.slideNum === 2) {
-      this.slideTitle = "HoneyScape";
-      this.slideDesc = "Want to sell to construction companies! \n Make your supplies available to your buyers here!";
+      this.slideTitle = "Welcome to HoneyScape";
+      this.slideDesc = "Want to sell to construction companies! \n Make your supplies available to your buyers here! \n We'll do the work for you!";
     }
   }
 
