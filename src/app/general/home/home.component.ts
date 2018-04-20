@@ -17,29 +17,35 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.slideNum = 1;
     this.slideTitle = "Welcome to HoneyScape";
-    this.slideDesc = "If you do not have an account, Please sign up.\nAlready have an account? log in";
+    this.slideDesc = "A place for suppliers and construcion companies to connect. \n If you do not have an account, Please sign up.\nAlready have an account? log in";
   }
 
   goRight() {
-    this.slideNum++;
+    if(this.slideNum != 2)
+      this.slideNum++;
+    else
+      this.slideNum = 0;
     this.updateSlide();
   }
 
   goLeft() {
-    this.slideNum--;
+    if(this.slideNum != 0)
+      this.slideNum--;
+    else
+      this.slideNum = 2;
     this.updateSlide();
   }
 
   updateSlide() {
    if (this.slideNum === 0) {
       this.slideTitle = 'HoneyScape';
-      this.slideDesc = "Your image is part of your reputation";
+      this.slideDesc = "For all your construction project needs. \n Plan projects, organize tasks, and order supplies \n all in one place!";
     } else if (this.slideNum === 1) {
       this.slideTitle = "Welcome to HoneyScape";
-      this.slideDesc = "If you do not have an account, Please sign up.\nAlready have an account? log in";
+      this.slideDesc = "A place for suppliers and construcion companies to connect. \n If you do not have an account, Please sign up.\nAlready have an account? log in";
     } else if (this.slideNum === 2) {
       this.slideTitle = "HoneyScape";
-      this.slideDesc = "Building the future..Restoring the past";
+      this.slideDesc = "Want to sell to construction companies! \n Make your supplies available to your buyers here!";
     }
   }
 

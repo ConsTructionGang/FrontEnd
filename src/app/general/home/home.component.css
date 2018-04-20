@@ -29,20 +29,22 @@
 }
 
 #right{
-    left:23.5rem;
+    left:44.5rem;
 }
 
 #left{
-    right:23.5rem;
+    right:44.5rem;
 }
 #slide{
-    position: absolute;
-    left:-13rem;
-    top:12rem;
+    position: relative;
+    width:45rem;
+    height:15.5rem;
+    overflow:hidden;
+    top: 10rem;
 }
 #dotContainer{
     position: relative;
-    top:33rem;
+    top:18rem;
 }
 
 .dot {
@@ -66,5 +68,5 @@
     font-family: Georgia, serif;
     color:white;
     font-size: 1.5rem;
-    text-shadow: 2px 2px 8px #fdd378;
+    text-shadow: 2px 2px 8px black;
 }
