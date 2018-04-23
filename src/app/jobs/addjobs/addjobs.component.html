@@ -1,102 +1,123 @@
-<div  class="container-fluid">
-  <div class ="d-flex justify-content-center">
+<div class="container-fluid">
+  <div class="d-flex justify-content-center">
     <div class="row flex-nowrap">
-      <div id="addJobs"[ngStyle]="fromView && {'width': '30rem'}">
+      <div id="addJobs" [ngStyle]="fromView && {'width': '30rem'}">
         <div>
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <h4>{{title}}</h4>
-              <li class="nav-item">
-                <a class="nav-link active" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail" aria-selected="true">General</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="supplies-tab" data-toggle="tab" href="#supplies" role="tab" aria-controls="supplies" aria-selected="false">Supplies</a>
-              </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-              <div class="tab-pane fade show active" id="detail" role="tabpanel" aria-labelledby="detail-tab">
-                  <form>
-                      <div class="form-group">
-                        <label for="job title">Job title</label>
-                        <input type="job title" class="form-control" required id="job title" aria-describedby="emailHelp" placeholder="Enter Job title"
-                          [(ngModel)]="tempJob.title" name="namefield">
-                      </div>
-                      <div class="form-group">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <h4>{{title}}</h4>
+            <li class="nav-item">
+              <a class="nav-link active" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail" aria-selected="true">General</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="supplies-tab" data-toggle="tab" href="#supplies" role="tab" aria-controls="supplies" aria-selected="false">Supplies</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="detail" role="tabpanel" aria-labelledby="detail-tab">
+              <form>
+                <div class="form-group">
+                  <label for="job title">Job title</label>
+                  <input type="job title" class="form-control" required id="job title" aria-describedby="emailHelp" placeholder="Enter Job title"
+                    [(ngModel)]="tempJob.title" name="namefield">
+                </div>
+                <!-- <div class="form-group">
                         <label for="inputLocation">Job Location</label>
                         <input class="form-control" required id="inputLocation" placeholder="Enter location" [(ngModel)]="tempJob.location" name="locationfield">
-                      </div>
-                      <div class="form-group">
-                        <label for="job title">Estimated Cost</label>
-                        <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">$</span>
-                          </div>
-                          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" [(ngModel)]="tempJob.cost" name="costfield">
-                          <div class="input-group-append">
-                            <span class="input-group-text">.00</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <form>
-                        <label for="date title">Estimated Completion Date</label>
-                        <br> Start Date:
-                        <input type="date" name="day" max="2020-12-31" [(ngModel)]="tempJob.startDate" name="startdatefield">
-                        <br *ngIf="fromView == true"> End Date:
-                        <input type="date" name="day" min="2000-01-02" [(ngModel)]="tempJob.endDate" name="enddatefield">
-                        <br>
-                      </form>
-                    </form>
-              </div>
-              <div class="tab-pane fade" id="supplies" role="tabpanel" aria-labelledby="supplies-tab ">
-                <form>
-                      <div class="row">
-                      <div class="form-group col-md-9">
-                          <label for="inputSupplies">Supplies</label>
-                          <select class="form-control" id="inputSupplies" [(ngModel)]="tempSupply" name="supplyfield">
-                            <option></option>
-                            <option [value]="supply.id" *ngFor="let supply of supplies;">
-                              {{ supply.name }}
-                            </option>
-                          </select>
-                        </div>
-                        <div class="col">
-                            <button [ngClass]="{'fromViewAdd': fromView == true, 'add': fromView != false}" type="add" class="btn btn-primary btn-sm" (click)="addSupply()">Add Supply</button>
-                        </div>
-                      </div>
-                  </form>
-                <div id="tableContainer">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">{{tempJob.title}} Supplies:</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let supply of tempJob.supplies; let i = index">
-                        <td>
-                            <button type="button" class="btn btn-outline-light btn-sm" (click)="removeSupply(i)">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"/></svg>
-                            </button>
-                          {{supply.name}}
-                          <div class="float-right">
-                            <h6 *ngIf="!supply.supplier"> No supplier </h6>
-                            <a href [routerLink]="'/suppliers/'+ supply.id" data-dismiss="modal"> Add </a>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                      </div> -->
+                <div class="form-group">
+                  <label for="inputAddress">Address</label>
+                  <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
                 </div>
-              </div>
-              <br>
-              <div *ngIf="title != 'Create A New Job' && fromView != true">
-                  <button id="create" type="create" class="btn btn-primary" (clicks)="emptyJob()">Create New Job</button>
-              </div>
-              <div *ngIf="fromView != true">
-                <button id="sumbit" type="submit" class="btn btn-success endbtn" (click)="addJob()">Save</button>
-                <button routerLink=""id="cancel" type="cancel" class="btn btn-danger endbtn">Cancel</button>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputCity">City</label>
+                    <input type="text" class="form-control" id="inputCity">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="inputState">State</label>
+                    <select id="inputState" class="form-control">
+                      <option selected>Choose...</option>
+                      <option>..</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="job title">Estimated Cost</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">$</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" [(ngModel)]="tempJob.cost" name="costfield">
+                    <div class="input-group-append">
+                      <span class="input-group-text">.00</span>
+                    </div>
+                  </div>
+                </div>
+
+                <form>
+                  <label for="date title">Estimated Completion Date</label>
+                  <br> Start Date:
+                  <input type="date" name="day" max="2020-12-31" [(ngModel)]="tempJob.startDate" name="startdatefield">
+                  <br *ngIf="fromView == true"> End Date:
+                  <input type="date" name="day" min="2000-01-02" [(ngModel)]="tempJob.endDate" name="enddatefield">
+                  <br>
+                </form>
+              </form>
+            </div>
+            <div class="tab-pane fade" id="supplies" role="tabpanel" aria-labelledby="supplies-tab ">
+              <form>
+                <div class="row">
+                  <div class="form-group col-md-9">
+                    <label for="inputSupplies">Supplies</label>
+                    <select class="form-control" id="inputSupplies" [(ngModel)]="tempSupply" name="supplyfield">
+                      <option></option>
+                      <option [value]="supply.id" *ngFor="let supply of supplies;">
+                        {{ supply.name }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col">
+                    <button [ngClass]="{'fromViewAdd': fromView == true, 'add': fromView != false}" type="add" class="btn btn-primary btn-sm"
+                      (click)="addSupply()">Add Supply</button>
+                  </div>
+                </div>
+              </form>
+              <div id="tableContainer">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">{{tempJob.title}} Supplies:</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let supply of tempJob.supplies; let i = index">
+                      <td>
+                        <button type="button" class="btn btn-outline-light btn-sm" (click)="removeSupply(i)">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16">
+                            <path fill-rule="evenodd" d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"
+                            />
+                          </svg>
+                        </button>
+                        {{supply.name}}
+                        <div class="float-right">
+                          <h6 *ngIf="!supply.supplier"> No supplier </h6>
+                          <a href [routerLink]="'/suppliers/'+ supply.id" data-dismiss="modal"> Add </a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
+            <br>
+            <div *ngIf="title != 'Create A New Job' && fromView != true">
+              <button id="create" type="create" class="btn btn-primary" (clicks)="emptyJob()">Create New Job</button>
+            </div>
+            <div *ngIf="fromView != true">
+              <button id="sumbit" type="submit" class="btn btn-success endbtn" (click)="addJob()">Save</button>
+              <button routerLink="" id="cancel" type="cancel" class="btn btn-danger endbtn">Cancel</button>
+            </div>
+          </div>
         </div>
       </div>
       <div id="viewJobsCard" *ngIf="fromView != true">
@@ -108,8 +129,9 @@
             <div *ngFor="let job of account.jobs; let i = index">
               <span>
                 <button type="button" class="btn btn-outline-light btn-sm" (click)="editJob(i)">
-                  <svg id="pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16"  viewBox="0 0 14 16">
-                    <path fill-rule="evenodd" d="M0 11.592v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3l-1.3 1.3-3-3 1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
+                  <svg id="pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
+                    <path fill-rule="evenodd" d="M0 11.592v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3l-1.3 1.3-3-3 1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"
+                    />
                   </svg>
                 </button>
                 {{job.title}}
@@ -119,5 +141,5 @@
         </div>
       </div>
     </div>
-    </div>
   </div>
+</div>
