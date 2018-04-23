@@ -9,6 +9,7 @@ export class Account {
   email?: string;
   name?: string;
   supply?: string;
+  companyname?: string;
   review?: Reviews[];
   jobs?: Job[];
   tasks?: Task[];
