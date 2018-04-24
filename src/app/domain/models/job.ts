@@ -1,4 +1,3 @@
-import { Status } from './status';
 import { Supply } from './supply';
 
 export class Job {
@@ -8,6 +7,6 @@ export class Job {
   cost: number;
   startDate: Date;
   endDate: Date;
-  status: Status;
+  status: string;
   supplies: Supply[];
 }

@@ -2,7 +2,6 @@ import { Account } from './../../domain/models/account';
 import { Component, OnInit, Input } from '@angular/core';
 import { Supply } from '../../domain/models/supply';
 import { Job } from '../../domain/models/job';
-import { Status } from '../../domain';
 import { DataService } from "../data.service";
 // import { pencil } from 'octicons';
 
@@ -18,6 +17,7 @@ export class AddjobsComponent implements OnInit {
   public supplies: Supply[];
   public account: Account;
   public tempSupply: any;
+  
   @Input()
   public tempJob: Job;
   @Input()
@@ -60,7 +60,7 @@ export class AddjobsComponent implements OnInit {
                 cost:0,
                 startDate: new Date(),
                 endDate: new Date(),
-                status: new Status(),
+                status: "",
                 supplies:[{id: 1, name: 'bricks', supplier:null},
               {id: 2, name: 'wood', supplier:null}]
               },
@@ -70,7 +70,7 @@ export class AddjobsComponent implements OnInit {
                 cost:0,
                 startDate: new Date(),
                 endDate: new Date(),
-                status: new Status(),
+                status: "",
                 supplies:[{id: 1, name: 'bricks', supplier:null},
               {id: 2, name: 'wood', supplier:null}]
               },
@@ -84,7 +84,7 @@ export class AddjobsComponent implements OnInit {
           cost:0,
           startDate: new Date(),
           endDate: new Date(),
-          status: new Status(),
+          status: "",
           supplies:[]
         };
       }
@@ -98,6 +98,10 @@ export class AddjobsComponent implements OnInit {
   addJob(){
     this.account.jobs[this.indexJob]=this.tempJob;
     this.indexJob=this.account.jobs.length;
+
+    //send http request to add job
+
+    //Clear job form
     this.tempJob={
       id:this.indexJob,
       title:'',
@@ -105,10 +109,12 @@ export class AddjobsComponent implements OnInit {
       cost:0,
       startDate: new Date(),
       endDate: new Date(),
-      status: new Status(),
+      status: "",
       supplies:[]
     };
     this.title = 'Create A New Job';
+
+    //route user to active jobs page
   }
 
   editJob(i){
@@ -144,7 +150,7 @@ export class AddjobsComponent implements OnInit {
         cost:0,
         startDate: new Date(),
         endDate: new Date(),
-        status: new Status(),
+        status: "",
         supplies:[]
       };
       this.title = 'Create A New Job';

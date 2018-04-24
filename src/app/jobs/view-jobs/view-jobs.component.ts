@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Job } from '../../domain/models/job';
 import { Account } from '../../domain/models/account';
 import { DataService } from "../data.service";
-import { Status } from "../../domain/models/status";
 
 
 @Component({
@@ -34,7 +33,7 @@ export class ViewJobsComponent implements OnInit {
       cost:0,
       startDate: new Date(),
       endDate: new Date(),
-      status: new Status(),
+      status: "",
       supplies:[]
     };
     this.countListForStatus();
@@ -44,7 +43,7 @@ export class ViewJobsComponent implements OnInit {
   deleteJob(i: number) {
     var r = confirm("Are you sure you want to delete" + this.account.jobs[i].title + "?");
     if(r){
-      if(this.account.jobs[i].status.statusString == 'In Progress'){
+      if(this.account.jobs[i].status == 'In Progress'){
         this.incompleteJobs--;
       } else {
         this.completeJobs--;
@@ -52,12 +51,12 @@ export class ViewJobsComponent implements OnInit {
       this.account.jobs.splice(i,1);
       }
     }
-  /*jobStatus(id: number, statusId: number, statusString:string) {
+  /*jobStatus(id: number, statusId: number, status:string) {
     var i: number;
       for (i = 0; i < this.account.jobs.length; i++) {
         if (this.account.jobs[i].id === id) {
           this.account.jobs[i].status.statusId = statusId;
-          this.account.jobs[i].status.statusString = statusString;
+          this.account.jobs[i].status = status;
         }
       }
     }
@@ -85,6 +84,19 @@ export class ViewJobsComponent implements OnInit {
     }
   }
 
+  clearTempJob() {
+    this.tempJob={
+      id:0,
+      title:'',
+      location:"",
+      cost:0,
+      startDate: new Date(),
+      endDate: new Date(),
+      status: "",
+      supplies:[]
+    };
+  }
+
   updateJob(i){
         this.account.jobs[i].title = this.tempJob.title;
         this.account.jobs[i].cost = this.tempJob.cost;
@@ -101,12 +113,12 @@ export class ViewJobsComponent implements OnInit {
   }
 
   changeStatus(i){
-    if(this.account.jobs[i].status.statusString == 'In Progress'){
-      this.account.jobs[i].status.statusString  = 'Complete';
+    if(this.account.jobs[i].status == 'In Progress'){
+      this.account.jobs[i].status  = 'Complete';
       this.completeJobs++;
       this.incompleteJobs--;
     } else {
-      this.account.jobs[i].status.statusString  = 'In Progress';
+      this.account.jobs[i].status  = 'In Progress';
       this.completeJobs--;
       this.incompleteJobs++;
     }
@@ -124,7 +136,7 @@ export class ViewJobsComponent implements OnInit {
 
   countListForStatus(){
     for(var i = 0; i < this.account.jobs.length; i++){
-      if(this.account.jobs[i].status.statusString == 'In Progress'){
+      if(this.account.jobs[i].status == 'In Progress'){
         this.incompleteJobs++;
       } else {
         this.completeJobs++;
@@ -139,4 +151,5 @@ export class ViewJobsComponent implements OnInit {
       this.viewJobs = this.completeJobs;
     }
   }
+
 }
