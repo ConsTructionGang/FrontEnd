@@ -74,6 +74,8 @@ export class TasksComponent implements OnInit {
 
   addTask(){
     this.account.tasks.push(this.tempTask);
+    console.log(this.tempTask);
+
     this.tempTask={
       title:'',
       description:'',

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Supply, Account } from '../../domain';
-import { JobsHttpService } from '../../domain';
+import { UserpageHttpService } from '../../domain';
 
 @Component({
   selector: 'app-user-page',
@@ -13,14 +13,14 @@ export class UserPageComponent implements OnInit {
   public user: Account;
 
   constructor(
-    public jobsRepository: JobsHttpService,
+    public userpageRepository: UserpageHttpService,
     private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
     // get user information
     this.activatedRoute.params.subscribe((params: any) => {
-      this.jobsRepository.getById(+params.userId).subscribe(resp => {
+      this.userpageRepository.getById(+params.userId).subscribe(resp => {
         if (resp.status == 200) {
           for (let i = 0; i < resp.body.jobs.length; ++i) {
             if (resp.body.jobs[i].start_date)
@@ -43,6 +43,7 @@ export class UserPageComponent implements OnInit {
               resp.body.tasks[i].endDate = new Date(resp.body.tasks[i].Estimate_Date);
           }
 
+          console.log(resp.body);
           this.user = resp.body;
         }
       });

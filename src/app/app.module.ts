@@ -12,7 +12,7 @@ import { ReviewsModule } from './reviews/reviews.module';
 import { ProductsModule } from './products/products.module';
 import { GeneralModule } from './general/general.module';
 
-import { LoginHttpService, CreateAccountHttpService, JobsHttpService } from './domain';
+import { LoginHttpService, CreateAccountHttpService, UserpageHttpService } from './domain';
 
 
 
@@ -34,7 +34,7 @@ import { LoginHttpService, CreateAccountHttpService, JobsHttpService } from './d
   providers: [
     LoginHttpService,
     CreateAccountHttpService,
-    JobsHttpService  
+    UserpageHttpService  
   ],
   bootstrap: [AppComponent]
 })

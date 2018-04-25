@@ -61,8 +61,8 @@ export class AddjobsComponent implements OnInit {
                 startDate: new Date(),
                 endDate: new Date(),
                 status: "",
-                supplies:[{id: 1, name: 'bricks', supplier:null},
-              {id: 2, name: 'wood', supplier:null}]
+                supplies:[{id: 1, name: 'bricks'},
+              {id: 2, name: 'wood'}]
               },
               {id:1,
                 title:'Project 2',
@@ -71,8 +71,8 @@ export class AddjobsComponent implements OnInit {
                 startDate: new Date(),
                 endDate: new Date(),
                 status: "",
-                supplies:[{id: 1, name: 'bricks', supplier:null},
-              {id: 2, name: 'wood', supplier:null}]
+                supplies:[{id: 1, name: 'bricks'},
+              {id: 2, name: 'wood'}]
               },
             ]
         };
@@ -96,12 +96,15 @@ export class AddjobsComponent implements OnInit {
   }
 
   addJob(){
-    this.account.jobs[this.indexJob]=this.tempJob;
-    this.indexJob=this.account.jobs.length;
+    this.tempJob.status = "In Progress";
+    // this.account.jobs[this.indexJob]=this.tempJob;
+    // this.indexJob=this.account.jobs.length;
 
+    console.log(this.tempJob);
     //send http request to add job
+    
 
-    //Clear job form
+    //Clear job formstatusString
     this.tempJob={
       id:this.indexJob,
       title:'',
