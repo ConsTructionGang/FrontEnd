@@ -6,4 +6,5 @@ export * from './models/task';
 export * from './login-http.service';
 export * from './create-account-http.service';
 export * from './jobs-http.service';
+export * from './userpage-http.service';
 // end:ng42.barrel
