@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'supplieraccount', component: CreatesupplieraccountComponent },
   { path: 'useraccount', component: CreateuseraccountComponent },
   { path: 'forgotpassword', component: ForgotpasswordComponent },
-  { path: 'addjobs', component: AddjobsComponent },
+  { path: 'addjobs/:userId', component: AddjobsComponent },
   { path: 'viewjobs', component: ViewJobsComponent },
   { path: 'reviews', component: SupplierReviewsComponent },
   { path: 'products', component: SupplierProductsComponent },

@@ -44,6 +44,7 @@ export class UserPageComponent implements OnInit {
           }
 
           console.log(resp.body);
+
           this.user = resp.body;
         }
       });
