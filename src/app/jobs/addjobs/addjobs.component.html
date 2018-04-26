@@ -98,12 +98,17 @@
                         {{supply.name}}
                         <div class="float-right">
                           <h6 *ngIf="!supply.supplier"> No supplier </h6>
-                          <a href [routerLink]="'/suppliers/'+ supply.id" data-dismiss="modal"> Add </a>
+                          <button *ngIf="!supply.supplier" type="button" class="btn" (click)="suppliers(supply)"> Add </button>
+                          <h6 *ngIf="supply.supplier"> {{supply.supplier.name}} </h6>
+                          <button *ngIf="supply.supplier" type="button" class="btn" (click)="removeSuppliers(supply)"> Remove </button>
                         </div>
                       </td>
                     </tr>
                   </tbody>
                 </table>
+              </div>
+              <div *ngIf="showSuppliers">
+                <app-suppliers [supply]=supSupply (onAddSupplier)="onAddSupplier($event)"></app-suppliers>
               </div>
             </div>
             <br>

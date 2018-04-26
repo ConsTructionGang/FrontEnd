@@ -6,13 +6,14 @@ import { AddjobsComponent } from './addjobs/addjobs.component';
 import { ViewJobsComponent } from './view-jobs/view-jobs.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { EditSupplierComponent } from './edit-supplier/edit-supplier.component';
+import { ProductsModule } from '../products/products.module';
 import { TasksComponent } from './tasks/tasks.component';
 import { PurchaseHistoryComponent } from './purchase-history/purchase-history.component';
 
 
 
 @NgModule({
-  imports: [CommonModule, RouterModule, FormsModule,
+  imports: [CommonModule, RouterModule, FormsModule, ProductsModule
   ],
   declarations: [AddjobsComponent, ViewJobsComponent, UserPageComponent, EditSupplierComponent, TasksComponent, PurchaseHistoryComponent],
 
