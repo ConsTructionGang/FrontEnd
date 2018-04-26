@@ -21,10 +21,16 @@ export class JobsHttpService extends HttpGeneric<Job> {
         return this.add(item);
     }
 
-    public deleteJob(userId: number) {
+    public updateJob(jobId: number, item: Job) {
         this.endPoint = `http://ec2-34-227-162-95.compute-1.amazonaws.com/jobs`;
 
-        return this.delete(userId);
+        return this.updateById(jobId, item);
+    }
+
+    public deleteJob(jobId: number) {
+        this.endPoint = `http://ec2-34-227-162-95.compute-1.amazonaws.com/jobs`;
+
+        return this.delete(jobId);
     }
 
 }

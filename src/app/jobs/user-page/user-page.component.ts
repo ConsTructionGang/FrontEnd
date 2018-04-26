@@ -24,10 +24,10 @@ export class UserPageComponent implements OnInit {
         if (resp.status == 200) {
           for (let i = 0; i < resp.body.jobs.length; ++i) {
             if (resp.body.jobs[i].start_date)
-              resp.body.jobs[i].startDate = new Date(resp.body.jobs[i].start_date);
+              resp.body.jobs[i].startDate = new Date(resp.body.jobs[i].start_date.replace(/-/g, '\/').replace(/T.+/, '') );
 
             if (resp.body.jobs[i].end_date)
-              resp.body.jobs[i].endDate = new Date(resp.body.jobs[i].end_date);
+              resp.body.jobs[i].endDate = new Date(resp.body.jobs[i].end_date.replace(/-/g, '\/').replace(/T.+/, '') );
           }
 
           for (let i = 0; i < resp.body.tasks.length; ++i) {
@@ -37,10 +37,10 @@ export class UserPageComponent implements OnInit {
             resp.body.tasks[i].status = false; // must be changed
 
             if (resp.body.tasks[i].Creation_Date)
-              resp.body.tasks[i].startDate = new Date(resp.body.tasks[i].Creation_Date);
+              resp.body.tasks[i].startDate = new Date(resp.body.tasks[i].Creation_Date.replace(/-/g, '\/').replace(/T.+/, '') );
 
             if (resp.body.tasks[i].Estimate_Date)
-              resp.body.tasks[i].endDate = new Date(resp.body.tasks[i].Estimate_Date);
+              resp.body.tasks[i].endDate = new Date(resp.body.tasks[i].Estimate_Date.replace(/-/g, '\/').replace(/T.+/, '') );
           }
 
           console.log(resp.body);

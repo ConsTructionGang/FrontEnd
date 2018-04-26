@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Account, Job } from '../../domain';
 import { JobsHttpService } from '../../domain';
@@ -15,6 +16,7 @@ export class ViewJobsComponent implements OnInit {
 
   constructor(
     private jobsHttpService: JobsHttpService,
+    private router: Router,
   ) { }
 
   public jobs: Job[];
@@ -83,7 +85,7 @@ export class ViewJobsComponent implements OnInit {
     this.tempJob.cost = this.account.jobs[i].cost;
     this.tempJob.endDate = this.account.jobs[i].endDate;
     this.tempJob.id = this.account.jobs[i].id;
-    this.tempJob.location = this.account.jobs[i].location;
+    this.tempJob.address = this.account.jobs[i].address;
     this.tempJob.status = this.account.jobs[i].status;
     this.tempJob.startDate = this.account.jobs[i].startDate;
     var j: number;
@@ -97,7 +99,8 @@ export class ViewJobsComponent implements OnInit {
     this.tempJob = {
       id: 0,
       title: '',
-      location: "",
+      location: '',
+      address: '',
       cost: 0,
       startDate: new Date(),
       endDate: new Date(),
@@ -107,18 +110,22 @@ export class ViewJobsComponent implements OnInit {
   }
 
   updateJob(i) {
-    this.account.jobs[i].title = this.tempJob.title;
-    this.account.jobs[i].cost = this.tempJob.cost;
-    this.account.jobs[i].endDate = this.tempJob.endDate;
-    this.account.jobs[i].id = this.tempJob.id;
-    this.account.jobs[i].location = this.tempJob.location;
-    this.account.jobs[i].status = this.tempJob.status;
-    this.account.jobs[i].startDate = this.tempJob.startDate;
-    var j: number;
-    this.account.jobs[i].supplies = [];
-    for (j = 0; j < this.tempJob.supplies.length; j++) {
-      this.account.jobs[i].supplies[j] = this.tempJob.supplies[j];
-    }
+    this.jobsHttpService.updateJob(this.tempJob.id, this.tempJob).subscribe(resp => {
+      if (resp.status == '200') {
+        this.account.jobs[i].title = this.tempJob.title;
+        this.account.jobs[i].cost = this.tempJob.cost;
+        this.account.jobs[i].endDate = this.tempJob.endDate;
+        this.account.jobs[i].id = this.tempJob.id;
+        this.account.jobs[i].location = this.tempJob.location;
+        this.account.jobs[i].status = this.tempJob.status;
+        this.account.jobs[i].startDate = this.tempJob.startDate;
+        var j: number;
+        this.account.jobs[i].supplies = [];
+        for (j = 0; j < this.tempJob.supplies.length; j++) {
+          this.account.jobs[i].supplies[j] = this.tempJob.supplies[j];
+        }
+      }
+    });
   }
 
   changeStatus(i) {

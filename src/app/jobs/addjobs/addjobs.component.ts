@@ -113,7 +113,7 @@ export class AddjobsComponent implements OnInit {
       this.jobsHttpService.addJob(+params.userId, this.tempJob).subscribe(resp => {
         if (resp.status == '200') {
           console.log(this.tempJob);
-          // this.router.navigateByUrl(`/userpage/${+params.userId}`);
+          this.router.navigateByUrl(`/userpage/${+params.userId}`);
         }
       });
     });
@@ -145,7 +145,7 @@ export class AddjobsComponent implements OnInit {
         this.tempJob.cost = this.account.jobs[i].cost;
         this.tempJob.endDate = this.account.jobs[i].endDate;
         this.tempJob.id = this.account.jobs[i].id;
-        this.tempJob.location = this.account.jobs[i].location;
+        this.tempJob.address = this.account.jobs[i].address;
         this.tempJob.status = this.account.jobs[i].status;
         this.tempJob.startDate = this.account.jobs[i].startDate;
         var j: number;
@@ -166,6 +166,7 @@ export class AddjobsComponent implements OnInit {
         id: this.indexJob,
         title: '',
         location: "",
+        address: "",
         cost: 0,
         startDate: new Date(),
         endDate: new Date(),
