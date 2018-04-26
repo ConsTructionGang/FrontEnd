@@ -38,7 +38,7 @@ small{
 }
 
 #title{
-    color:gainsboro;
+    color:#F0F0F0;
     font-size: 350%;
 }
 
@@ -79,7 +79,7 @@ small{
 
 #changeDescription{
     color:white;
-    text-shadow: 1px 1px 2px black, 0 0 25px grey, 0 0 5px  #505050;
+    text-shadow: 1px 1px 2px black, 0 0 25px grey, 0 0 5px  #fdd378;
     top:-290%;
     left:2%;
     width:36%;
@@ -120,5 +120,11 @@ small{
     margin-top: -1.5em;
     margin-right:1em;
 }
+
+.btn-outline-dark, .btn-outline-dark:hover, .btn-outline-dark:active, .btn-outline-dark:visited {
+    background-color: #fdd378;
+    border-color:#fdd378;
+}
+
 
 
