@@ -15,7 +15,7 @@ import { SuppliersComponent } from './products/suppliers/suppliers.component';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent},
-  { path: 'userpage', component: UserPageComponent },
+  { path: 'userpage/:userId', component: UserPageComponent },
   { path: 'login', component: LoginComponent},
   { path: 'supplieraccount', component: CreatesupplieraccountComponent },
   { path: 'useraccount', component: CreateuseraccountComponent },

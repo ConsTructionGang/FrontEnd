@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Supply, Account} from '../../domain/index'
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
+import { Supply, Account } from '../../domain';
+import { JobsHttpService } from '../../domain';
 
 @Component({
   selector: 'app-user-page',
@@ -8,83 +10,44 @@ import { Supply, Account} from '../../domain/index'
   styleUrls: ['./user-page.component.css']
 })
 export class UserPageComponent implements OnInit {
+  public user: Account;
 
-  public user:Account;
-
-  constructor() { }
+  constructor(
+    public jobsRepository: JobsHttpService,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
-    this.user={
-      id:59348,
-      email: "example@mail.com",
-      password: "password",
-      type:"User",
-      name:"Bob the Builder",
-      jobs:[
-        {
-          id: 11,
-          title: "Expressway Tower",
-          location: "North Central Expressway",
-          cost :100000,
-          startDate: new Date(2017,11,12),
-          endDate: new Date(2018,2,4),
-          status: {
-            statusId: 0, statusString: "In Progress"
-          },
-          supplies:[{id: 1, name: 'bricks', supplier: null},
-        {id: 2, name: 'wood', supplier: null}]
-        },
-        {
-          id: 12,
-          title: "Ulta",
-          location: "Mockingbird Lane",
-          cost :250000,
-          startDate: new Date(2018,8,8),
-          endDate: new Date(2020,3,24),
-          status: {
-            statusId: 0, statusString: "In Progress"
-          },
-          supplies:[{id: 1, name: 'bricks', supplier:null},
-        {id: 2, name: 'wood', supplier:null}]
-        },
-        {
-          id: 13,
-          title: "Elizabeth's Cakes",
-          location: "Preston",
-          cost :50000,
-          startDate: new Date(2018,5,4),
-          endDate: new Date(2019,1,13),
-          status: {
-            statusId: 0, statusString: "In Progress"
-          },
-          supplies:[{id: 1, name: 'bricks', supplier:null},
-        {id: 2, name: 'wood', supplier:null}],
+    // get user information
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.jobsRepository.getById(+params.userId).subscribe(resp => {
+        if (resp.status == 200) {
+          for (let i = 0; i < resp.body.jobs.length; ++i) {
+            if (resp.body.jobs[i].start_date)
+              resp.body.jobs[i].startDate = new Date(resp.body.jobs[i].start_date);
+
+            if (resp.body.jobs[i].end_date)
+              resp.body.jobs[i].endDate = new Date(resp.body.jobs[i].end_date);
+          }
+
+          for (let i = 0; i < resp.body.tasks.length; ++i) {
+            resp.body.tasks[i].title = resp.body.tasks[i].Name;
+            resp.body.tasks[i].description = resp.body.tasks[i].Description;
+            
+            resp.body.tasks[i].status = false; // must be changed
+
+            if (resp.body.tasks[i].Creation_Date)
+              resp.body.tasks[i].startDate = new Date(resp.body.tasks[i].Creation_Date);
+
+            if (resp.body.tasks[i].Estimate_Date)
+              resp.body.tasks[i].endDate = new Date(resp.body.tasks[i].Estimate_Date);
+          }
+
+          this.user = resp.body;
         }
-      ],
-      tasks:[
-        {
-          title:'Buy Wood',
-          description: 'Buy cedar wood for under $100',
-          status: false,
-          startDate: new Date(2018,5,4),
-          endDate: new Date(2019,1,13),
-        },
-        {
-          title:'Make Sandwich',
-          description: 'Make PB&J sandwich',
-          status: true,
-          startDate: new Date(2018,5,4),
-          endDate: new Date(2019,1,13),
-        },
-        {
-          title:'Eat Lunch',
-          description: 'Eat awesome PB&J sandwich',
-          status: false,
-          startDate: new Date(2018,5,4),
-          endDate: new Date(2019,1,13),
-        }
-      ]
-    }
+      });
+    });
+
   }
 
 }

@@ -1,4 +1,4 @@
-import { Account, Status, LoginHttpService } from '../../domain';
+import { Account, LoginHttpService } from '../../domain';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         console.log(resp.body);
 
         // change route
-        this.router.navigateByUrl('userpage');
+        this.router.navigateByUrl(`userpage/${resp.body.id}`);
       } else {                                      // login failed
         console.log(typeof resp);
         // check http status code for more info
