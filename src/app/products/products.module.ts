@@ -9,6 +9,9 @@ import { SuppliersComponent } from './suppliers/suppliers.component';
   imports: [
     CommonModule, RouterModule, FormsModule
   ],
-  declarations: [SupplierProductsComponent, SuppliersComponent]
+  declarations: [SupplierProductsComponent, SuppliersComponent],
+  exports : [
+    SuppliersComponent
+  ]
 })
 export class ProductsModule { }

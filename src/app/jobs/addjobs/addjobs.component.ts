@@ -2,6 +2,7 @@ import { Account } from './../../domain/models/account';
 import { Component, OnInit, Input } from '@angular/core';
 import { Supply } from '../../domain/models/supply';
 import { Job } from '../../domain/models/job';
+import { Supplier } from '../../domain/models/supplier';
 import { DataService } from "../data.service";
 // import { pencil } from 'octicons';
 
@@ -17,7 +18,9 @@ export class AddjobsComponent implements OnInit {
   public supplies: Supply[];
   public account: Account;
   public tempSupply: any;
-  
+  public supSupply: any;
+  public showSuppliers: boolean;
+
   @Input()
   public tempJob: Job;
   @Input()
@@ -47,6 +50,7 @@ export class AddjobsComponent implements OnInit {
           name: 'Nails'
         }
       ];
+      this.showSuppliers=false;
       if(this.fromView != true){
         this.title = 'Create A New Job';
         this.account = {
@@ -161,5 +165,29 @@ export class AddjobsComponent implements OnInit {
     if (index > -1) {
       this.tempJob.supplies.splice(index, 1);
     }
+  }
+  suppliers(supply){
+    this.supSupply=supply;
+    this.showSuppliers=true;
+  }
+  removeSuppliers(supply){
+    var j :number;
+    for(j = 0; j < this.tempJob.supplies.length; j++){
+      if (this.tempJob.supplies[j] == supply)
+       this.tempJob.supplies[j].supplier = null;
+    }
+  }
+  onAddSupplier(newSupplier: Supplier) {
+    console.log("Received new supplier!");
+    console.log(newSupplier);
+    console.log(this.tempJob);
+    this.showSuppliers=false;
+    var j :number;
+    for(j = 0; j < this.tempJob.supplies.length; j++){
+      if (this.tempJob.supplies[j] == this.supSupply)
+       this.tempJob.supplies[j].supplier = newSupplier;
+    }
+    //console.log(newReview);
+
   }
 }
