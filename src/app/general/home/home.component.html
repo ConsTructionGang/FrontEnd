@@ -3,12 +3,12 @@
   <div class="d-flex justify-content-center">
       <img id ="backImg" src="./assets/images/home2blur.jpg">
       <div id="float-slide">
-        <div *ngIf="slideNum != 0">
+
           <input id="left" class="arr" type="image" src="/assets/images/leftArrow.png" (click)="goLeft()">
-        </div>
-        <div *ngIf="slideNum != 2">
+
+
           <input id="right"class="arr" type="image" src="/assets/images/rightArrow.png" (click)="goRight()">
-        </div>
+
         <div id="slide" style="text-align:center">
             <p id="title">{{slideTitle}}</p>
             <pre id="desc">{{slideDesc}}</pre>

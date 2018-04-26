@@ -89,14 +89,14 @@
                   </div>
                   <div class="modal-body">
                       <p><strong>Title: </strong>{{tempJob.title}}</p>
-                      <p><strong>Location: </strong>{{tempJob.location}}</p>
+                      <p><strong>Address: </strong>{{tempJob.address}}</p>
                       <p><strong>Est. Cost: </strong>{{tempJob.cost | currency}}</p>
                       <p><strong>Start Date: </strong>{{tempJob.startDate | date:"longDate"}}</p>
                       <p><strong>End Date: </strong>{{tempJob.endDate | date:"longDate"}}</p>
                       <span><strong>Supplies:</strong></span>
                       <table class="table">
                           <tbody>
-                            <tr *ngFor="let supply of job.supplies; let i = index">
+                            <tr *ngFor="let supply of tempJob.supplies; let i = index">
                               <td class="clearfix">
                                 {{supply.name}}
                                 <div class="float-right">
@@ -120,6 +120,6 @@
           </tr>
       </table>
       <hr>
-      <button id="create" type="button" class="btn btn-primary" routerLink="/addjobs">Create a new job</button>
+      <button id="create" type="button" class="btn btn-primary" routerLink="/addjobs/{{this.account.id}}">Create a new job</button>
     </div>
   </div>
