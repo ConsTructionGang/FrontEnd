@@ -42,8 +42,8 @@
               </tr>
             </thead>
             <tbody *ngFor="let task of account.tasks; let i = index">
-              <tr *ngIf="task.status == visibleStatus">
-                <td>{{task.title}}</td>
+              <tr *ngIf="task.status == visibleStatus" id="table-body">
+                <th>{{task.title}}</th>
                 <td>{{task.description}}</td>
                 <td>{{task.startDate | date:"longDate"}}</td>
                 <td>{{task.endDate | date:"longDate"}}</td>
