@@ -6,3 +6,14 @@
     position:relative;
     top:.2rem;
 }
+#table-head > th{
+    border:none;
+}
+#table-body:hover > th{
+    background-color:#E8E8E8;
+}
+
+#table-body:hover > td{
+    background-color:whitesmoke;
+
+}
