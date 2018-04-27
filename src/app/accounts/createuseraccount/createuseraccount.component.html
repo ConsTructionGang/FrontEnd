@@ -60,15 +60,6 @@
                   <input type="text" class="form-control" id="inputState"  [(ngModel)]="userAccount.state" name="stateField">
                 </div>
               </div>
-              <div class="form-group">
-                <label for="inputSupplies">Supplies</label>
-                <select class="form-control" id="inputSupplies" [(ngModel)]="userAccount.supply" name="supplyfield">
-                  <option></option>
-                  <option [value]="supply.id" *ngFor="let supply of supplies">
-                    {{ supply.name }}
-                  </option>
-                </select>
-              </div>
             </div>
 
             <div class="form-group">

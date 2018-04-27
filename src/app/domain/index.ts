@@ -7,4 +7,5 @@ export * from './login-http.service';
 export * from './create-account-http.service';
 export * from './jobs-http.service';
 export * from './userpage-http.service';
+export * from './supplier.service';
 // end:ng42.barrel

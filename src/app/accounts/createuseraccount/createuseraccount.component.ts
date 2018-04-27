@@ -129,13 +129,6 @@ export class CreateuseraccountComponent implements OnInit {
   public createUser() {
     // can perform form validation here
 
-    // casts supply dropdown number to the supply name
-    if (this.userAccount.supply) {
-      this.userAccount.supply = this.supplies[
-        Number(this.userAccount.supply) - 1
-      ]["name"];
-    }
-
     this.createAccountHttpService.add(this.userAccount).subscribe(
       resp => {
         if (resp.status === 201) {
