@@ -14,9 +14,6 @@ export class Account {
   name?: string;
   supply?: Supply[];
   companyname?: string;
-  address?: string;
-  city?: string;
-  state?: string;
   review?: Reviews[];
   jobs?: Job[];
   tasks?: Task[];
