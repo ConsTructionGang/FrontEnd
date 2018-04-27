@@ -8,6 +8,9 @@ export class Account {
   password?: string;
   type: string;
   email?: string;
+  city?: string;
+  state?: string;
+  address?: string;
   name?: string;
   supply?: Supply[];
   companyname?: string;
