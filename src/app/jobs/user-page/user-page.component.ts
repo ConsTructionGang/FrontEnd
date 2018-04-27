@@ -42,9 +42,6 @@ export class UserPageComponent implements OnInit {
             if (resp.body.tasks[i].Estimate_Date)
               resp.body.tasks[i].endDate = new Date(resp.body.tasks[i].Estimate_Date.replace(/-/g, '\/').replace(/T.+/, '') );
           }
-
-          console.log(resp.body);
-
           this.user = resp.body;
         }
       });

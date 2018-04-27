@@ -1,6 +1,7 @@
 import { Reviews } from './reviews';
 import { Job } from './job';
 import { Task } from './task';
+import { Supply } from './supply';
 
 export class Account {
   id?: number;
@@ -8,8 +9,11 @@ export class Account {
   type: string;
   email?: string;
   name?: string;
-  supply?: string;
+  supply?: Supply[];
   companyname?: string;
+  address?: string;
+  city?: string;
+  state?: string;
   review?: Reviews[];
   jobs?: Job[];
   tasks?: Task[];
