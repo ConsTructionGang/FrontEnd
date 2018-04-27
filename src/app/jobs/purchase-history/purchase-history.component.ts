@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Account, Job } from '../../domain/index'
+import { Account, Job } from '../../domain/index';
 
 @Component({
   selector: 'app-purchase-history',

@@ -36,7 +36,9 @@ export class ViewJobsComponent implements OnInit {
     this.tempJob = {
       id: 0,
       title: '',
-      location: "",
+      address: "",
+      city: "",
+      state: "",
       cost: 0,
       startDate: new Date(),
       endDate: new Date(),
@@ -86,6 +88,8 @@ export class ViewJobsComponent implements OnInit {
     this.tempJob.endDate = this.account.jobs[i].endDate;
     this.tempJob.id = this.account.jobs[i].id;
     this.tempJob.address = this.account.jobs[i].address;
+    this.tempJob.city = this.account.jobs[i].city;
+     this.tempJob.state = this.account.jobs[i].state;
     this.tempJob.status = this.account.jobs[i].status;
     this.tempJob.startDate = this.account.jobs[i].startDate;
     var j: number;
@@ -99,8 +103,9 @@ export class ViewJobsComponent implements OnInit {
     this.tempJob = {
       id: 0,
       title: '',
-      location: '',
       address: '',
+      city: '',
+      state: ' ',
       cost: 0,
       startDate: new Date(),
       endDate: new Date(),
@@ -116,7 +121,9 @@ export class ViewJobsComponent implements OnInit {
         this.account.jobs[i].cost = this.tempJob.cost;
         this.account.jobs[i].endDate = this.tempJob.endDate;
         this.account.jobs[i].id = this.tempJob.id;
-        this.account.jobs[i].location = this.tempJob.location;
+        this.account.jobs[i].address = this.tempJob.address;
+        this.account.jobs[i].city = this.tempJob.city;
+        this.account.jobs[i].state = this.tempJob.state;
         this.account.jobs[i].status = this.tempJob.status;
         this.account.jobs[i].startDate = this.tempJob.startDate;
         var j: number;
