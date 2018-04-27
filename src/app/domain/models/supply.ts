@@ -5,4 +5,5 @@ export class Supply {
   type?:string;
   cost?:number;
   supplierId?: number;
+  supplier?: Supplier;
 }
