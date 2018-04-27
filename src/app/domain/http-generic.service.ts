@@ -32,6 +32,12 @@ export abstract class HttpGeneric<T> {
         );
     }
 
+    public getByName(name: string): Observable<T> {
+        return this.httpClient.get(`${this.endPoint}/supply/${name}`, this.httpOptions).pipe(
+            catchError(this.handleException)
+        );
+    }
+
     public add(item: T): Observable<T> {
         return this.httpClient.post(`${this.endPoint}`, item, this.httpOptions).pipe(
             catchError(this.handleException)
