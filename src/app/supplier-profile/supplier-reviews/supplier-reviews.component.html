@@ -1,0 +1,42 @@
+
+  <h4> Customer Reviews ({{supplier.review.length}})</h4>
+  <div>
+    <div class="card bg-light">
+      <div class="card-body text-left text-muted" *ngIf="!supplier.review.length">
+          <p >You currently have no reviews.</p>
+      </div>
+    </div>
+    <div *ngFor="let review of supplier.review; let i = index">
+      <br>
+      <div class="card" [ngClass]="{'bg-light': i % 2 == 0, 'bg-white': i % 2 != 0}">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-10">
+              <h4 class="card-title">{{review.userName}} <app-rating [rating]="review.rating"></app-rating> </h4>
+            </div>
+            <div class="float-right">
+              <p class="card-text">{{review.date | date}}</p>
+            </div>
+          </div>
+          <p id ="reviewComment" class="card-text">"{{review.comment}}"</p>
+          <div *ngIf="review.response">
+            <hr>
+            <h6>{{supplier.name}}</h6>
+            <p class="indent">"{{review.response}}"</p>
+          </div>
+          <div>
+            <button class="btn btn-outline-secondary btn-sm float-right" (click)="review.hideResponse = !review.hideResponse" (click)="print(i)">Respond</button>
+            <br>
+            <div *ngIf="review.hideResponse">
+                <div class="form-group">
+                    <label for="commentBox">Respond</label>
+                    <textarea class="form-control" id="responseBox" rows="3" name="response" [(ngModel)]="reply"></textarea>
+                </div>
+                <button type="button" class="btn btn-success" (click)="addResponse(i)" (click)="review.hideResponse = !review.hideResponse">Submit</button>
+                <button type="submit" class="btn btn-danger" (click)="review.hideResponse = !review.hideResponse">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
