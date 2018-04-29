@@ -7,3 +7,9 @@
     font-family: Georgia, serif;
 }
 
+
+.icon{
+    outline:none;
+    position:relative;
+    top:.2rem;
+}
