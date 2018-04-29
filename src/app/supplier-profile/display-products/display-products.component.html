@@ -66,6 +66,7 @@
                                     <label for="productName">Product Name</label>
                                     <input type="text" value={{product.name}} class="form-control" id="inputProductName">
                                   </div>
+                                  
                                   <div class="form-group">
                                     <label for="productType">Type</label>
                                     <input type="text" value={{product.type}} class="form-control" id="inputProductType">
@@ -107,26 +108,31 @@
           </button>
         </div>
         <div class="modal-body">
-            <div class="form-group">
+            <!--<div class="form-group">
               <label for="productName">Product Name</label>
               <input type="text" class="form-control" id="inputProductName">
-            </div>
-            <div class="form-group">
-              <label for="productType">Type</label>
-              <input type="text" class="form-control" id="inputProductType">
-            </div>
-            <div class="input-group mb-3">
+            </div>-->
+            <div class="form-group col-md-12">
+                <label for="inputSupplies">Product Type</label>
+                <select class="form-control" id="inputSupplies" name="supplyfield" [(ngModel)]="addProductTemp.name">
+                  <option></option>
+                  <option name="addSupply" *ngFor="let supply of supplyTypes" >
+                    {{ supply.Name }}
+                  </option>
+                </select>
+              </div>
+            <div class="input-group mb-3 col-md-12">
                 <div class="input-group-prepend">
                   <span class="input-group-text">$</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Amount">
+                <input type="text" class="form-control" aria-label="Amount" [(ngModel)]="addProductTemp.cost">
                 <div class="input-group-append">
                 </div>
               </div>                    
         </div>
         <div class="modal-footer" id="editFooter">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addSupply()">Add</button>
         </div>
       </div>
     </div>

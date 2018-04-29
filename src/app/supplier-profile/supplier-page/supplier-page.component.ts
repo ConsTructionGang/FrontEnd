@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Account } from "../../domain/models/account";
+import { Account, } from "../../domain";
 import { ActivatedRoute } from '@angular/router';
 import { SupplierService } from '../../domain';
+import { SupplyListService } from '../../domain';
 import { PhoneNumberPipe } from '../phone-number.pipe';
 
 
@@ -13,13 +14,26 @@ import { PhoneNumberPipe } from '../phone-number.pipe';
 export class SupplierPageComponent implements OnInit {
   
   public supplier:Account;
+  public tempSupplier:Account;
+
 
   constructor(
     public supplierRepository: SupplierService,
+    public supplyListRepository: SupplyListService,
     private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.tempSupplier = {
+      name: "",
+      id: 0,
+      type: "Supplier",
+      address: "",
+      city: "",
+      state: "",
+      phonenumber: 0,
+      description: "",
+    }
    this.activatedRoute.params.subscribe((params: any) => {
       this.supplierRepository.getById(+params.userId).subscribe(resp => {
         if (resp.status == 200) {
@@ -30,60 +44,22 @@ export class SupplierPageComponent implements OnInit {
           if(!this.supplier.review){
             this.supplier.review = [];
           }
-          this.supplier.phonenumber = 13334444;
+        }
+        this.tempSupplier = {
+          name: this.supplier.name,
+          id: this.supplier.id,
+          email: this.supplier.email,
+          type: "Supplier",
+          address: this.supplier.address,
+          city: this.supplier.city,
+          state: this.supplier.state,
+          phonenumber: this.supplier.phonenumber,
+          description: this.supplier.description,
         }
       });
     });
 
-    /*this.supplier={
-      id: 0,
-      password: "",
-      email:"example@email.com",
-      type: "Supplier",
-      name: "Bob",
-      address: "333 Rainbow Ln",
-      city: "Austin",
-      state: "Texas",
-      companyname: "Supplier Co.",
-      supply:[
-        {
-        id: 1,
-        name: "Cherry Wood, 50 grain",
-        type: "wood",
-        cost: 5.99
-        },
-        {
-          id: 1,
-          name: "Cherry Wood, 50 grain",
-          type: "wood",
-          cost: 5.99
-        },
-        {
-          id: 1,
-          name: "Cherry Wood, 50 grain",
-          type: "wood",
-          cost: 5.99
-        },
-        {
-          id: 1,
-          name: "Cherry Wood, 50 grain",
-          type: "wood",
-          cost: 5.99
-        },
-        {
-          id: 1,
-          name: "Cherry Wood, 50 grain",
-          type: "wood",
-          cost: 5.99
-        },
-      ],
-      review: [{
-        userName: "Bob the Builder",
-        rating: 4,
-        date: Date.now(),
-        comment: "Awesome products"
-      }]
-    };*/
   }
+  
 
 }

@@ -2,8 +2,13 @@
   <div class="flex-row d-flex">
     <div class="col-md-4">
       <div class="card">
-        <div class="card-header">
+        <div class="card-header d-flex row-flex">
           <h3>{{supplier.name}} Profile</h3>
+          <button class="ml-auto btn btn-outline-secondary" data-toggle="modal" data-target="#editInfoModal">
+              <span class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M0 11.592v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3l-1.3 1.3-3-3 1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/></svg>
+              </span>
+            </button>
         </div>
         <div class="card-body">
           <p><strong>Name:</strong> {{supplier.name}}</p>
@@ -29,4 +34,53 @@
   </div>
   
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="editInfoModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit your information</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="productName">Name</label>
+            <input name="name" type="text" class="form-control" id="inputProductName" [(ngModel)]="tempSupplier.name">
+          </div>
+          <div class="form-group">
+            <label for="productName">Email</label>
+            <input name="email" type="text" class="form-control" id="inputProductName" [(ngModel)]="tempSupplier.email">
+          </div>
+          <div class="form-group">
+            <label for="productName">Address</label>
+            <input name="address" type="text" class="form-control" id="inputProductName" [(ngModel)]="tempSupplier.address">
+          </div>
+          <div class="form-group">
+            <label for="productName">City</label>
+            <input name="city" type="text" class="form-control" id="inputProductName" [(ngModel)]="tempSupplier.city">
+          </div> 
+          <div class="form-group">
+            <label for="productName">State</label>
+            <input name="state" type="text" class="form-control" id="inputProductName" [(ngModel)]="tempSupplier.state">
+          </div>
+          <div class="form-group">
+            <label for="productName">Phone Number</label>
+            <input name="number" type="text" class="form-control" id="inputProductName" placeholder="7-8 Digits with no '-' or '/'" [(ngModel)]="tempSupplier.phonenumber">
+          </div>
+          <div class="form-group">
+              <label for="productName">Description</label>
+              <input name="description" type="text" class="form-control" id="inputProductName" [(ngModel)]="tempSupplier.description">
+            </div>                  
+        </div>
+        <div class="modal-footer" id="editFooter">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
 
