@@ -3,7 +3,8 @@ import { Supply } from './supply';
 export class Job {
   id: number;
   title: string;
-  location: string;
+  city?: string;
+  state?: string;
   address?: string;
   cost: number;
   startDate: Date;
