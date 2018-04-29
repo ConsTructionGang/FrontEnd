@@ -15,7 +15,8 @@ import { GeneralModule } from './general/general.module';
 import { LoginHttpService, 
   CreateAccountHttpService, 
   UserpageHttpService,
-  JobsHttpService } from './domain';
+  JobsHttpService,
+  TasksHttpService } from './domain';
 
 
 
@@ -38,7 +39,8 @@ import { LoginHttpService,
     LoginHttpService,
     CreateAccountHttpService,
     UserpageHttpService,
-    JobsHttpService  
+    JobsHttpService,
+    TasksHttpService  
   ],
   bootstrap: [AppComponent]
 })
