@@ -1,8 +1,38 @@
 <div class="card">
-  <div class="card-header bg-dark text-white">
+  <div class="card-header bg-dark text-white d-flex row-flex">
     <h3>Purchase History</h3>
+    <div class="dropdown ml-auto">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Sort by
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" (click)="sortByDate()">Date</a>
+          <a class="dropdown-item" (click)="sortByCost()">Cost</a>
+        </div>
+      </div>
   </div>
   <div class="card-body">
-
+    <table class="table">
+        <thead>
+            <tr>
+              <th scope="col">Item</th>
+              <th scope="col">Supplier</th>
+              <th scope="col">Cost</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let supply of sortedSupplies">
+              <td *ngIf="supply.name">{{supply.name}}</td>
+              <td *ngIf="supply.supplier"><a [routerLink]="['/supplierpage', supply.supplierId]">{{supply.supplier.name}}</a></td>
+              <td *ngIf="!supply.supplier">No supplier name stored.</td>
+              <td *ngIf="supply.cost">{{supply.cost}}</td>
+              <td *ngIf="!supply.cost">No cost stored.</td>
+              <td *ngIf="supply.date">{{supply.date | date}}</td>
+              <td *ngIf="!supply.date">No date stored.</td>
+            </tr>
+          </tbody>
+            
+    </table>
   </div>
 </div>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Account } from "../../domain/models/account";
 import { ActivatedRoute } from '@angular/router';
 import { SupplierService } from '../../domain';
+import { PhoneNumberPipe } from '../phone-number.pipe';
+
 
 @Component({
   selector: 'app-supplier-page',
@@ -28,9 +30,7 @@ export class SupplierPageComponent implements OnInit {
           if(!this.supplier.review){
             this.supplier.review = [];
           }
-  
-            //this.supplier.companyname = "Comp Name";
-
+          this.supplier.phonenumber = 13334444;
         }
       });
     });

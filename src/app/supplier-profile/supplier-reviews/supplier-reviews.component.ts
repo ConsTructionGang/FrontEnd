@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Reviews } from "../../domain/models/reviews";
-import { Account } from "../../domain/models/account"
+import { Account } from "../../domain/models/account";
+
 
 @Component({
   selector: "app-supplier-reviews",
@@ -13,7 +14,9 @@ export class SupplierReviewsComponent implements OnInit {
   public reply:string;
 
   @Input() 
-  public supplier: Account; 
+  public supplier: Account;
+  @Input()
+  public fromHome: boolean; 
   
   constructor() {}
 

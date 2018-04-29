@@ -12,12 +12,14 @@ import { HomeComponent } from './general/home/home.component';
 import { UserPageComponent } from './jobs/user-page/user-page.component';
 import { SuppliersComponent } from './products/suppliers/suppliers.component';
 import { SupplierPageComponent } from './supplier-profile/supplier-page/supplier-page.component'
+import { ViewSupplierComponent } from './supplier-profile/view-supplier/view-supplier.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent},
   { path: 'userpage/:userId', component: UserPageComponent },
   { path: 'supplierhome/:userId', component: SupplierPageComponent },
+  { path: 'supplierpage/:userId', component: ViewSupplierComponent },
   { path: 'login', component: LoginComponent},
   { path: 'supplieraccount', component: CreatesupplieraccountComponent },
   { path: 'useraccount', component: CreateuseraccountComponent },
