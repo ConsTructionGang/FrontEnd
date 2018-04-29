@@ -85,11 +85,13 @@ import {
 })
 export class CreateuseraccountComponent implements OnInit {
   public title: string;
+  public placeholder:string;
   public userAccount: Account;
   public supplies: Supply[];
   public changeTypeTitle = "Not a Construction Company?";
   public state = "inactive";
   public fadeState = "inactive";
+  public listOfStates: string[];
 
   constructor(
     private createAccountHttpService: CreateAccountHttpService,
@@ -97,6 +99,7 @@ export class CreateuseraccountComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.listOfStates = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
     this.title = "Sign Up";
     this.userAccount = {
       type: "User"
@@ -128,13 +131,6 @@ export class CreateuseraccountComponent implements OnInit {
 
   public createUser() {
     // can perform form validation here
-
-    // casts supply dropdown number to the supply name
-    if (this.userAccount.supply) {
-      this.userAccount.supply = this.supplies[
-        Number(this.userAccount.supply) - 1
-      ]["name"];
-    }
 
     this.createAccountHttpService.add(this.userAccount).subscribe(
       resp => {

@@ -11,13 +11,17 @@ import { JobsModule } from './jobs/jobs.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { ProductsModule } from './products/products.module';
 import { GeneralModule } from './general/general.module';
+import { SupplierProfileModule } from './supplier-profile/supplier-profile.module';
 
 import { LoginHttpService, 
   CreateAccountHttpService, 
   UserpageHttpService,
   JobsHttpService,
-  TasksHttpService } from './domain';
-
+  TasksHttpService, 
+  SupplierService,
+  SupplyListService,
+  SupplierSuppliesHttpService
+} from './domain';
 
 
 @NgModule({
@@ -33,14 +37,18 @@ import { LoginHttpService,
     HttpClientModule,
     ReviewsModule,
     ProductsModule,
-    GeneralModule
+    GeneralModule,
+    SupplierProfileModule
     ],
   providers: [
     LoginHttpService,
     CreateAccountHttpService,
     UserpageHttpService,
     JobsHttpService,
-    TasksHttpService  
+    TasksHttpService,
+    SupplierService,
+    SupplyListService,
+    SupplierSuppliesHttpService
   ],
   bootstrap: [AppComponent]
 })

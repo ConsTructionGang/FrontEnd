@@ -34,7 +34,8 @@ small{
     position: relative;
     color: gainsboro;
     text-shadow: 1.5px 1.5px 2px black;
-    top:-113%;
+    top:-111%;
+    left:1%;
 }
 
 #title{
@@ -97,18 +98,11 @@ small{
 }
 
 .supplierSignup #forms{
-    font-size:80%;
-    line-height: 60%;
+    line-height: 70%;
 }
 
 .supplierSignup input{
-    height:1.5rem;
-}
-
-
-.supplierSignup #inputSupplies{
-    font-size: 90%;
-    height:2.4em;
+    height:2.3rem;
 }
 
 #signin{

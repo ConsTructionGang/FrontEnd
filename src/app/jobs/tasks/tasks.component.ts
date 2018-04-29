@@ -117,4 +117,8 @@ export class TasksComponent implements OnInit {
     this.account.tasks.push(this.deletedTasks[i]);
     this.deletedTasks.splice(i, 1);
   }
+
+  print(){
+    console.log(this.tempTask);
+  }
 }

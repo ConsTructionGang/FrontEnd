@@ -37,7 +37,10 @@ export class LoginComponent implements OnInit {
         console.log(resp.body);
 
         // change route
-        this.router.navigateByUrl(`userpage/${resp.body.id}`);
+        if(resp.body.type=="User")
+          this.router.navigateByUrl(`userpage/${resp.body.id}`);
+        else if(resp.body.type=="Supplier")
+          this.router.navigateByUrl(`supplierhome/${resp.body.id}`);
       } else {                                      // login failed
         console.log(typeof resp);
         // check http status code for more info
