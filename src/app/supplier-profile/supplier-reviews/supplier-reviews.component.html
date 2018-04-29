@@ -36,9 +36,9 @@
           </div>
         </div>
     <div class="card bg-light">
-      <div class="card-body text-left text-muted" *ngIf="!supplier.review.length">
+      <div class="card-body text-left text-muted text-center" *ngIf="!supplier.review.length">
           <p *ngIf="fromHome">You currently have no reviews.</p>
-          <p *ngIf="!fromHome">{{supplier.companyname}} currently has no reviews.</p>
+          <p *ngIf="!fromHome">{{supplier.name}} currently has no reviews.</p>
           <p *ngIf="!fromHome">Be the first one to review!</p>
           <button class="btn btn-outline-secondary" *ngIf="!fromHome"(click)="showHide = !showHide">Add Review</button>
       </div>

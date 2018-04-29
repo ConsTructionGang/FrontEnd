@@ -22,7 +22,8 @@
     </div>
     <div id="productCard"class="card-body">
       <div *ngIf="supplier.supply.length == 0">
-        <p>You currently have no products listed.</p>
+        <p *ngIf="fromHome">You currently have no products listed.</p>
+        <p *ngIf="!fromHome">{{supplier.name}} currently have no products listed.</p>
       </div>
       <div *ngIf="supplier.supply.length != 0">
         <div>

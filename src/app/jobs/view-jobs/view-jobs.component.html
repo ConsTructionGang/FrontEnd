@@ -93,8 +93,8 @@
                       <p><strong>City: </strong>{{tempJob.city}}</p>
                       <p><strong>State: </strong>{{tempJob.state}}</p>
                       <p><strong>Est. Cost: </strong>{{tempJob.cost | currency}}</p>
-                      <p><strong>Start Date: </strong>{{tempJob.startDate | date:"longDate"}}</p>
-                      <p><strong>End Date: </strong>{{tempJob.endDate | date:"longDate"}}</p>
+                      <p><strong>Start Date: </strong>{{tempJob.startDate}}</p>
+                      <p><strong>End Date: </strong>{{tempJob.endDate}}</p>
                       <span><strong>Supplies:</strong></span>
                       <table class="table">
                           <tbody>
@@ -103,6 +103,7 @@
                                 {{supply.name}}
                                 <div class="float-right">
                                   <h6 *ngIf="!supply.supplier"> No supplier </h6>
+                                  <h6 *ngIf="supply.supplier"> <a data-dismiss="modal" [routerLink]="['/supplierpage', supply.supplierId]">{{supply.supplier.name}}</a></h6>
                                 </div>
                               </td>
                             </tr>
@@ -112,7 +113,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearTempJob()">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal"data-toggle="modal" data-target="#editModal" (click)="fillTempJob(i)">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"data-toggle="modal" data-target="#editModal">
                         Edit
                     </button>
                   </div>
