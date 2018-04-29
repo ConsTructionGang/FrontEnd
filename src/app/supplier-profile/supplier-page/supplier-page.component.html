@@ -3,23 +3,29 @@
     <div class="col-md-4">
       <div class="card">
         <div class="card-header">
-          <h3 *ngIf="supplier.companyname">{{supplier.companyname}}</h3>
+          <h3>{{supplier.name}} Profile</h3>
         </div>
         <div class="card-body">
           <p><strong>Name:</strong> {{supplier.name}}</p>
           <p><strong>Email:</strong> {{supplier.email}}</p>
           <p><strong>Address:</strong> {{supplier.address}} {{supplier.city}}, {{supplier.state}}</p>
+          <p *ngIf="supplier.phonenumber"><strong>Phone number:</strong> {{supplier.phonenumber | phoneNumber}}</p>
+          <p *ngIf="!supplier.phonenumber"><strong>Phone number:</strong> Add your phone number, so companies can contact you.</p>
+          <p *ngIf="supplier.website"><strong>Website:</strong> {{supplier.website}}</p>
+          <p *ngIf="!supplier.website"><strong>Website:</strong> Have a website? Add it here!</p>
+          <p *ngIf="supplier.description"><strong>Description:</strong> {{supplier.description}}</p>
+          <p *ngIf="!supplier.description"><strong>Description:</strong> Put any additional information you would like potential customers to know here.</p>
           <a href=#>Change Password</a>
         </div>
       </div>
     </div>
     <div class="col">
-      <app-display-products [supplier]="supplier"></app-display-products>
+      <app-display-products [supplier]="supplier" [fromHome]="true"></app-display-products>
     </div>
   </div>
   <br>
   <div class="col-md-12">
-    <app-supplier-reviews [supplier]=supplier></app-supplier-reviews>
+    <app-supplier-reviews [supplier]="supplier" [fromHome]="true"></app-supplier-reviews>
   </div>
   
 </div>

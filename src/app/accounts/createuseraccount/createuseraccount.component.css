@@ -98,18 +98,11 @@ small{
 }
 
 .supplierSignup #forms{
-    font-size:80%;
     line-height: 70%;
 }
 
 .supplierSignup input{
-    height:2rem;
-}
-
-
-.supplierSignup #inputSupplies{
-    font-size: 90%;
-    height:2.4em;
+    height:2.3rem;
 }
 
 #signin{

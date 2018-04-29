@@ -17,4 +17,7 @@ export class Account {
   review?: Reviews[];
   jobs?: Job[];
   tasks?: Task[];
+  phonenumber?: number;
+  website?:string;
+  description?:string;
 }

@@ -26,9 +26,14 @@
         <div id="formContainer" [@fade]="fadeState" (@slideChangeState.done)="fadeIn()" [@slideForm]="state" [ngClass]="{'userSignup':userAccount.type==='User',
                                       'supplierSignup':userAccount.type=='Supplier'}">
           <form id="forms">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="name" class="form-control" required id="name" aria-describedby="emailHelp" placeholder="Enter full name" [(ngModel)]="userAccount.name"
+              <div *ngIf="userAccount.type=='User'" class="form-group">
+                  <label for="name">Name</label>
+                  <input type="name" class="form-control" required id="name" aria-describedby="emailHelp" placeholder="Enter full name" [(ngModel)]="userAccount.name"
+                    name="namefield">
+                </div>
+            <div *ngIf="userAccount.type=='Supplier'" class="form-group">
+              <label for="name">Company Name</label>
+              <input type="name" class="form-control" required id="name" aria-describedby="emailHelp" placeholder="Enter company name" [(ngModel)]="userAccount.name"
                 name="namefield">
             </div>
             <div class="form-group">
@@ -38,14 +43,10 @@
               <div *ngIf="userAccount.type=='Supplier'">
                 <br>
               </div>
-              <small id="emailHelp">We'll never share your email with anyone else.</small>
+              <small *ngIf="userAccount.type=='User'" id="emailHelp">We'll never share your email with anyone else.</small>
+              <small *ngIf="userAccount.type=='Supplier'" id="emailHelp">This will be listed as your business email </small>
             </div>
             <div *ngIf="userAccount.type=='Supplier'">
-              <div class="form-group">
-                <label for="inputCompanyName">Company Name</label>
-                <input class="form-control" required id="inputCompanyName" placeholder="Enter company name" [(ngModel)]="userAccount.companyname"
-                  name="companyfield">
-              </div>
               <div class="form-group">
                 <label for="inputAddress">Address</label>
                 <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
@@ -57,7 +58,10 @@
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputState">State</label>
-                  <input type="text" class="form-control" id="inputState">
+                  <select class="form-control" id="sel1">
+                    <option disabled></option>
+                    <option *ngFor="let state of listOfStates">{{state}}</option>
+                  </select>
                 </div>
               </div>
             </div>
