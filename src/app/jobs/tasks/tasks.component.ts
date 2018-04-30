@@ -81,7 +81,6 @@ export class TasksComponent implements OnInit {
   addTask() {
     this.activatedRoute.params.subscribe((params: any) => {
       this.taskHttpService.addTask(+params.userId, this.tempTask).subscribe(resp => {
-        console.log(resp.body);
         if (resp.status == 200) {
           this.account.tasks.push(this.tempTask);
 
@@ -101,14 +100,22 @@ export class TasksComponent implements OnInit {
   deleteTask(i) {
     var r = confirm("Are you sure you want to delete " + this.account.tasks[i].title + "? Deleted tasks will be temporarily stored until you leave the page.");
     if (r) {
-      if (this.account.tasks[i].status == true) {
-        this.completeTasks--;
-      } else {
-        this.incompleteTasks--;
-      }
-      this.deletedTasks.push(this.account.tasks[i]);
-      this.account.tasks.splice(i, 1);
-      this.updateVisibleTasks();
+      this.activatedRoute.params.subscribe((params: any) => {
+        this.taskHttpService.deleteTask(this.account.tasks[i].id).subscribe(resp => {
+          if (resp.status == 200) {
+            if (this.account.tasks[i].status == true) {
+              this.completeTasks--;
+            } else {
+              this.incompleteTasks--;
+            }
+
+            this.deletedTasks.push(this.account.tasks[i]);
+            this.account.tasks.splice(i, 1);
+            this.updateVisibleTasks();
+          }
+        });
+      });
+      
     }
   }
 
@@ -117,7 +124,7 @@ export class TasksComponent implements OnInit {
     this.deletedTasks.splice(i, 1);
   }
 
-  print(){
+  print() {
     console.log(this.tempTask);
   }
 }

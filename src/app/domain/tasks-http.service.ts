@@ -9,7 +9,7 @@ export class TasksHttpService extends HttpGeneric<any> {
     //mock db
     // protected endPoint = 'https://809ea74f-a447-4e0b-a845-74177a5243a8.mock.pstmn.io/user';
     //backend server
-    protected endPoint = 'http://ec2-34-227-162-95.compute-1.amazonaws.com/';
+    protected endPoint = 'http://ec2-34-227-162-95.compute-1.amazonaws.com/tasks';
 
     constructor(protected httpClient: HttpClient) {
         super(httpClient);
@@ -27,10 +27,10 @@ export class TasksHttpService extends HttpGeneric<any> {
     //     return this.updateById(jobId, item);
     // }
 
-    // public deleteJob(jobId: number) {
-    //     this.endPoint = `http://ec2-34-227-162-95.compute-1.amazonaws.com/jobs`;
+    public deleteTask(taskId: number) {
+        this.endPoint = `http://ec2-34-227-162-95.compute-1.amazonaws.com/tasks`;
 
-    //     return this.delete(jobId);
-    // }
+        return this.delete(taskId);
+    }
 
 }
