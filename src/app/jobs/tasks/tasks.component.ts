@@ -84,19 +84,18 @@ export class TasksComponent implements OnInit {
         console.log(resp.body);
         if (resp.status == 200) {
           this.account.tasks.push(this.tempTask);
+
+          this.tempTask = {
+            title: '',
+            description: '',
+            startDate: new Date(),
+            endDate: new Date(),
+            status: false
+          };
         }
       });
     });
 
-    console.log(this.tempTask);
-
-    this.tempTask = {
-      title: '',
-      description: '',
-      startDate: new Date(),
-      endDate: new Date(),
-      status: false
-    };
   }
 
   deleteTask(i) {
