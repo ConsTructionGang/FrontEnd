@@ -1,0 +1,198 @@
+<div>
+  <div class="card">
+    <div class="card-header d-flex">
+      <h3 class="mr-auto">Products</h3>
+      <div *ngIf="supplier.supply.length != 0 ">
+        <form class="form-inline pr-2">
+          <input name="searchResult" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchResult">
+          <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" (click)="search()" data-toggle="modal" data-target="#viewSearchModal">
+            <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"/></svg>
+            </span>
+          </button>
+        </form>  
+      </div>
+      <button *ngIf="fromHome" type="button" class="btn btn-outline-secondary my-2 my-sm-0" data-toggle="modal" data-target="#productModal">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M12 9H7v5H5V9H0V7h5V2h2v5h5v2z"/></svg>
+        </span>
+      </button>
+
+      
+    </div>
+    <div id="productCard"class="card-body">
+      <div *ngIf="supplier.supply.length == 0">
+        <p *ngIf="fromHome">You currently have no products listed.</p>
+        <p *ngIf="!fromHome">{{supplier.name}} currently have no products listed.</p>
+      </div>
+      <div *ngIf="supplier.supply.length != 0">
+        <div>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th class="title-col"scope="col">Title</th>
+                    <th class="type-col" scope="col">Type</th>
+                    <th class="cost-col" scope="col">Cost</th>
+                    <th class="filler-col"></th>
+                    <th class="btn-col"></th>
+                    <th class="btn-col"></th>
+                    <th class="scroll-col"></th>
+                    
+                  </tr>
+                </thead>
+                  <tbody>
+                    <tr *ngFor="let product of supplier.supply; let i = index">
+                      <td class="title-col">{{product.name}}</td>
+                      <td class="type-col">{{product.type}}</td>
+                      <td class="cost-col">{{product.cost | currency}}</td>
+                      <td class="filler-col"></td>
+                      <td class="btn-col"><button type="button" class="btn btn-light btn-sm"  data-toggle="modal" data-target="#viewModal">View</button></td>
+                      <td *ngIf="fromHome"class="btn-col"><button type="button" class="btn btn-light btn-sm"  data-toggle="modal" data-target="#editModal">Edit</button></td>
+                      <td *ngIf="!fromHome"class="btn-col"></td>
+                      <td class="scroll-col"></td>
+
+                        <!-- Modal -->
+                      <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{product.name}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                  <div class="form-group">
+                                    <label for="productName">Product Name</label>
+                                    <input type="text" value={{product.name}} class="form-control" id="inputProductName">
+                                  </div>
+                                  
+                                  <div class="form-group">
+                                    <label for="productType">Type</label>
+                                    <input type="text" value={{product.type}} class="form-control" id="inputProductType">
+                                  </div>
+                                  <div class="input-group mb-3">
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                      </div>
+                                      <input type="text" value={{product.cost}} class="form-control" aria-label="Amount">
+                                      <div class="input-group-append">
+                                      </div>
+                                    </div>                    
+                              </div>
+                              <div class="modal-footer" id="editFooter">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal" data-target="#editModal">Edit</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Modal -->
+                    </tr>
+                  </tbody>
+              </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <!--<div class="form-group">
+              <label for="productName">Product Name</label>
+              <input type="text" class="form-control" id="inputProductName">
+            </div>-->
+            <div class="form-group col-md-12">
+                <label for="inputSupplies">Product Type</label>
+                <select class="form-control" id="inputSupplies" name="supplyfield" [(ngModel)]="addProductTemp.name">
+                  <option></option>
+                  <option name="addSupply" *ngFor="let supply of supplyTypes" >
+                    {{ supply.Name }}
+                  </option>
+                </select>
+              </div>
+            <div class="input-group mb-3 col-md-12">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Amount" [(ngModel)]="addProductTemp.cost">
+                <div class="input-group-append">
+                </div>
+              </div>                    
+        </div>
+        <div class="modal-footer" id="editFooter">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addSupply()">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <!-- Modal -->
+  <div class="modal fade" id="viewSearchModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{searchSupply.name}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <p><strong>Title: </strong>{{searchSupply.name}}</p>
+              <p><strong>Type: </strong>{{searchSupply.type}}</p>  
+              <p><strong>Cost: </strong>{{searchSupply.cost | currency}}</p>                    
+          </div>
+          <div class="modal-footer" id="editFooter">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#editSearchModal">Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="editSearchModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">{{searchSupply.name}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                  <label for="productName">Product Name</label>
+                  <input type="text" value={{searchSupply.name}} class="form-control" id="inputProductName">
+                </div>
+                <div class="form-group">
+                  <label for="productType">Type</label>
+                  <input type="text" value={{searchSupply.type}} class="form-control" id="inputProductType">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">$</span>
+                    </div>
+                    <input type="text" value={{searchSupply.cost}} class="form-control" aria-label="Amount">
+                    <div class="input-group-append">
+                    </div>
+                  </div>                    
+            </div>
+            <div class="modal-footer" id="editFooter">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal" >Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->

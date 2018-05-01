@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { Account, Job } from '../../domain';
 import { JobsHttpService } from '../../domain';
+import { SupplierService } from '../../domain';
+import { ActivatedRoute } from '@angular/router';
 
 import { DataService } from "../data.service";
 
@@ -16,7 +18,9 @@ export class ViewJobsComponent implements OnInit {
 
   constructor(
     private jobsHttpService: JobsHttpService,
+    public supplierRepository: SupplierService,
     private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   public jobs: Job[];
@@ -36,7 +40,9 @@ export class ViewJobsComponent implements OnInit {
     this.tempJob = {
       id: 0,
       title: '',
-      location: "",
+      address: "",
+      city: "",
+      state: "",
       cost: 0,
       startDate: new Date(),
       endDate: new Date(),
@@ -45,6 +51,20 @@ export class ViewJobsComponent implements OnInit {
     };
     this.countListForStatus();
     this.viewJobs = this.incompleteJobs;
+
+    for(let i = 0; i < this.account.jobs.length; i++){
+      for(let j = 0; j < this.account.jobs[i].supplies.length; j++){
+        if(this.account.jobs[i].supplies[j].supplierId){
+          this.activatedRoute.params.subscribe(() => {
+            this.supplierRepository.getById(+this.account.jobs[i].supplies[j].supplierId).subscribe(resp => {
+              if (resp.status == 200) {
+                this.account.jobs[i].supplies[j].supplier = resp.body;
+              }
+            });
+          });
+        }
+      }
+    }
   }
 
   deleteJob(i: number) {
@@ -62,23 +82,6 @@ export class ViewJobsComponent implements OnInit {
       });
     }
   }
-  /*jobStatus(id: number, statusId: number, status:string) {
-    var i: number;
-      for (i = 0; i < this.account.jobs.length; i++) {
-        if (this.account.jobs[i].id === id) {
-          this.account.jobs[i].status.statusId = statusId;
-          this.account.jobs[i].status = status;
-        }
-      }
-    }
-  compare(a,b) {
-    if (a.status < b.last_nom)
-      return -1;
-    if (a.last_nom > b.last_nom)
-      return 1;
-    return 0;
-    }*/
-
 
   fillTempJob(i) {
     this.tempJob.title = this.account.jobs[i].title;
@@ -86,6 +89,8 @@ export class ViewJobsComponent implements OnInit {
     this.tempJob.endDate = this.account.jobs[i].endDate;
     this.tempJob.id = this.account.jobs[i].id;
     this.tempJob.address = this.account.jobs[i].address;
+    this.tempJob.city = this.account.jobs[i].city;
+     this.tempJob.state = this.account.jobs[i].state;
     this.tempJob.status = this.account.jobs[i].status;
     this.tempJob.startDate = this.account.jobs[i].startDate;
     var j: number;
@@ -99,8 +104,9 @@ export class ViewJobsComponent implements OnInit {
     this.tempJob = {
       id: 0,
       title: '',
-      location: '',
       address: '',
+      city: '',
+      state: ' ',
       cost: 0,
       startDate: new Date(),
       endDate: new Date(),
@@ -116,7 +122,9 @@ export class ViewJobsComponent implements OnInit {
         this.account.jobs[i].cost = this.tempJob.cost;
         this.account.jobs[i].endDate = this.tempJob.endDate;
         this.account.jobs[i].id = this.tempJob.id;
-        this.account.jobs[i].location = this.tempJob.location;
+        this.account.jobs[i].address = this.tempJob.address;
+        this.account.jobs[i].city = this.tempJob.city;
+        this.account.jobs[i].state = this.tempJob.state;
         this.account.jobs[i].status = this.tempJob.status;
         this.account.jobs[i].startDate = this.tempJob.startDate;
         var j: number;

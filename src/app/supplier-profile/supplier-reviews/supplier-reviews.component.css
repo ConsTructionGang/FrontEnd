@@ -1,0 +1,18 @@
+* {
+    font-family: Georgia, serif;
+}
+.container{
+    width:45rem;
+    padding-top:3rem;
+}
+
+#reviewComment{
+
+    border-left: .25rem solid gray;
+    padding:.5rem;
+}
+
+.indent{
+    position: relative;
+    left:1rem;
+}

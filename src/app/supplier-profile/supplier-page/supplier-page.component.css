@@ -1,0 +1,15 @@
+.container-fluid{
+    padding-top:2rem;
+    padding-bottom:2rem;
+}
+
+* {
+    font-family: Georgia, serif;
+}
+
+
+.icon{
+    outline:none;
+    position:relative;
+    top:.2rem;
+}

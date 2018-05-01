@@ -66,7 +66,9 @@ export class AddjobsComponent implements OnInit {
           {
             id: 0,
             title: 'Project 1',
-            location: "",
+            address: "",
+            city: '',
+            state: '',
             cost: 0,
             startDate: new Date(),
             endDate: new Date(),
@@ -77,7 +79,9 @@ export class AddjobsComponent implements OnInit {
           {
             id: 1,
             title: 'Project 2',
-            location: "",
+            address: "",
+            city: '',
+            state: '',
             cost: 0,
             startDate: new Date(),
             endDate: new Date(),
@@ -91,7 +95,9 @@ export class AddjobsComponent implements OnInit {
       this.tempJob = {
         id: this.indexJob,
         title: '',
-        location: "",
+        address: '',
+        city: '',
+        state: '',
         cost: 0,
         startDate: new Date(),
         endDate: new Date(),
@@ -114,7 +120,7 @@ export class AddjobsComponent implements OnInit {
     //send http request to add job
     this.activatedRoute.params.subscribe((params: any) => {
       this.jobsHttpService.addJob(+params.userId, this.tempJob).subscribe(resp => {
-        if (resp.status == '200') {
+        if (resp.status == 200) {
           console.log(this.tempJob);
           this.router.navigateByUrl(`/userpage/${+params.userId}`);
         }
@@ -140,15 +146,17 @@ export class AddjobsComponent implements OnInit {
   }
 
   editJob(i) {
-    if (i != this.indexJob) {
+    if (i !== this.indexJob) {
       var r = confirm("Editing " + this.account.jobs[i].title + " will cause you to lose any unsaved changes to the current job. Are you sure you want to continue?");
-      if (r == true) {
+      if (r === true) {
         this.title = 'Edit ' + this.account.jobs[i].title;
         this.tempJob.title = this.account.jobs[i].title;
         this.tempJob.cost = this.account.jobs[i].cost;
         this.tempJob.endDate = this.account.jobs[i].endDate;
         this.tempJob.id = this.account.jobs[i].id;
         this.tempJob.address = this.account.jobs[i].address;
+        this.tempJob.city = this.account.jobs[i].city;
+        this.tempJob.state = this.account.jobs[i].state;
         this.tempJob.status = this.account.jobs[i].status;
         this.tempJob.startDate = this.account.jobs[i].startDate;
         var j: number;
@@ -163,13 +171,14 @@ export class AddjobsComponent implements OnInit {
 
   emptyJob() {
     var r = confirm("Creating new job will cause you to lose any unsaved changes to the current job. Are you sure you want to continue?");
-    if (r == true) {
+    if (r === true) {
       this.indexJob = this.account.jobs.length;
       this.tempJob = {
         id: this.indexJob,
         title: '',
-        location: "",
         address: "",
+        city: " ",
+        state: '',
         cost: 0,
         startDate: new Date(),
         endDate: new Date(),
@@ -190,10 +199,11 @@ export class AddjobsComponent implements OnInit {
     this.showSuppliers=true;
   }
   removeSuppliers(supply){
-    var j :number;
-    for(j = 0; j < this.tempJob.supplies.length; j++){
-      if (this.tempJob.supplies[j] == supply)
+    let j:number;
+    for(j = 0; j < this.tempJob.supplies.length; j++) {
+      if (this.tempJob.supplies[j] === supply) {
        this.tempJob.supplies[j].supplier = null;
+      }
     }
   }
   onAddSupplier(newSupplier: Supplier) {
@@ -201,12 +211,13 @@ export class AddjobsComponent implements OnInit {
     console.log(newSupplier);
     console.log(this.tempJob);
     this.showSuppliers=false;
-    var j :number;
-    for(j = 0; j < this.tempJob.supplies.length; j++){
-      if (this.tempJob.supplies[j] == this.supSupply)
+    let j: number;
+    for (j = 0; j < this.tempJob.supplies.length; j++) {
+      if (this.tempJob.supplies[j] === this.supSupply) {
        this.tempJob.supplies[j].supplier = newSupplier;
+      }
     }
-    //console.log(newReview);
+    // console.log(newReview);
 
   }
 }

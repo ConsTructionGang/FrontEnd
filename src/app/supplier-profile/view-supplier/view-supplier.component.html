@@ -1,0 +1,29 @@
+<div *ngIf="supplier" class="container-fluid">
+    <div class="flex-row d-flex">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <h3>{{supplier.name}}</h3>
+          </div>
+          <div class="card-body">
+            <p *ngIf="supplier.description">{{supplier.description}}</p>
+            <p> Need to reach us?</p>
+            <p>Email us at {{supplier.email}}</p>
+            <p *ngIf="supplier.phonenumber">Or call us: {{supplier.phonenumber}}</p>
+            <br>
+            <p>Located at {{supplier.address}} {{supplier.city}}, {{supplier.state}}</p>
+            <p *ngIf="supplier.website"> Visit our <a href="{{supplier.website}}">website</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <app-display-products [supplier]="supplier"></app-display-products>
+      </div>
+    </div>
+    <br>
+    <div class="col-md-12">
+      <app-supplier-reviews [supplier]=supplier></app-supplier-reviews>
+    </div>
+    
+  </div>
+  
