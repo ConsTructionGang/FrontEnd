@@ -63,19 +63,4 @@ export class DisplayProductsComponent implements OnInit {
       }
     }
   }
-
-  addSupply(){
-    /*this.addProductTemp.supplierId = this.supplier.id;
-    for(let i = 0; i < this.supplyTypes.length; i++){
-      if(this.supplyTypes[i].Name == this.addProductTemp.name){
-        this.addProductTemp.id = this.supplyTypes[i].Supply_ID;
-      }
-    }
-    this.activatedRoute.params.subscribe((params: any) => {
-      this.supplyListRepository.add(this.addProductTemp).subscribe(resp => {
-      });
-      this.supplierSuppliesRepository.addSupply(this.supplier.id, this.addProductTemp).subscribe(resp => {
-      });
-    });*/
-  }
 }

@@ -16,7 +16,7 @@ import { SupplierProfileModule } from './supplier-profile/supplier-profile.modul
 import { LoginHttpService, 
   CreateAccountHttpService, 
   UserpageHttpService,
-  JobsHttpService, SupplierService, SupplyListService, SupplierSuppliesHttpService } from './domain';
+  JobsHttpService, SupplierService, SupplyListService, SupplierSuppliesHttpService, ChangePasswordHttpService } from './domain';
 
 
 
@@ -36,7 +36,7 @@ import { LoginHttpService,
     ReviewsModule,
     ProductsModule,
     GeneralModule,
-    SupplierProfileModule
+    SupplierProfileModule,
     ],
   providers: [
     LoginHttpService,
@@ -45,7 +45,8 @@ import { LoginHttpService,
     JobsHttpService ,
     SupplierService,
     SupplyListService,
-    SupplierSuppliesHttpService
+    SupplierSuppliesHttpService,
+    ChangePasswordHttpService    
   ],
   bootstrap: [AppComponent]
 })

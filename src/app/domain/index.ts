@@ -10,4 +10,5 @@ export * from './userpage-http.service';
 export * from './supplier.service';
 export * from './supply-list.service';
 export * from './supplier-supplies-http.service';
+export * from './change-password-http.service';
 // end:ng42.barrel
