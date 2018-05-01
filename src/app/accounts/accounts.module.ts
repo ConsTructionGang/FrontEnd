@@ -6,14 +6,15 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import {RouterModule} from '@angular/router';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, RouterModule],
 
-  declarations: [CreatesupplieraccountComponent, CreateuseraccountComponent, LoginComponent, ForgotpasswordComponent],
+  declarations: [CreatesupplieraccountComponent, CreateuseraccountComponent, LoginComponent, ForgotpasswordComponent, ChangePasswordComponent],
 
   exports: [
-    CreatesupplieraccountComponent, CreateuseraccountComponent, LoginComponent, ForgotpasswordComponent
+    CreatesupplieraccountComponent, CreateuseraccountComponent, LoginComponent, ForgotpasswordComponent, ChangePasswordComponent
   ]
 })
 

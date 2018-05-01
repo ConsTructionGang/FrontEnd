@@ -15,7 +15,7 @@
           <div class= "card-body">
             <p> <strong>Name:</strong> {{user.name}}</p>
             <p> <strong>Email:</strong> {{user.email}}</p>
-            <a href="#">Change Password</a>
+            <a [routerLink]="['/password', user.id]">Change Password</a>
           </div>
         </div>
       </div>

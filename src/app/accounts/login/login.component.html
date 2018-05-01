@@ -10,6 +10,7 @@
 			<div id="loginTextContainer">
 				<div id="loginText">
 					<h2>{{title}}</h2>
+					<small *ngIf="badLogin" class="text-danger">Incorrect password/email.</small>
 					<form>
 						<div class="form-group">
 							<label for="username"></label>
