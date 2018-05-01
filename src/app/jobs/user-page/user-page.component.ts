@@ -40,10 +40,12 @@ export class UserPageComponent implements OnInit {
               resp.body.tasks[i].startDate = new Date(resp.body.tasks[i].Creation_Date.replace(/-/g, '\/').replace(/T.+/, '') );
             }
 
-            if (resp.body.tasks[i].Estimate_Date){
-              resp.body.tasks[i].endDate = new Date(resp.body.tasks[i].Estimate_Date.replace(/-/g, '\/').replace(/T.+/, '') );
+            if (resp.body.tasks[i].Estimated_Date){
+              resp.body.tasks[i].endDate = new Date(resp.body.tasks[i].Estimated_Date.replace(/-/g, '\/').replace(/T.+/, '') );
             }
           }
+
+          console.log(resp.body);
           this.user = resp.body;
         }
       });

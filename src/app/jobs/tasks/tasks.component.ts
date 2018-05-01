@@ -1,5 +1,8 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
-import { Account, Task } from '../../domain/index'
+
+import { Account, Task } from '../../domain'
+import { TasksHttpService } from './../../domain';
 
 @Component({
   selector: 'app-tasks',
@@ -10,36 +13,39 @@ export class TasksComponent implements OnInit {
 
   @Input()
   public account: Account;
-  public visibleStatus:boolean;
+  public visibleStatus: boolean;
   public completeTasks: number;
   public incompleteTasks: number;
-  public visibileTasks:number;
-  public viewDelete:boolean;
+  public visibileTasks: number;
+  public viewDelete: boolean;
   public tempTask: Task;
   public deletedTasks: Task[];
 
-  constructor() { }
+  constructor(
+    private taskHttpService: TasksHttpService,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
-    this.deletedTasks=[];
+    this.deletedTasks = [];
     this.viewDelete = false;
-    this.visibleStatus=false;
+    this.visibleStatus = false;
     this.incompleteTasks = 0;
     this.completeTasks = 0;
     this.countListForStatus();
     this.visibileTasks == this.incompleteTasks;
-    this.tempTask={
-      title:'',
-      description:'',
-      status:false,
+    this.tempTask = {
+      title: '',
+      description: '',
+      status: false,
       startDate: new Date(),
       endDate: new Date(),
     };
   }
 
-  countListForStatus(){
-    for(var i = 0; i < this.account.tasks.length; i++){
-      if(this.account.tasks[i].status == false){
+  countListForStatus() {
+    for (var i = 0; i < this.account.tasks.length; i++) {
+      if (this.account.tasks[i].status == false) {
         this.incompleteTasks++;
       } else {
         this.completeTasks++;
@@ -47,8 +53,8 @@ export class TasksComponent implements OnInit {
     }
   }
 
-  changeStatus(i){
-    if(this.account.tasks[i].status == true){
+  changeStatus(i) {
+    if (this.account.tasks[i].status == true) {
       this.completeTasks--;
       this.incompleteTasks++;
     } else {
@@ -59,52 +65,66 @@ export class TasksComponent implements OnInit {
     this.updateVisibleTasks();
   }
 
-  changeVisible(){
+  changeVisible() {
     this.visibleStatus = !this.visibleStatus;
     this.updateVisibleTasks();
   }
 
-  updateVisibleTasks(){
-    if(this.visibleStatus == false){
+  updateVisibleTasks() {
+    if (this.visibleStatus == false) {
       this.visibileTasks = this.incompleteTasks;
     } else {
       this.visibileTasks = this.completeTasks;
     }
   }
 
-  addTask(){
-    this.account.tasks.push(this.tempTask);
-    console.log(this.tempTask);
+  addTask() {
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.taskHttpService.addTask(+params.userId, this.tempTask).subscribe(resp => {
+        if (resp.status == 200) {
+          this.account.tasks.push(this.tempTask);
 
-    this.tempTask={
-      title:'',
-      description:'',
-      startDate: new Date(),
-      endDate: new Date(),
-      status:false
-    };
+          this.tempTask = {
+            title: '',
+            description: '',
+            startDate: new Date(),
+            endDate: new Date(),
+            status: false
+          };
+        }
+      });
+    });
+
   }
 
-  deleteTask(i){
+  deleteTask(i) {
     var r = confirm("Are you sure you want to delete " + this.account.tasks[i].title + "? Deleted tasks will be temporarily stored until you leave the page.");
-    if(r){
-      if(this.account.tasks[i].status == true){
-      this.completeTasks--;
-      } else {
-        this.incompleteTasks--;
-      }
-      this.deletedTasks.push(this.account.tasks[i]);
-      this.account.tasks.splice(i, 1);
-      this.updateVisibleTasks();
-    } 
+    if (r) {
+      this.activatedRoute.params.subscribe((params: any) => {
+        this.taskHttpService.deleteTask(this.account.tasks[i].id).subscribe(resp => {
+          if (resp.status == 200) {
+            if (this.account.tasks[i].status == true) {
+              this.completeTasks--;
+            } else {
+              this.incompleteTasks--;
+            }
+
+            this.deletedTasks.push(this.account.tasks[i]);
+            this.account.tasks.splice(i, 1);
+            this.updateVisibleTasks();
+          }
+        });
+      });
+      
+    }
   }
 
-  undelete(i){
+  undelete(i) {
     this.account.tasks.push(this.deletedTasks[i]);
-    this.deletedTasks.splice(i,1);
+    this.deletedTasks.splice(i, 1);
   }
 
-  print(){
+  print() {
     console.log(this.tempTask);
   }
 }
