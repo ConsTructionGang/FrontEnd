@@ -16,8 +16,9 @@ export class DisplayProductsComponent implements OnInit {
   public fromHome: boolean;
 
   public searchResult: string;
-  public searchSupply: Supply;
   public addProductTemp: Supply;
+  public tempProduct: Supply;
+  public editIndex: number;
   public supplyTypes: any[];
 
   constructor(
@@ -27,15 +28,31 @@ export class DisplayProductsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.searchSupply={
-      id: 0,
-      name: "Default",
-    }
     this.addProductTemp = {
       id: 0,
       name: "Default",
     };
+    this.tempProduct = {
+      id: 0,
+      name: "Default",
+    };
     this.supplyTypes = [];
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.supplierSuppliesRepository.getbysupplierid(+params.userId).subscribe(resp => {
+        if (resp.status == 200) {
+          for(let i = 0; i < resp.body.length; i++){
+            this.supplier.supply.push(
+              {
+                id: resp.body[i].supply_id,
+                name: resp.body[i].product_name,
+                cost: resp.body[i].Price
+              }
+            );
+          }
+        }
+      });
+    });
+    
     this.activatedRoute.params.subscribe(() => {
       this.supplyListRepository.get().subscribe(resp => {
         if (resp.status == 200) {
@@ -56,11 +73,98 @@ export class DisplayProductsComponent implements OnInit {
     });
   }
 
-  search(){
-    for(var i = 0; i < this.supplier.supply.length; i++){
-      if(this.supplier.supply[i].name == this.searchResult){
-        this.searchSupply = this.supplier.supply[i];
+  addSupply(){
+    //first add supply id
+    this.addProductTemp.cost = Number(this.addProductTemp.cost);
+    for(let i = 0; i < this.supplyTypes.length; i++){
+      if(this.addProductTemp.name == this.supplyTypes[i].Name){
+        this.addProductTemp.id = this.supplyTypes[i].Supply_ID;
+        break;
       }
     }
+
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.supplierSuppliesRepository.addtosupplier(+params.userId, this.addProductTemp).subscribe(resp => {
+        if (resp.status == 200) {
+          this.addProductTemp = {
+            id: 0,
+            name: "Default",
+          };
+          this.activatedRoute.params.subscribe((params: any) => {
+            this.supplierSuppliesRepository.getbysupplierid(+params.userId).subscribe(resp => {
+              if (resp.status == 200) {
+                for(let i = 0; i < resp.body.length; i++){
+                  if(i == resp.body.length-1){
+                    this.supplier.supply.push(
+                    {
+                      id: resp.body[i].supply_id,
+                      name: resp.body[i].product_name,
+                      cost: resp.body[i].Price
+                    });
+                  }
+                }
+              }
+            });
+          });
+        }
+      });
+    });
+  }
+
+  fillTemp(i){
+    console.log(i);
+    this.tempProduct.name = this.supplier.supply[i].name;
+    this.tempProduct.cost = this.supplier.supply[i].cost;
+    this.editIndex = i;
+  }
+
+  editSupply(){
+    this.tempProduct.cost = Number(this.tempProduct.cost);
+    for(let i = 0; i < this.supplyTypes.length; i++){
+      if(this.tempProduct.name == this.supplyTypes[i].Name){
+        this.tempProduct.id = this.supplyTypes[i].Supply_ID;
+        break;
+      }
+    }
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.supplierSuppliesRepository.editSupplyofSupplier(+params.userId, this.tempProduct).subscribe(resp => {
+        if (resp.status == 200) {
+          this.activatedRoute.params.subscribe((params: any) => {
+            this.supplierSuppliesRepository.getbysupplierid(+params.userId).subscribe(resp => {
+              if (resp.status == 200) {
+                this.supplier.supply[this.editIndex]={
+                  id: resp.body[this.editIndex].supply_id,
+                  name: resp.body[this.editIndex].product_name,
+                  cost: resp.body[this.editIndex].Price
+                }
+              }
+            });
+          });
+        }
+      });
+    });
+  }
+
+  search(){
+    let index = 0;
+    for(var i = 0; i < this.supplier.supply.length; i++){
+      if(this.supplier.supply[i].name == this.searchResult){
+        index = i;
+        break;
+      }
+    }
+    this.fillTemp(index);
+  }
+
+  delete(i){
+    console.log("not connected");
+    /*this.activatedRoute.params.subscribe((params: any) => {
+      this.supplierSuppliesRepository.deleteSupplyofSupplier(+params.userId, this.supplier.supply[i]).subscribe(resp => {
+        console.log(resp);
+        if (resp.status == 200) {
+          this.supplier.supply.splice(i,1); 
+        }
+      });
+    });*/
   }
 }
