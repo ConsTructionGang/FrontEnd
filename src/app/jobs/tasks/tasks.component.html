@@ -22,15 +22,15 @@
         </div> 
       </div>
       <div class="card-body">
-        <div *ngIf="!account.tasks || visibileTasks == 0">
-          <div *ngIf="visibleStatus==true">
+        <div *ngIf="account.tasks.length == 0 || visibileTasks == 0">
+          <div *ngIf="visibleStatus==true" class="alert alert-dark">
               <p>You have no completed tasks.</p>
           </div>
-          <div *ngIf="visibleStatus==false">
+          <div *ngIf="visibleStatus==false" class="alert alert-dark">
               <p>You have no active tasks.</p>
           </div>
         </div>
-        <div *ngIf="account.tasks && visibileTasks != 0">
+        <div *ngIf="account.tasks.length > 0 && visibileTasks != 0">
             <table class="table">
               <thead>
                 <tr>
@@ -62,28 +62,31 @@
                 </tr>
               </tbody>
             </table>
-            <div *ngIf="showHide">
-              <div class="form-group">
-                  <label for="usr">Title:</label>
-                  <input type="text" class="form-control" id="usr" [(ngModel)]="tempTask.title">
-              </div>
-              <div class="form-group">
-                <label for="comment">Description:</label>
-                <textarea class="form-control" rows="5" id="comment" [(ngModel)]="tempTask.description"></textarea>
-              </div>
-              <label>Start Date:</label>
-              <input type="date" name="day" max="2020-12-31" [(ngModel)]="tempTask.startDate" name="startdatefield">
-              <label> End Date:</label>
-              <input type="date" name="day" min="2000-01-02" [(ngModel)]="tempTask.endDate" name="enddatefield">
-              <div *ngIf="tempTask.title != '' && tempTask.description != ''">
-                  <button id="add" type="button" class="btn btn-primary float-right" (click)="showHide=!showHide" (click)="addTask()">Add task</button>
-              </div>
-              <div *ngIf="tempTask.title == '' || tempTask.description == ''">
-                  <button id="add" type="button" class="btn btn-primary float-right" (click)="showHide=!showHide" (click)="addTask()" disabled>Add task</button>
-              </div>
             </div>
-            <button *ngIf="!showHide" id="create" type="button" class="btn btn-primary float-right" (click)="showHide=!showHide">Create a new task</button>
-        </div>
+            <div *ngIf="showHide">
+              <hr>
+                <div class="form-group">
+                    <label for="usr">Title:</label>
+                    <input type="text" class="form-control" id="usr" [(ngModel)]="tempTask.title">
+                </div>
+                <div class="form-group">
+                  <label for="comment">Description:</label>
+                  <textarea class="form-control" rows="5" id="comment" [(ngModel)]="tempTask.description"></textarea>
+                </div>
+                <label>Start Date:</label>
+                <input type="date" name="day" max="2020-12-31" [(ngModel)]="tempTask.startDate" name="startdatefield">
+                <label> End Date:</label>
+                <input type="date" name="day" min="2000-01-02" [(ngModel)]="tempTask.endDate" name="enddatefield">
+                <div *ngIf="tempTask.title != '' && tempTask.description != ''">
+                    <button id="add" type="button" class="btn btn-primary float-right" (click)="showHide=!showHide" (click)="addTask()">Add task</button>
+                </div>
+                <div *ngIf="tempTask.title == '' || tempTask.description == ''">
+                    <button id="add" type="button" class="btn btn-primary float-right" (click)="showHide=!showHide" (click)="addTask()" disabled>Add task</button>
+                </div>
+              </div>
+              <hr *ngIf="!showHide"> 
+              <button *ngIf="!showHide" id="create" type="button" class="btn btn-primary float-right" (click)="showHide=!showHide">Create a new task</button>
+          
       </div>
     </div>
   </div>
