@@ -68,7 +68,6 @@ export class TasksComponent implements OnInit {
         if(resp.body.status == 200) {
           this.updateVisibleTasks();
         }
-        console.log(this.account.tasks[i]);        
       });
     });
     
@@ -129,8 +128,15 @@ export class TasksComponent implements OnInit {
   }
 
   undelete(i) {
-    this.account.tasks.push(this.deletedTasks[i]);
-    this.deletedTasks.splice(i, 1);
+    console.log(this.deletedTasks[i]);
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.taskHttpService.addTask(+params.userId, this.deletedTasks[i]).subscribe(resp => {
+        if(resp.status == 200) {
+          this.account.tasks.push(this.deletedTasks[i]);
+          this.deletedTasks.splice(i, 1);
+        }
+      });
+    });
   }
 
   print() {
