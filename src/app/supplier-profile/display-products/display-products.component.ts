@@ -158,13 +158,13 @@ export class DisplayProductsComponent implements OnInit {
 
   delete(i){
     console.log("not connected");
-    /*this.activatedRoute.params.subscribe((params: any) => {
+    this.activatedRoute.params.subscribe((params: any) => {
       this.supplierSuppliesRepository.deleteSupplyofSupplier(+params.userId, this.supplier.supply[i]).subscribe(resp => {
         console.log(resp);
         if (resp.status == 200) {
           this.supplier.supply.splice(i,1); 
         }
       });
-    });*/
+    });
   }
 }

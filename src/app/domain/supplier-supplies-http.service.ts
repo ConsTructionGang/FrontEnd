@@ -44,7 +44,12 @@ export class SupplierSuppliesHttpService extends HttpGeneric<any>{
 
   public deleteSupplyofSupplier(id: number, supply: Supply){
     this.endPoint = this.endPoint.replace("[userId]", id.toString());
-    return this.delete(supply.id);
+    this.endPoint = this.endPoint + "/remove"
+    console.log(supply.id);
+    let item={
+      supply_id: supply.id
+    }
+    return this.add(item);
   }
 
 }
