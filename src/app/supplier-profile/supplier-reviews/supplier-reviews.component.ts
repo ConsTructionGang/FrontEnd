@@ -27,6 +27,8 @@ export class SupplierReviewsComponent implements OnInit {
   addReview() {
     this.newReview.hideResponse = false;
     this.supplier.review.unshift(this.newReview);
+    console.log(this.newReview);
+
     this.newReview.date = Date.now();
     this.newReview = new Reviews();
   }

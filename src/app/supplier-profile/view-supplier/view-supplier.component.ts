@@ -28,6 +28,8 @@ export class ViewSupplierComponent implements OnInit {
           if(!this.supplier.review){
             this.supplier.review = [];
           }
+
+          console.log(resp.body);
         }
       });
     });

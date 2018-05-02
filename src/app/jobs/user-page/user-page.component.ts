@@ -29,6 +29,7 @@ export class UserPageComponent implements OnInit {
             if (resp.body.jobs[i].end_date)
               resp.body.jobs[i].endDate = new Date(resp.body.jobs[i].end_date.replace(/-/g, '\/').replace(/T.+/, '') );
           }
+          
 
           for (let i = 0; i < resp.body.tasks.length; ++i) {
             resp.body.tasks[i].title = resp.body.tasks[i].Name;
@@ -45,7 +46,6 @@ export class UserPageComponent implements OnInit {
             }
           }
 
-          console.log(resp.body);
           this.user = resp.body;
         }
       });

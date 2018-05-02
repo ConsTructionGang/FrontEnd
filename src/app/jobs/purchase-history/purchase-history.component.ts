@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Account, Supply } from '../../domain/index';
 import { ActivatedRoute } from '@angular/router';
 import { SupplierService } from '../../domain';
+import { SupplierSuppliesHttpService } from '../../domain';
+
 
 @Component({
   selector: 'app-purchase-history',
@@ -16,12 +18,24 @@ export class PurchaseHistoryComponent implements OnInit {
   public sortedSupplies: Supply[];
 
   constructor( public supplierRepository: SupplierService,
+    public supplierSuppliesRepository: SupplierSuppliesHttpService,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.sortedSupplies = [];
     for(let i = 0; i < this.account.jobs.length; i++){
       for(let j = 0; j < this.account.jobs[i].supplies.length; j++){
+        this.activatedRoute.params.subscribe((params: any) => {
+          this.supplierSuppliesRepository.getbysupplierid(this.account.jobs[i].supplies[j].supplierId).subscribe(resp => {
+            if (resp.status == 200) {
+              for(let l = 0; l < resp.body.length; l++){
+                if(resp.body[l].product_name == this.account.jobs[i].supplies[j].name){
+                  this.account.jobs[i].supplies[j].cost = resp.body[l].Price;
+                }
+              }
+            }
+          });
+        });
         if(this.account.jobs[i].supplies[j].supplierId){
           this.activatedRoute.params.subscribe(() => {
             this.supplierRepository.getById(+this.account.jobs[i].supplies[j].supplierId).subscribe(resp => {
@@ -39,18 +53,22 @@ export class PurchaseHistoryComponent implements OnInit {
   }
 
   sortByDate(){
-    for(let i = 1; i < this.sortedSupplies.length; i++){
+    for(let i = 0; i < this.sortedSupplies.length; i++){
       if(this.sortedSupplies[i].date){
         for(let j = 0; j < this.sortedSupplies.length; j++){
-          if(this.sortedSupplies[j].date && this.sortedSupplies[j].date.getFullYear() >= this.sortedSupplies[i].date.getFullYear()){
-            if(this.sortedSupplies[j].date.getMonth() >= this.sortedSupplies[i].date.getMonth()){
-              if(this.sortedSupplies[j].date.getDate() > this.sortedSupplies[i].date.getDate()){
-                let tempSupply = this.sortedSupplies[i];
-                this.sortedSupplies[i] = this.sortedSupplies[j];
-                this.sortedSupplies[j] = tempSupply;
+          if( i != j && this.sortedSupplies[j].date && this.sortedSupplies[j].date.getFullYear() < this.sortedSupplies[i].date.getFullYear()){
+              let tempSupply = this.sortedSupplies[i];
+              this.sortedSupplies[i] = this.sortedSupplies[j];
+              this.sortedSupplies[j] = tempSupply;
+          } if( i != j && this.sortedSupplies[j].date && this.sortedSupplies[j].date.getFullYear() == this.sortedSupplies[i].date.getFullYear()){
+              if(this.sortedSupplies[j].date.getMonth() <= this.sortedSupplies[i].date.getMonth()){
+                if(this.sortedSupplies[j].date.getDate() < this.sortedSupplies[i].date.getDate()){
+                  let tempSupply = this.sortedSupplies[i];
+                  this.sortedSupplies[i] = this.sortedSupplies[j];
+                  this.sortedSupplies[j] = tempSupply;
+                }
               }
             }
-          } 
         }
       }
     }

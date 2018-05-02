@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   public title: string;
   public account: Account;
   public state = 'inactive';
+  public badLogin: boolean;
 
   constructor(
     private logginHttpService: LoginHttpService,
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.badLogin = false;
   this.title = 'Sign In';
   this.account = {
       id: 0,
@@ -35,15 +37,19 @@ export class LoginComponent implements OnInit {
       if(resp.status === 200) {                    // login succesful
         // print http response body
         console.log(resp.body);
+        this.badLogin = false;
 
         // change route
         if(resp.body.type=="User")
           this.router.navigateByUrl(`userpage/${resp.body.id}`);
         else if(resp.body.type=="Supplier")
           this.router.navigateByUrl(`supplierhome/${resp.body.id}`);
-      } else {                                      // login failed
+      } else {     
+        // login failed
+        this.badLogin = true;
         console.log(typeof resp);
         // check http status code for more info
+        console.log(this.badLogin);
       }
     },
     err => console.log(err),);

@@ -7,7 +7,7 @@ export abstract class HttpGeneric<T> {
 
     protected abstract endPoint;
 
-    private httpOptions = {
+    protected httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json'
 

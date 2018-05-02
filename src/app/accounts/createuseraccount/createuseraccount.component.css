@@ -105,16 +105,6 @@ small{
     height:2.3rem;
 }
 
-#signin{
-    padding: 3%;
-    font-size:100%;
-}
-
-.supplierSignup #register{
-    margin-top: -1.5em;
-    margin-right:1em;
-}
-
 .btn-outline-dark, .btn-outline-dark:hover, .btn-outline-dark:active, .btn-outline-dark:visited {
     background-color: #fdd378;
     border-color:#fdd378;
