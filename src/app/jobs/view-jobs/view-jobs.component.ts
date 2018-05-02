@@ -146,16 +146,16 @@ export class ViewJobsComponent implements OnInit {
       this.completeJobs--;
       this.incompleteJobs++;
     }
-    this.updateVisibleTasks();
+    this.updateVisibleTasks(i);
   }
 
-  changeVisible() {
+  changeVisible(i) {
     if (this.visibleJobs == 'In Progress') {
       this.visibleJobs = 'Complete';
     } else {
       this.visibleJobs = 'In Progress';
     }
-    this.updateVisibleTasks();
+    this.updateVisibleTasks(i);
   }
 
   countListForStatus() {
@@ -168,12 +168,15 @@ export class ViewJobsComponent implements OnInit {
     }
   }
 
-  updateVisibleTasks() {
+  updateVisibleTasks(i) {
     if (this.visibleJobs == 'In Progress') {
       this.viewJobs = this.incompleteJobs;
     } else {
       this.viewJobs = this.completeJobs;
     }
+    this.tempJob = this.account.jobs[i];
+    console.log(this.tempJob);
+    //this.updateJob(i);
   }
 
 }
