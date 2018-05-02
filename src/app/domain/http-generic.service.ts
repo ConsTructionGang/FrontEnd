@@ -44,8 +44,8 @@ export abstract class HttpGeneric<T> {
         );
     }
 
-    public addSupplyToJob(item: T, id: number): Observable<T> {
-        return this.httpClient.post(`${this.endPoint}/${id}/`, item, this.httpOptions).pipe(
+    public addSupplyToJob(item: T, id: number, supplies: number[]): Observable<T> {
+        return this.httpClient.post(`${this.endPoint}/${id}/supplies`, item, this.httpOptions).pipe(
             catchError(this.handleException)
         );
     }
