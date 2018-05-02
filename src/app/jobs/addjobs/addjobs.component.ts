@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Supplier } from '../../domain/models/supplier';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JobsHttpService, SupplyListService } from '../../domain';
+import { JobsHttpService, SupplyListService, UserpageHttpService } from '../../domain';
 import { Account, Supply, Job } from '../../domain';
 
 import { DataService } from "../data.service";
@@ -33,31 +33,13 @@ export class AddjobsComponent implements OnInit {
   constructor(
     private jobsHttpService: JobsHttpService,
     private supplylistService: SupplyListService,
+    public userpageRepository: UserpageHttpService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-
     this.supplies = [];
-    /*this.supplies = [
-      {
-        id: 1,
-        name: 'Wood'
-      },
-      {
-        id: 2,
-        name: 'Bricks'
-      },
-      {
-        id: 3,
-        name: 'Cement'
-      },
-      {
-        id: 4,
-        name: 'Nails'
-      }
-    ];*/
     this.supplylistService.get().subscribe(resp => {
       if (resp.status == 200) {
         for (let result of resp.body.results)
@@ -69,55 +51,53 @@ export class AddjobsComponent implements OnInit {
         this.supplies =[];
       }
     });
-    if (this.fromView != true) {
+    if (!this.fromView) {
+      this.activatedRoute.params.subscribe((params: any) => {
+        this.userpageRepository.getById(+params.userId).subscribe(resp => {
+          if (resp.status == 200) {
+            for (let i = 0; i < resp.body.jobs.length; ++i) {
+              if (resp.body.jobs[i].start_date)
+                resp.body.jobs[i].startDate = new Date(resp.body.jobs[i].start_date.replace(/-/g, '\/').replace(/T.+/, '') );
+  
+              if (resp.body.jobs[i].end_date)
+                resp.body.jobs[i].endDate = new Date(resp.body.jobs[i].end_date.replace(/-/g, '\/').replace(/T.+/, '') );
+            }
+            
+  
+            for (let i = 0; i < resp.body.tasks.length; ++i) {
+              resp.body.tasks[i].title = resp.body.tasks[i].Name;
+              resp.body.tasks[i].description = resp.body.tasks[i].Description;
+  
+              if (resp.body.tasks[i].Creation_Date){
+                resp.body.tasks[i].startDate = new Date(resp.body.tasks[i].Creation_Date.replace(/-/g, '\/').replace(/T.+/, '') );
+              }
+  
+              if (resp.body.tasks[i].Estimated_Date){
+                resp.body.tasks[i].endDate = new Date(resp.body.tasks[i].Estimated_Date.replace(/-/g, '\/').replace(/T.+/, '') );
+              }
+            }
+            this.account = resp.body;
+            this.account.id = params.userId;
+            this.indexJob = this.account.jobs.length;
+          }
+        });
+      });
+
+      this.fromView = false;
       this.title = 'Create A New Job';
-      this.account = {
-        id: 0,
-        password: '',
-        type: 'User',
-        jobs: [
-          {
-            id: 0,
-            title: 'Project 1',
-            address: "",
-            city: '',
-            state: '',
-            cost: 0,
-            startDate: new Date(),
-            endDate: new Date(),
-            status: "",
-            supplies: [{ id: 1, name: 'bricks' },
-            { id: 2, name: 'wood' }]
-          },
-          {
-            id: 1,
-            title: 'Project 2',
-            address: "",
-            city: '',
-            state: '',
-            cost: 0,
-            startDate: new Date(),
-            endDate: new Date(),
-            status: "",
-            supplies: [{ id: 1, name: 'bricks' },
-            { id: 2, name: 'wood' }]
-          },
-        ]
-      };
-      this.indexJob = this.account.jobs.length;
-      this.tempJob = {
-        id: this.indexJob,
-        title: '',
-        address: '',
-        city: '',
-        state: '',
-        cost: 0,
-        startDate: new Date(),
-        endDate: new Date(),
-        status: "",
-        supplies: []
-      };
     }
+    this.tempJob = {
+      id: this.indexJob,
+      title: '',
+      address: '',
+      city: '',
+      state: '',
+      cost: 0,
+      startDate: new Date(),
+      endDate: new Date(),
+      status: "",
+      supplies: []
+    };
   }
 
   addSupply() {

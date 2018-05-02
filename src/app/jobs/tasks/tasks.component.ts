@@ -21,6 +21,9 @@ export class TasksComponent implements OnInit {
   public tempTask: Task;
   public deletedTasks: Task[];
 
+  @Input()
+  public showHide: boolean;
+
   constructor(
     private taskHttpService: TasksHttpService,
     private activatedRoute: ActivatedRoute
