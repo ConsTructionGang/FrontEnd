@@ -55,8 +55,7 @@ h4{
     width:30rem !important;
 }
 #viewJobsCard{
-    min-width:18rem;
-    max-width:18rem;
+    width:18rem;
     padding-top:2.55rem;
 }
 #viewJobsCard > .card{

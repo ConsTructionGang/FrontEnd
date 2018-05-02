@@ -31,7 +31,6 @@ export class UserPageComponent implements OnInit {
             if (resp.body.jobs[i].end_date)
               resp.body.jobs[i].endDate = new Date(resp.body.jobs[i].end_date.replace(/-/g, '\/').replace(/T.+/, '') );
               for( let j = 0; j <resp.body.jobs[i].supplies.length; j++){
-                console.log(resp.body.jobs[i].supplies[j]);
                 resp.body.jobs[i].supplies[j].supplierId = resp.body.jobs[i].supplies[j].SupplierID;
               }
           }

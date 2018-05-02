@@ -41,7 +41,6 @@ export class PurchaseHistoryComponent implements OnInit {
         });
         if(this.account.jobs[i].supplies[j].supplierId){
           this.activatedRoute.params.subscribe(() => {
-            console.log(this.account.jobs[i].supplies[j].supplierId);
             if(this.account.jobs[i].supplies[j].supplierId){
               this.supplierRepository.getById(+this.account.jobs[i].supplies[j].supplierId).subscribe(resp => {
                 if (resp.status == 200) {
@@ -57,7 +56,7 @@ export class PurchaseHistoryComponent implements OnInit {
         }
       }
     }
-    console.log(this.account);
+
   }
 
   sortByDate(){
