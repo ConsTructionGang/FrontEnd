@@ -22,12 +22,18 @@ export class UserPageComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: any) => {
       this.userpageRepository.getById(+params.userId).subscribe(resp => {
         if (resp.status == 200) {
+        
           for (let i = 0; i < resp.body.jobs.length; ++i) {
+
             if (resp.body.jobs[i].start_date)
               resp.body.jobs[i].startDate = new Date(resp.body.jobs[i].start_date.replace(/-/g, '\/').replace(/T.+/, '') );
 
             if (resp.body.jobs[i].end_date)
               resp.body.jobs[i].endDate = new Date(resp.body.jobs[i].end_date.replace(/-/g, '\/').replace(/T.+/, '') );
+              for( let j = 0; j <resp.body.jobs[i].supplies.length; j++){
+                console.log(resp.body.jobs[i].supplies[j]);
+                resp.body.jobs[i].supplies[j].supplierId = resp.body.jobs[i].supplies[j].SupplierId;
+              }
           }
           
 
@@ -43,8 +49,6 @@ export class UserPageComponent implements OnInit {
               resp.body.tasks[i].endDate = new Date(resp.body.tasks[i].Estimated_Date.replace(/-/g, '\/').replace(/T.+/, '') );
             }
           }
-
-          console.log(resp.body);
           this.user = resp.body;
         }
       });

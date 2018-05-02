@@ -96,6 +96,9 @@
                       <p><strong>Start Date: </strong>{{tempJob.startDate}}</p>
                       <p><strong>End Date: </strong>{{tempJob.endDate}}</p>
                       <span><strong>Supplies:</strong></span>
+                      <div *ngIf="tempJob.supplies.length == 0">
+                        <p>This job has no supplies.</p>
+                      </div>
                       <table class="table">
                           <tbody>
                             <tr *ngFor="let supply of tempJob.supplies; let i = index">

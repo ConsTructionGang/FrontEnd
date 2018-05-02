@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="this.account">
   <div class="d-flex justify-content-center">
     <div class="row flex-nowrap">
       <div id="addJobs" [ngStyle]="fromView && {'width': '30rem'}">
@@ -127,7 +127,7 @@
       <div id="viewJobsCard" *ngIf="fromView != true">
         <div class="card">
           <div class="card-body">
-            <a routerLink="/userpage" class="float-right">View Jobs</a>
+            <a [routerLink]="['/userpage', this.account.id]" class="float-right">View Jobs</a>
             <h5>Active Jobs:</h5>
             <hr style="background-color:gainsboro">
             <div *ngFor="let job of account.jobs; let i = index">

@@ -26,30 +26,38 @@ export class PurchaseHistoryComponent implements OnInit {
     for(let i = 0; i < this.account.jobs.length; i++){
       for(let j = 0; j < this.account.jobs[i].supplies.length; j++){
         this.activatedRoute.params.subscribe((params: any) => {
-          this.supplierSuppliesRepository.getbysupplierid(this.account.jobs[i].supplies[j].supplierId).subscribe(resp => {
-            if (resp.status == 200) {
-              for(let l = 0; l < resp.body.length; l++){
-                if(resp.body[l].product_name == this.account.jobs[i].supplies[j].name){
-                  this.account.jobs[i].supplies[j].cost = resp.body[l].Price;
+          if(this.account.jobs[i].supplies[j].supplierId){
+            this.supplierSuppliesRepository.getbysupplierid(this.account.jobs[i].supplies[j].supplierId).subscribe(resp => {
+              if (resp.status == 200) {
+                for(let l = 0; l < resp.body.length; l++){
+                  if(resp.body[l].product_name == this.account.jobs[i].supplies[j].name){
+                    this.account.jobs[i].supplies[j].cost = resp.body[l].Price;
+                  }
                 }
               }
-            }
-          });
+            });
+          }
+          
         });
         if(this.account.jobs[i].supplies[j].supplierId){
           this.activatedRoute.params.subscribe(() => {
-            this.supplierRepository.getById(+this.account.jobs[i].supplies[j].supplierId).subscribe(resp => {
-              if (resp.status == 200) {
-                this.account.jobs[i].supplies[j].supplier = resp.body;
-              }
-            });
+            console.log(this.account.jobs[i].supplies[j].supplierId);
+            if(this.account.jobs[i].supplies[j].supplierId){
+              this.supplierRepository.getById(+this.account.jobs[i].supplies[j].supplierId).subscribe(resp => {
+                if (resp.status == 200) {
+                  this.account.jobs[i].supplies[j].supplier = resp.body;
+                }
+              });
+            }
           });
           if(this.account.jobs[i].startDate)
             this.account.jobs[i].supplies[j].date = this.account.jobs[i].startDate;  
           this.sortedSupplies.push(this.account.jobs[i].supplies[j]);
+          
         }
       }
     }
+    console.log(this.account);
   }
 
   sortByDate(){
