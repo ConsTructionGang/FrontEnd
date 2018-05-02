@@ -12,16 +12,39 @@ export class SupplierSuppliesHttpService extends HttpGeneric<any>{
   //mock db
     // protected endPoint = 'https://809ea74f-a447-4e0b-a845-74177a5243a8.mock.pstmn.io/user';
     //backend server
-    protected endPoint = 'http://ec2-34-227-162-95.compute-1.amazonaws.com/[userId]/supplies';
+    protected endPoint = 'http://ec2-34-227-162-95.compute-1.amazonaws.com/suppliers/[userId]/supplies';
 
     constructor(protected httpClient: HttpClient) {
       super(httpClient);
   }
 
-  public addSupply(userId: number, item: Supply) {
-    this.endPoint = this.endPoint.replace("[userId]", item.id.toString());
+  public getbysupplierid(id: number) {
+    this.endPoint = this.endPoint.replace("[userId]", id.toString());
+    return this.get();
+  }
 
+  public addtosupplier(id: number, supply: Supply) {
+    this.endPoint = this.endPoint.replace("[userId]", id.toString());
+    let item = {
+      supply_id: supply.id,
+      price: supply.cost
+    }
+    console.log(item);
+    return this.update(item);
+  }
+
+  public editSupplyofSupplier(id: number, supply: Supply){
+    this.endPoint = this.endPoint.replace("[userId]", id.toString());
+    let item = {
+      supply_id: supply.id,
+      price: supply.cost
+    }
     return this.add(item);
+  }
+
+  public deleteSupplyofSupplier(id: number, supply: Supply){
+    this.endPoint = this.endPoint.replace("[userId]", id.toString());
+    return this.delete(supply.id);
   }
 
 }

@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Account, Supply } from '../../domain/index';
 import { ActivatedRoute } from '@angular/router';
 import { SupplierService } from '../../domain';
+import { SupplierSuppliesHttpService } from '../../domain';
+
 
 @Component({
   selector: 'app-purchase-history',
@@ -16,12 +18,29 @@ export class PurchaseHistoryComponent implements OnInit {
   public sortedSupplies: Supply[];
 
   constructor( public supplierRepository: SupplierService,
+    public supplierSuppliesRepository: SupplierSuppliesHttpService,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.sortedSupplies = [];
     for(let i = 0; i < this.account.jobs.length; i++){
       for(let j = 0; j < this.account.jobs[i].supplies.length; j++){
+        if(this.account.jobs[i].supplies){
+          for(let k = 0; k < this.account.jobs[i].supplies.length; k++){
+            this.activatedRoute.params.subscribe((params: any) => {
+              this.supplierSuppliesRepository.getbysupplierid(this.account.jobs[i].supplies[k].supplierId).subscribe(resp => {
+                if (resp.status == 200) {
+                  console.log("here");
+                  for(let l = 0; l < resp.body.length; l++){
+                    if(resp.body[l].Name == this.account.jobs[i].supplies[k].name){
+                      this.account.jobs[i].supplies[k].cost = resp.body[l].Price;
+                    }
+                  }
+                }
+              });
+            });
+          }
+        }
         if(this.account.jobs[i].supplies[j].supplierId){
           this.activatedRoute.params.subscribe(() => {
             this.supplierRepository.getById(+this.account.jobs[i].supplies[j].supplierId).subscribe(resp => {

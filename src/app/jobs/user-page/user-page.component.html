@@ -15,11 +15,11 @@
           <div class= "card-body">
             <p> <strong>Name:</strong> {{user.name}}</p>
             <p> <strong>Email:</strong> {{user.email}}</p>
-            <a href="#">Change Password</a>
+            <a [routerLink]="['/password', user.id]">Change Password</a>
           </div>
         </div>
       </div>
-      <div class="tab-pane fade col-md-12" id="v-pills-jobs" role="tabpanel" aria-labelledby="v-pills-jobs-tab">
+      <div class="tab-pane fade" id="v-pills-jobs" role="tabpanel" aria-labelledby="v-pills-jobs-tab">
           <app-view-jobs [account]="user"></app-view-jobs> 
       </div>
       <div class="tab-pane fade" id="v-pills-purchases" role="tabpanel" aria-labelledby="v-pills-purchases-tab">

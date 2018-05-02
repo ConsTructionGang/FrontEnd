@@ -16,12 +16,10 @@ import { SupplierProfileModule } from './supplier-profile/supplier-profile.modul
 import { LoginHttpService, 
   CreateAccountHttpService, 
   UserpageHttpService,
-  JobsHttpService,
-  TasksHttpService, 
-  SupplierService,
-  SupplyListService,
-  SupplierSuppliesHttpService
-} from './domain';
+  JobsHttpService, SupplierService, SupplyListService, SupplierSuppliesHttpService, ChangePasswordHttpService, TasksHttpService } from './domain';
+
+
+
 
 
 @NgModule({
@@ -38,7 +36,7 @@ import { LoginHttpService,
     ReviewsModule,
     ProductsModule,
     GeneralModule,
-    SupplierProfileModule
+    SupplierProfileModule,
     ],
   providers: [
     LoginHttpService,
@@ -48,7 +46,8 @@ import { LoginHttpService,
     TasksHttpService,
     SupplierService,
     SupplyListService,
-    SupplierSuppliesHttpService
+    SupplierSuppliesHttpService,
+    ChangePasswordHttpService    
   ],
   bootstrap: [AppComponent]
 })

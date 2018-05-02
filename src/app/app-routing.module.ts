@@ -6,6 +6,7 @@ import { LoginComponent } from './accounts/login/login.component';
 import { CreatesupplieraccountComponent } from './accounts/createsupplieraccount/createsupplieraccount.component';
 import { CreateuseraccountComponent } from './accounts/createuseraccount/createuseraccount.component';
 import { ForgotpasswordComponent } from './accounts/forgotpassword/forgotpassword.component';
+import { ChangePasswordComponent } from './accounts/change-password/change-password.component';
 import { AddjobsComponent } from './jobs/addjobs/addjobs.component';
 import { ViewJobsComponent } from './jobs/view-jobs/view-jobs.component';
 import { HomeComponent } from './general/home/home.component';
@@ -17,16 +18,13 @@ import { ViewSupplierComponent } from './supplier-profile/view-supplier/view-sup
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent},
+  { path: 'password/:userId', component: ChangePasswordComponent },
   { path: 'userpage/:userId', component: UserPageComponent },
   { path: 'supplierhome/:userId', component: SupplierPageComponent },
   { path: 'supplierpage/:userId', component: ViewSupplierComponent },
   { path: 'login', component: LoginComponent},
-  { path: 'supplieraccount', component: CreatesupplieraccountComponent },
   { path: 'useraccount', component: CreateuseraccountComponent },
-  { path: 'forgotpassword', component: ForgotpasswordComponent },
   { path: 'addjobs/:userId', component: AddjobsComponent },
-  { path: 'viewjobs', component: ViewJobsComponent },
-  { path: 'reviews', component: SupplierReviewsComponent },
   { path: 'products', component: SupplierProductsComponent },
   { path: 'suppliers/:supplyId', component: SuppliersComponent }
 ];

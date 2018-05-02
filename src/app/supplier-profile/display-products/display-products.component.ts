@@ -27,7 +27,7 @@ export class DisplayProductsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.searchSupply={
+    this.searchSupply = {
       id: 0,
       name: "Default",
     }
@@ -39,16 +39,16 @@ export class DisplayProductsComponent implements OnInit {
     this.activatedRoute.params.subscribe(() => {
       this.supplyListRepository.get().subscribe(resp => {
         if (resp.status == 200) {
-          for(let i = 0; i < resp.body.results.length; i++){
+          for (let i = 0; i < resp.body.results.length; i++) {
             this.supplyTypes.push(resp.body.results[i])
             let stored = false;
-            for(let j = 0; j < this.supplyTypes.length; j++){
-              if(this.supplyTypes[i].Name == resp.body.results[i].Name){
+            for (let j = 0; j < this.supplyTypes.length; j++) {
+              if (this.supplyTypes[i].Name == resp.body.results[i].Name) {
                 stored = true;
                 break;
               }
             }
-            if(stored == false)
+            if (stored == false)
               this.supplyTypes.push(resp.body.results[i]);
           }
         }
@@ -56,27 +56,26 @@ export class DisplayProductsComponent implements OnInit {
     });
   }
 
-  search(){
-    for(var i = 0; i < this.supplier.supply.length; i++){
-      if(this.supplier.supply[i].name == this.searchResult){
+  search() {
+    for (var i = 0; i < this.supplier.supply.length; i++) {
+      if (this.supplier.supply[i].name == this.searchResult) {
         this.searchSupply = this.supplier.supply[i];
       }
     }
   }
 
-  addSupply(){
+  addSupply() {
     this.addProductTemp.supplierId = this.supplier.id;
-    for(let i = 0; i < this.supplyTypes.length; i++){
-      if(this.supplyTypes[i].Name == this.addProductTemp.name){
+    for (let i = 0; i < this.supplyTypes.length; i++) {
+      if (this.supplyTypes[i].Name == this.addProductTemp.name) {
         this.addProductTemp.id = this.supplyTypes[i].Supply_ID;
       }
     }
 
-    // this.activatedRoute.params.subscribe((params: any) => {
-    //   this.supplyListRepository.add(this.addProductTemp).subscribe(resp => {
-    //   });
-    //   this.supplierSuppliesRepository.addSupply(this.supplier.id, this.addProductTemp).subscribe(resp => {
-    //   });
-    // });
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.supplyListRepository.add(this.addProductTemp).subscribe(resp => {
+      
+      });
+    });
   }
 }
