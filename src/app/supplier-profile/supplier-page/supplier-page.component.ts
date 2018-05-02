@@ -35,9 +35,10 @@ export class SupplierPageComponent implements OnInit {
       description: "",
     }
    this.activatedRoute.params.subscribe((params: any) => {
-      this.supplierRepository.getById(+params.userId).subscribe(resp => {
+      this.supplierRepository.getById(+params.supplierId).subscribe(resp => {
         if (resp.status == 200) {
           this.supplier = resp.body;
+          this.supplier.id = params.supplierId;
           if(!this.supplier.supply){
             this.supplier.supply = [];
           }

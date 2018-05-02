@@ -38,7 +38,7 @@ export class DisplayProductsComponent implements OnInit {
     };
     this.supplyTypes = [];
     this.activatedRoute.params.subscribe((params: any) => {
-      this.supplierSuppliesRepository.getbysupplierid(+params.userId).subscribe(resp => {
+      this.supplierSuppliesRepository.getbysupplierid(+params.supplierId).subscribe(resp => {
         if (resp.status == 200) {
           for(let i = 0; i < resp.body.length; i++){
             this.supplier.supply.push(

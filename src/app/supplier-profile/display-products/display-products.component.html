@@ -45,7 +45,7 @@
                       <td class="title-col">{{product.name}}</td>
                       <td class="cost-col">{{product.cost | currency}}</td>
                       <td class="filler-col"></td>
-                      <td class="btn-col"><button type="button" class="btn btn-dark btn-sm"  data-toggle="modal" data-target="#viewModal" (click)="fillTemp(i)">View</button></td>
+                      <td *ngIf="fromHome" class="btn-col"><button type="button" class="btn btn-dark btn-sm"  data-toggle="modal" data-target="#viewModal" (click)="fillTemp(i)">View</button></td>
                       <td *ngIf="fromHome"class="btn-col"><button type="button" class="btn btn-dark btn-sm"  data-toggle="modal" data-target="#editModal" (click)="fillTemp(i)">Edit</button></td>
                       <td *ngIf="!fromHome"class="btn-col"></td>
                       <td *ngIf="fromHome"class="trash-col">
@@ -56,6 +56,8 @@
                           </button>
                       </td>
                       <td *ngIf="!fromHome"class="trash-col"></td>
+                      <td *ngIf="!fromHome" class="btn-col"><button type="button" class="btn btn-dark btn-sm"  data-toggle="modal" data-target="#viewModal" (click)="fillTemp(i)">View</button></td>
+
                       <td class="scroll-col"></td>
                     </tr>
                   </tbody>

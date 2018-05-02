@@ -1,18 +1,23 @@
-<h2> Suppliers for supply </h2>
-<table class="table table-striped">
-  <thead>
-  </thead>
-    <tbody>
-    <tr *ngFor="let supplier of suppliers; let i = index">
-      <td>
-        {{supplier.name}}
-      </td>
-      <td>
-        <button class="btn btn-secondary" (click)="addSupplier(i)">Add Supplier</button>
-      </td>
-      <td>
-        <button class="btn btn-secondary">Details</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div *ngIf="supply">
+  <h2> Suppliers for {{supply.name}} </h2>
+  <table class="table table-striped">
+    <thead>
+    </thead>
+      <tbody>
+      <tr *ngFor="let supplier of suppliers; let i = index">
+        <td>
+          {{supplier.name}}
+        </td>
+        <td>
+          <button class="btn btn-secondary" (click)="addSupplier(i)">Add Supplier</button>
+        </td>
+        <td>
+          <button class="btn btn-secondary">Details</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="noSuppliers" class="alert alert-secondary" role="alert">
+    Sorry, there are currently no suppliers who offer this supply!
+  </div>
+</div>

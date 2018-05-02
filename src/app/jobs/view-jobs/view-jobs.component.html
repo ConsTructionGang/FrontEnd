@@ -103,7 +103,7 @@
                                 {{supply.name}}
                                 <div class="float-right">
                                   <h6 *ngIf="!supply.supplier"> No supplier </h6>
-                                  <h6 *ngIf="supply.supplier"> <a data-dismiss="modal" [routerLink]="['/supplierpage', supply.supplierId]">{{supply.supplier.name}}</a></h6>
+                                  <h6 *ngIf="supply.supplier"> <a data-dismiss="modal" [routerLink]="['/supplierpage', supply.supplierId, this.account.id]">{{supply.supplier.name}}</a></h6>
                                 </div>
                               </td>
                             </tr>
