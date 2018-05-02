@@ -6,15 +6,16 @@
       <div *ngIf="showHide == true" class="card">
           <div class="card-header text-white bg-secondary">Add Review</div>
           <div class="card-body">
+              <h4 class="pt-2 pb-2">{{user.name}}</h4>
             <form>
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="input4Name">Your Name</label>
-                  <input type="text" class="form-control" id="input4Name" name="UserName" [(ngModel)]="newReview.userName"/>
+                  <label for="input4Name">Comment Title</label>
+                  <input type="text" class="form-control" id="input4Name" name="UserName" [(ngModel)]="newReview.title"/>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputRating">Rating</label>
-                  <br/>
+                  <br>
                   <select class="form-control d-inline mr-4" id="inputRating" name="select" [(ngModel)]="newReview.rating" style="width: 140px;">
                     <option value="" disabled selected></option>
                     <option value="1">1 star</option>
@@ -31,8 +32,11 @@
                 <textarea class="form-control" id="commentBox" rows="3" name="comment" [(ngModel)]="newReview.comment"></textarea>
               </div>
             </form>
-            <button type="button" class="btn btn-success" (click)="addReview()" (click)="showHide = !showHide" [disabled]="!newReview.userName || !newReview.rating || !newReview.comment">Submit</button>
-            <button type="submit" class="btn btn-danger" (click)="showHide = !showHide">Cancel</button>
+            <div class="float-right">
+              <button type="button" class="btn btn-success" (click)="addReview()" (click)="showHide = !showHide" [disabled]="!newReview.title || !newReview.rating || !newReview.comment">Submit</button>
+              <button type="submit" class="btn btn-danger" (click)="showHide = !showHide">Cancel</button>
+            </div>
+              
           </div>
         </div>
     <div class="card bg-light">
@@ -43,18 +47,25 @@
           <button class="btn btn-outline-secondary" *ngIf="!fromHome"(click)="showHide = !showHide">Add Review</button>
       </div>
     </div>
-    <div *ngFor="let review of supplier.review; let i = index">
+    <div *ngFor="let review of supplier.review.reverse(); let i = index">
       <br>
       <div class="card" [ngClass]="{'bg-light': i % 2 == 0, 'bg-white': i % 2 != 0}">
         <div class="card-body">
           <div class="row">
-            <div class="col-10">
+            <div class="col-md-10">
               <h4 class="card-title">{{review.userName}} <app-rating [rating]="review.rating"></app-rating> </h4>
             </div>
-            <div class="float-right">
-              <p class="card-text">{{review.date | date}}</p>
+            <div id="date" class="mr-auto">
+                <p class="card-text ">{{review.dateObject | date}}
+                  <button *ngIf="review.author_id == user.id" class="btn btn-danger btn-sm ml-2" (click)="delete(i)">
+                    <span class="icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"/></svg>
+                    </span>
+                  </button>
+                </p>
             </div>
           </div>
+          <p>{{review.title}}</p>
           <p id ="reviewComment" class="card-text">"{{review.comment}}"</p>
           <div *ngIf="review.response">
             <hr>

@@ -174,6 +174,7 @@ export class ViewJobsComponent implements OnInit {
     } else {
       this.viewJobs = this.completeJobs;
     }
+    //this.updateJob(i);
   }
 
 }

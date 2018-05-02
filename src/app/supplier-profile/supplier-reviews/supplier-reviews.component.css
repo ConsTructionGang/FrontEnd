@@ -16,3 +16,21 @@
     position: relative;
     left:1rem;
 }
+.btn{
+    fill:currentColor;
+}
+
+.icon{
+    outline:none;
+    position:relative;
+    top:.2rem;
+}
+
+.btn-sm{
+    position: relative;
+}
+
+#date{
+    position: relative;
+    left:4.5rem;
+}
