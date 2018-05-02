@@ -42,6 +42,7 @@ export class SupplierReviewsComponent implements OnInit {
               comment: resp.body.results[i].Body,
               rating: resp.body.results[i].Rating,
               dateObject: new Date(resp.body.results[i].Date_Created.replace(/-/g, '\/').replace(/T.+/, '')),
+              response: resp.body.results[i].Comment,
             });
           }
         }
@@ -80,6 +81,7 @@ export class SupplierReviewsComponent implements OnInit {
             comment: resp.body.results[resp.body.results.length-1].Body,
             rating: resp.body.results[resp.body.results.length-1].Rating,
             dateObject: new Date(resp.body.results[resp.body.results.length-1].Date_Created.replace(/-/g, '\/').replace(/T.+/, '')),
+            response: resp.body.results[resp.body.results.length-1].Comment,
           });
         }
       });
@@ -88,6 +90,13 @@ export class SupplierReviewsComponent implements OnInit {
 
   addResponse(i){
     this.supplier.review[i].response = this.reply;
+    this.activatedRoute.params.subscribe((params:any) => {
+      this.reviewRepository.delete(Number(this.user.id)).subscribe(resp => {
+        if (resp.status == 200) {
+          this.supplier.review.splice(i, 1);
+        }
+      });
+    });
     this.reply="";
   }
 

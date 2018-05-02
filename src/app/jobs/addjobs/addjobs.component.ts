@@ -82,22 +82,23 @@ export class AddjobsComponent implements OnInit {
           }
         });
       });
-
+      this.tempJob = {
+        id: this.indexJob,
+        title: '',
+        address: '',
+        city: '',
+        state: '',
+        cost: 0,
+        startDate: new Date(),
+        endDate: new Date(),
+        status: "",
+        supplies: []
+      };
       this.fromView = false;
       this.title = 'Create A New Job';
+      console.log("if not fromview")
     }
-    this.tempJob = {
-      id: this.indexJob,
-      title: '',
-      address: '',
-      city: '',
-      state: '',
-      cost: 0,
-      startDate: new Date(),
-      endDate: new Date(),
-      status: "",
-      supplies: []
-    };
+    console.log(this.tempJob);
   }
 
   addSupply() {
@@ -114,7 +115,6 @@ export class AddjobsComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: any) => {
       this.jobsHttpService.addJob(+params.userId, this.tempJob).subscribe(resp => {
         if (resp.status == 200) {
-          console.log(this.tempJob);
           this.router.navigateByUrl(`/userpage/${+params.userId}`);
         }
       });
