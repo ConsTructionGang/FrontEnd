@@ -34,8 +34,6 @@ export class UserPageComponent implements OnInit {
           for (let i = 0; i < resp.body.tasks.length; ++i) {
             resp.body.tasks[i].title = resp.body.tasks[i].Name;
             resp.body.tasks[i].description = resp.body.tasks[i].Description;
-            
-            resp.body.tasks[i].status = false; // must be changed
 
             if (resp.body.tasks[i].Creation_Date){
               resp.body.tasks[i].startDate = new Date(resp.body.tasks[i].Creation_Date.replace(/-/g, '\/').replace(/T.+/, '') );
@@ -46,6 +44,7 @@ export class UserPageComponent implements OnInit {
             }
           }
 
+          console.log(resp.body);
           this.user = resp.body;
         }
       });
