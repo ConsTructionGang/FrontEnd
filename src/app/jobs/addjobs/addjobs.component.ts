@@ -135,6 +135,7 @@ export class AddjobsComponent implements OnInit {
       this.jobsHttpService.addJob(+params.userId, this.tempJob).subscribe(resp => {
         if (resp.status == 200) {
           console.log(this.tempJob);
+          this.router.navigateByUrl(`/userpage/${+params.userId}`);
         }
       });
     });
