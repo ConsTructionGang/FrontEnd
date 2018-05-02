@@ -62,7 +62,16 @@ export class TasksComponent implements OnInit {
       this.incompleteTasks--;
     }
     this.account.tasks[i].status = !this.account.tasks[i].status;
-    this.updateVisibleTasks();
+
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.taskHttpService.updateById(this.account.tasks[i].id, this.account.tasks[i]).subscribe(resp => {
+        if(resp.body.status == 200) {
+          this.updateVisibleTasks();
+        }
+        console.log(this.account.tasks[i]);        
+      });
+    });
+    
   }
 
   changeVisible() {

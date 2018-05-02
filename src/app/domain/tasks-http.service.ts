@@ -21,12 +21,6 @@ export class TasksHttpService extends HttpGeneric<any> {
         return this.add(item);
     }
 
-    // public updateJob(jobId: number, item: Job) {
-    //     this.endPoint = `http://ec2-34-227-162-95.compute-1.amazonaws.com/jobs`;
-
-    //     return this.updateById(jobId, item);
-    // }
-
     public deleteTask(taskId: number) {
         this.endPoint = `http://ec2-34-227-162-95.compute-1.amazonaws.com/tasks`;
 
