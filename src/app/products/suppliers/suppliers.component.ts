@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Supplier } from '../../domain/models/supplier'
-import { Supply } from '../../domain/index'
+import { Supply, SupplierService } from '../../domain/index'
 import { ActivatedRoute} from '@angular/router'
 
 
@@ -16,12 +16,18 @@ export class SuppliersComponent implements OnInit {
   @Input()
   public supply = Supply;
   @Output() onAddSupplier = new EventEmitter<Supplier>();
+  public noSuppliers: boolean;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(
+    public supplierRepository: SupplierService,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+
     this.suppliers=[];
-    this.allsuppliers = [
+    this.noSuppliers = false;
+    /*this.allsuppliers = [
       {id: 1, name: "Joe Schmo and Bros",
       supplies: [{id: 1, name: 'Bricks'}, {id: 2, name: 'Wood'}]
     },
@@ -34,18 +40,25 @@ export class SuppliersComponent implements OnInit {
     {id: 4, name: "Stewart Stiffler Supplies",
     supplies: [{id: 1, name: 'Bricks'}, {id: 4, name: 'Steel'}]
     }
-    ]
+  ]*/
     if (this.supply.name) {
-      for (let supplier of this.allsuppliers)
-      {
-        for (let supply of supplier.supplies)
-        {
-          if (supply.name==this.supply.name)
-            this.suppliers.push(supplier);
-        }
-      }
+        this.supplierRepository.getByName(this.supply.name).subscribe(resp => {
+          if (resp.status == 200) {
+            if (resp.body.results)
+            {
+              for (let result of resp.body.results)
+              {
+                this.suppliers.push({id: result.ID, name: result.Name});
+              }
+            }
+            else {
+              this.suppliers = [];
+              this.noSuppliers=true;
+            }
+          }
+        });
     }
-    console.log(this.suppliers);
+    //console.log(this.suppliers);
   }
   public addSupplier(i){
   this.onAddSupplier.emit(this.suppliers[i]);
