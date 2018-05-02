@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Supplier } from '../../domain/models/supplier';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JobsHttpService } from '../../domain';
+import { JobsHttpService, SupplyListService } from '../../domain';
 import { Account, Supply, Job } from '../../domain';
 
 import { DataService } from "../data.service";
@@ -21,6 +21,7 @@ export class AddjobsComponent implements OnInit {
   public tempSupply: any;
 
   public supSupply: any;
+  public x : any[];
   public showSuppliers: boolean;
   @Input()
   public tempJob: Job;
@@ -31,6 +32,7 @@ export class AddjobsComponent implements OnInit {
 
   constructor(
     private jobsHttpService: JobsHttpService,
+    private supplylistService: SupplyListService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) { }
@@ -38,7 +40,7 @@ export class AddjobsComponent implements OnInit {
   ngOnInit() {
 
     this.supplies = [];
-    this.supplies = [
+    /*this.supplies = [
       {
         id: 1,
         name: 'Wood'
@@ -55,7 +57,18 @@ export class AddjobsComponent implements OnInit {
         id: 4,
         name: 'Nails'
       }
-    ];
+    ];*/
+    this.supplylistService.get().subscribe(resp => {
+      if (resp.status == 200) {
+        for (let result of resp.body.results)
+        {
+          this.supplies.push({id: result.Supply_ID, name: result.Name});
+        }
+      }
+      else {
+        this.supplies =[];
+      }
+    });
     if (this.fromView != true) {
       this.title = 'Create A New Job';
       this.account = {
@@ -122,7 +135,6 @@ export class AddjobsComponent implements OnInit {
       this.jobsHttpService.addJob(+params.userId, this.tempJob).subscribe(resp => {
         if (resp.status == 200) {
           console.log(this.tempJob);
-          this.router.navigateByUrl(`/userpage/${+params.userId}`);
         }
       });
     });
@@ -205,6 +217,9 @@ export class AddjobsComponent implements OnInit {
        this.tempJob.supplies[j].supplier = null;
       }
     }
+  }
+  hideSuppliers(){
+    this.showSuppliers=false;
   }
   onAddSupplier(newSupplier: Supplier) {
     console.log("Received new supplier!");
