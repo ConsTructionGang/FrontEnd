@@ -1,4 +1,5 @@
-<div *ngIf="supplier" class="container-fluid">
+<div *ngIf="supplier" class="container-fluid clearfix">
+  <button *ngIf="this.user.id" class="btn btn-secondary float-left" [routerLink]="['/userpage', this.user.id]">Back</button>
     <div class="flex-row d-flex">
       <div class="col-md-4">
         <div class="card">
@@ -24,6 +25,5 @@
     <div class="col-md-12">
       <app-supplier-reviews [supplier]=supplier [user]=user></app-supplier-reviews>
     </div>
-    
+
   </div>
-  
