@@ -115,7 +115,7 @@
             </div>
             <br>
             <div *ngIf="title != 'Create A New Job' && fromView != true">
-              <button id="create" type="create" class="btn btn-primary" (clicks)="emptyJob()">Create New Job</button>
+              <button id="create" type="create" class="btn btn-primary" (click)="emptyJob()">Create New Job</button>
             </div>
             <div *ngIf="fromView != true && this.account">
               <button id="sumbit" type="submit" class="btn btn-success endbtn" (click)="addJob()">Save</button>

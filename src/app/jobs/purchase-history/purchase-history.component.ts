@@ -51,12 +51,12 @@ export class PurchaseHistoryComponent implements OnInit {
           });
           if(this.account.jobs[i].startDate)
             this.account.jobs[i].supplies[j].date = this.account.jobs[i].startDate;  
-          this.sortedSupplies.push(this.account.jobs[i].supplies[j]);
+            this.sortedSupplies.push(this.account.jobs[i].supplies[j]);
+            
           
         }
       }
     }
-
   }
 
   sortByDate(){

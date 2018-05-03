@@ -115,6 +115,7 @@ export class SupplierReviewsComponent implements OnInit {
 
   delete(i){
     var r = confirm("Are you sure you want to permanently delete your review?");
+    i = (this.supplier.review.length -1) - i;
     if (r) {
       this.activatedRoute.params.subscribe((params:any) => {
         this.reviewRepository.delete(Number(this.user.id)).subscribe(resp => {

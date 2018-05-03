@@ -142,6 +142,24 @@ export class AddjobsComponent implements OnInit {
         this.jobsHttpService.addJob(+params.userId, this.tempJob).subscribe(resp => {
           if (resp.status == 200) {
             this.router.navigateByUrl(`/userpage/${+params.userId}`);
+            this.account.jobs[this. indexJob] = this.tempJob;
+            this.indexJob = this.account.jobs.length;
+            this.tempJob = {
+              id: this.indexJob,
+              title: '',
+              address: "",
+              city: " ",
+              state: '',
+              cost: 0,
+              startDate: new Date(),
+              endDate: new Date(),
+              status: "",
+              supplies: []
+            };
+            this.title = 'Create A New Job';
+            this.loadJob = false;
+          } else {
+            console.log("not 200");
           }
         });
       });

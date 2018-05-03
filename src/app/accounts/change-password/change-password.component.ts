@@ -56,13 +56,9 @@ export class ChangePasswordComponent implements OnInit {
           this.changePassword();
           this.type = resp.body.type; 
         }
-      } else {     
-        // login failed
-        console.log(typeof resp);
-        // check http status code for more info
-      }
+      } 
     },
-    err => console.log(err),);
+    err =>  this.badPassword = true);
 
     if(this.success == true){
 
