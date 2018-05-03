@@ -21,7 +21,7 @@ export class ReviewsHttpService extends HttpGeneric<any> {
       return this.update(item);
     }
 
-    public updatereview(id: number, item:any) {
+    public disputereview(id: number, item:any) {
       this.endPoint = this.endPoint.replace("[userId]", id.toString());
       console.log(item);
       return this.add(item);

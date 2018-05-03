@@ -43,6 +43,7 @@ export class SupplierReviewsComponent implements OnInit {
               rating: resp.body.results[i].Rating,
               dateObject: new Date(resp.body.results[i].Date_Created.replace(/-/g, '\/').replace(/T.+/, '')),
               response: resp.body.results[i].Comment,
+              review_id: resp.body.results[i].Review_ID,
             });
           }
         }
@@ -89,15 +90,22 @@ export class SupplierReviewsComponent implements OnInit {
   }
 
   addResponse(i){
-    this.supplier.review[i].response = this.reply;
+    i = (this.supplier.review.length -1) - i;
+    let item={
+      comment: this.reply,
+      review_id: this.supplier.review[i].review_id
+    }
+    var num = this.supplier.review[i].author_id;
     this.activatedRoute.params.subscribe((params:any) => {
-      this.reviewRepository.delete(Number(this.user.id)).subscribe(resp => {
+      this.reviewRepository.disputereview(this.supplier.id, item).subscribe(resp => {
         if (resp.status == 200) {
-          this.supplier.review.splice(i, 1);
+          console.log(resp);
+          this.supplier.review[i].response = this.reply;
+          this.reply="";
         }
       });
     });
-    this.reply="";
+   
   }
 
   print(i){
@@ -107,6 +115,7 @@ export class SupplierReviewsComponent implements OnInit {
 
   delete(i){
     var r = confirm("Are you sure you want to permanently delete your review?");
+    i = (this.supplier.review.length -1) - i;
     if (r) {
       this.activatedRoute.params.subscribe((params:any) => {
         this.reviewRepository.delete(Number(this.user.id)).subscribe(resp => {

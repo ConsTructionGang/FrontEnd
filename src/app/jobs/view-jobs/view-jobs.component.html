@@ -27,7 +27,7 @@
         </thead>
         <tbody *ngFor="let job of account.jobs; let i = index" >
           <tr *ngIf="job.status == visibleJobs" id="table-body">
-            <th scope="row" data-toggle="modal" data-target="#viewModal" (click)="fillTempJob(i)"><a > {{job.title}} </a></th>
+            <th scope="row" data-toggle="modal" data-target="#jobModal" (click)="fillTempJob(i); editModal = false"><a > {{job.title}} </a></th>
             <td align="center" *ngIf="job.status == 'Complete'">
               <span class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M12 5.5l-8 8-4-4L1.5 8 4 10.5 10.5 4 12 5.5z"/></svg>
@@ -49,7 +49,7 @@
               </button>
             </td>
             <td>
-              <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#editModal" (click)="fillTempJob(i)">
+              <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#jobModal" (click)="fillTempJob(i); editModal = true">
                   <span class="icon">
                   <svg id="pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16"  viewBox="0 0 14 16">
                     <path fill-rule="evenodd" d="M0 11.592v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3l-1.3 1.3-3-3 1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
@@ -57,37 +57,28 @@
                   </span>
               </button>
             </td>
+            
             <!-- Modal -->
-            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true" *ngIf="tempJob.title">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit {{tempJob.title}} Job</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div id="editApp" class="modal-body">
-                    <app-addjobs [indexJob]="i" [tempJob]="tempJob" [account]="account" [fromView]="true"></app-addjobs>
-                  </div>
-                  <div class="modal-footer" id="editFooter">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearTempJob()">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateJob(i)">Save changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Modal -->
-            <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><strong>Job Details</strong></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
+            <div class="modal fade" id="jobModal" tabindex="-1" role="dialog" aria-hidden="true" *ngIf="tempJob.title">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <div *ngIf="editModal">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit {{tempJob.title}} Job</h5>
+                      </div>
+                      <div *ngIf="!editModal">
+                        <h5 class="modal-title" id="exampleModalLabel"><strong>Job Details</strong></h5>
+                      </div>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div *ngIf="editModal" class="modal-body">
+                      <div id="editApp">
+                        <app-addjobs [indexJob]="i" [tempJob]="tempJob" [fromView]="true"></app-addjobs>
+                      </div>
+                    </div>
+                    <div *ngIf="!editModal" class="modal-body">
                       <p><strong>Title: </strong>{{tempJob.title}}</p>
                       <p><strong>Address: </strong>{{tempJob.address}}</p>
                       <p><strong>City: </strong>{{tempJob.city}}</p>
@@ -112,17 +103,23 @@
                             </tr>
                           </tbody>
                         </table>
-
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearTempJob()">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal"data-toggle="modal" data-target="#editModal">
-                        Edit
-                    </button>
+                    </div>              
+                    <div class="modal-footer" id="editFooter">
+                      <div *ngIf="editModal">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearTempJob()">Close</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateJob(i)">Save changes</button>
+                      </div>
+                      <div *ngIf="!editModal">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearTempJob()">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"data-toggle="modal" aria-hidden="true" (click)="editModal = true">
+                            Edit
+                        </button>
+                      </div>    
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+              <!-- Modal -->
           </tr>
         </tbody>
       </table>
