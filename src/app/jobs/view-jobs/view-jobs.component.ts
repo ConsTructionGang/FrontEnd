@@ -118,6 +118,13 @@ export class ViewJobsComponent implements OnInit {
 
   updateJob(i) {
     this.jobsHttpService.updateJob(this.tempJob.id, this.tempJob).subscribe(resp => {
+      for(let j = 0; j < this.account.jobs.length; ++j) {
+        if(this.account.jobs[j].id == this.tempJob.id) {
+          i = j;
+          break;
+        }
+      }
+
       if (resp.status == '200') {
         this.account.jobs[i].title = this.tempJob.title;
         this.account.jobs[i].cost = this.tempJob.cost;
@@ -147,8 +154,6 @@ export class ViewJobsComponent implements OnInit {
       this.completeJobs--;
       this.incompleteJobs++;
     }
-
-    console.log(this.account.jobs[i]);
 
     this.jobsHttpService.updateJob(this.account.jobs[i].id, this.account.jobs[i]).subscribe(resp => {
       if (resp.status == '200') {
