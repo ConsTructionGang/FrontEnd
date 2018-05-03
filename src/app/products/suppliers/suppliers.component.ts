@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { Supplier } from '../../domain/models/supplier'
 import { Supply, SupplierService } from '../../domain/index'
 import { ActivatedRoute} from '@angular/router'
@@ -14,12 +15,15 @@ export class SuppliersComponent implements OnInit {
   public allsuppliers: Supplier[];
   public suppliers: Supplier[];
   @Input()
+  public account: Account;
+  @Input()
   public supply = Supply;
   @Output() onAddSupplier = new EventEmitter<Supplier>();
   public noSuppliers: boolean;
 
   constructor(
     public supplierRepository: SupplierService,
+    private router: Router,
     private activatedRoute: ActivatedRoute
   ) { }
 

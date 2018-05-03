@@ -17,10 +17,10 @@ import { DataService } from "../data.service";
 export class AddjobsComponent implements OnInit {
   public title: string;
   public supplies: Supply[];
+  @Input()
   public account: Account;
   public tempSupply: any;
   public loadJob: boolean;
-
   public supSupply: any;
   public x : any[];
   public showSuppliers: boolean;
@@ -59,26 +59,27 @@ export class AddjobsComponent implements OnInit {
             for (let i = 0; i < resp.body.jobs.length; ++i) {
               if (resp.body.jobs[i].start_date)
                 resp.body.jobs[i].startDate = new Date(resp.body.jobs[i].start_date.replace(/-/g, '\/').replace(/T.+/, '') );
-  
+
               if (resp.body.jobs[i].end_date)
                 resp.body.jobs[i].endDate = new Date(resp.body.jobs[i].end_date.replace(/-/g, '\/').replace(/T.+/, '') );
             }
-            
-  
+
+
             for (let i = 0; i < resp.body.tasks.length; ++i) {
               resp.body.tasks[i].title = resp.body.tasks[i].Name;
               resp.body.tasks[i].description = resp.body.tasks[i].Description;
-  
+
               if (resp.body.tasks[i].Creation_Date){
                 resp.body.tasks[i].startDate = new Date(resp.body.tasks[i].Creation_Date.replace(/-/g, '\/').replace(/T.+/, '') );
               }
-  
+
               if (resp.body.tasks[i].Estimated_Date){
                 resp.body.tasks[i].endDate = new Date(resp.body.tasks[i].Estimated_Date.replace(/-/g, '\/').replace(/T.+/, '') );
               }
             }
             this.account = resp.body;
             this.account.id = params.userId;
+            this.tempJob.accountId = this.account.id;
             this.indexJob = this.account.jobs.length;
           }
         });
@@ -100,6 +101,7 @@ export class AddjobsComponent implements OnInit {
       console.log("if not fromview")
     }
     console.log(this.tempJob);
+    console.log(this.account.id);
   }
 
   addSupply() {
@@ -236,16 +238,22 @@ export class AddjobsComponent implements OnInit {
   }
   onAddSupplier(newSupplier: Supplier) {
     console.log("Received new supplier!");
-    console.log(newSupplier);
-    console.log(this.tempJob);
     this.showSuppliers=false;
     let j: number;
     for (j = 0; j < this.tempJob.supplies.length; j++) {
       if (this.tempJob.supplies[j] === this.supSupply) {
        this.tempJob.supplies[j].supplier = newSupplier;
+       this.tempJob.supplies[j].supplierId = newSupplier.id;
+       this.tempJob.supplies[j].SupplierID = newSupplier.id;
       }
     }
     // console.log(newReview);
 
+  }
+  onViewSupplier(supplierId: number) {
+    console.log("Viewing supplier!");
+    //this.activatedRoute.params.subscribe((params: any) => {
+    //this.router.navigateByUrl(`/supplierpage/${supplierId}/${params.id}`);
+    //});
   }
 }
