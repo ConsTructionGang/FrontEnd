@@ -64,13 +64,14 @@ export class DisplayProductsComponent implements OnInit {
           for(let i = 0; i < resp.body.results.length; i++){
             this.supplyTypes.push(resp.body.results[i])
             let stored = false;
+            let exists = false;
             for(let j = 0; j < this.supplyTypes.length; j++){
               if(this.supplyTypes[j].Name == resp.body.results[i].Name){
                 stored = true;
                 break;
               }
             }
-            if(stored == false)
+            if(stored == false && exists == false)
               this.supplyTypes.push(resp.body.results[i]);
           }
         }
@@ -80,43 +81,37 @@ export class DisplayProductsComponent implements OnInit {
 
   addSupply(){
     //first add supply id
-    this.addProductTemp.cost = Number(this.addProductTemp.cost);
-    for(let i = 0; i < this.supplyTypes.length; i++){
-      if(this.addProductTemp.name == this.supplyTypes[i].Name){
-        this.addProductTemp.id = this.supplyTypes[i].Supply_ID;
-        break;
+    let exists = false;
+    for(let i = 0; i < this.supplier.supply.length; i++){
+      if(this.supplier.supply[i].name == this.addProductTemp.name){
+        exists = true;
       }
     }
-    let id;
-    this.activatedRoute.params.subscribe((params: any) => {
-      id =Number(params.userId);
-      this.supplierSuppliesRepository.addtosupplier(id, this.addProductTemp).subscribe(resp => {
-        if (resp.status == 200) {
-          this.supplier.supply.push(this.addProductTemp);
-          this.addProductTemp = {
-            id: 0,
-            name: "Default",
-          };
+    if(exists == false){
+      this.addProductTemp.cost = Number(this.addProductTemp.cost);
+      for(let i = 0; i < this.supplyTypes.length; i++){
+        if(this.addProductTemp.name == this.supplyTypes[i].Name){
+          this.addProductTemp.id = this.supplyTypes[i].Supply_ID;
+          break;
         }
-      });
-    });
-    //console.log(id);
-    /*this.activatedRoute.params.subscribe((params: any) => {
-      this.supplierSuppliesRepository.getbysupplierid(id).subscribe(resp => {
-        if (resp.status == 200) {
-          for(let i = 0; i < resp.body.length; i++){
-            if(i == resp.body.length-1){
-              this.supplier.supply.push(
-              {
-                id: resp.body[i].supply_id,
-                name: resp.body[i].product_name,
-                cost: resp.body[i].Price
-              });
-            }
+      }
+      let id;
+      this.activatedRoute.params.subscribe((params: any) => {
+        id =Number(params.userId);
+        this.supplierSuppliesRepository.addtosupplier(id, this.addProductTemp).subscribe(resp => {
+          if (resp.status == 200) {
+            this.supplier.supply.push(this.addProductTemp);
+            this.addProductTemp = {
+              id: 0,
+              name: "Default",
+            };
           }
-        }
+        });
       });
-    });*/
+    } else {
+      alert("You can only have one " + this.addProductTemp.name + " product listed. You can edit your existing product, or delete it to create a new one.");
+    }
+    
   }
 
   fillTemp(i){
@@ -175,23 +170,25 @@ export class DisplayProductsComponent implements OnInit {
 
   addToJob() {
     let idStr;
-    for(let i = 0; i < this.supplyTypes.length; i++){
-      if(this.tempProduct.name == this.supplyTypes[i].Name){
-        this.tempProduct.id = this.supplyTypes[i].Supply_ID;
-        break;
-      }
-    }
-    var tempCost = this.tempProduct.cost;
-    this.tempProduct.supplierId= this.supplier.id;
-    this.tempProduct.SupplierID = this.supplier.id;
+    
 
-    this.tempJob.supplies.push(this.tempProduct);
-    this.activatedRoute.params.subscribe((params: any) => {
-      this.jobsHttpService.updateJob(this.tempJob.id, this.tempJob).subscribe(resp => {
-        if (resp.status == 200) {
-          delete this.tempJob;
+      for(let i = 0; i < this.supplyTypes.length; i++){
+        if(this.tempProduct.name == this.supplyTypes[i].Name){
+          this.tempProduct.id = this.supplyTypes[i].Supply_ID;
+          break;
         }
-      });
-    });
+      }
+      var tempCost = this.tempProduct.cost;
+      this.tempProduct.supplierId= this.supplier.id;
+      this.tempProduct.SupplierID = this.supplier.id;
+
+      this.tempJob.supplies.push(this.tempProduct);
+      this.activatedRoute.params.subscribe((params: any) => {
+        this.jobsHttpService.updateJob(this.tempJob.id, this.tempJob).subscribe(resp => {
+          if (resp.status == 200) {
+            delete this.tempJob;
+          }
+        });
+      });   
   }
 }
