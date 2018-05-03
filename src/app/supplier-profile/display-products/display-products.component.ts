@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Account, Supply } from "../../domain"
+import { Account, Supply, Job } from "../../domain"
 import { ActivatedRoute } from '@angular/router';
 import { SupplyListService } from '../../domain';
 import { SupplierSuppliesHttpService } from '../../domain';
+import { JobsHttpService } from '../../domain';
 
 @Component({
   selector: 'app-display-products',
@@ -13,8 +14,11 @@ export class DisplayProductsComponent implements OnInit {
   @Input()
   public supplier: Account;
   @Input()
+  public user: Account;
+  @Input()
   public fromHome: boolean;
 
+  public tempJob: Job;
   public searchResult: string;
   public addProductTemp: Supply;
   public tempProduct: Supply;
@@ -24,6 +28,7 @@ export class DisplayProductsComponent implements OnInit {
   constructor(
     public supplierSuppliesRepository: SupplierSuppliesHttpService,
     public supplyListRepository: SupplyListService,
+    private jobsHttpService: JobsHttpService,
     private activatedRoute: ActivatedRoute
   ) { }
 
@@ -112,7 +117,6 @@ export class DisplayProductsComponent implements OnInit {
   }
 
   fillTemp(i){
-    console.log(i);
     this.tempProduct.name = this.supplier.supply[i].name;
     this.tempProduct.cost = this.supplier.supply[i].cost;
     this.editIndex = i;
@@ -161,6 +165,27 @@ export class DisplayProductsComponent implements OnInit {
       this.supplierSuppliesRepository.deleteSupplyofSupplier(+params.userId, this.supplier.supply[i]).subscribe(resp => {
         if (resp.status == 200) {
           this.supplier.supply.splice(i,1); 
+        }
+      });
+    });
+  }
+
+  addToJob() {
+    let idStr;
+    for(let i = 0; i < this.supplyTypes.length; i++){
+      if(this.tempProduct.name == this.supplyTypes[i].Name){
+        this.tempProduct.id = this.supplyTypes[i].Supply_ID;
+        break;
+      }
+    }
+    this.tempProduct.supplierId= this.supplier.id;
+
+    this.tempJob.supplies.push(this.tempProduct);
+    console.log(this.tempJob);
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.jobsHttpService.updateJob(this.tempJob.id, this.tempJob).subscribe(resp => {
+        if (resp.status == 200) {
+          console.log("added");
         }
       });
     });

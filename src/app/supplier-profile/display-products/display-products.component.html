@@ -80,8 +80,22 @@
         </div>
         <div class="modal-body">
             <p><strong>Title: </strong>{{tempProduct.name}}</p>
-            <p><strong>Cost: </strong>{{tempProduct.cost | currency}}</p>                    
+            <p><strong>Cost: </strong>{{tempProduct.cost | currency}}</p>     
+             <div *ngIf="!fromHome && user">
+              <button *ngIf="!attachJob" class="btn btn-secondary" (click)="attachJob = true">Attach to Job</button>
+              <div *ngIf="attachJob">
+                <div class="form-group col-md-6">
+                    <label for="attachJobs">Your jobs</label>
+                    <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="tempJob">
+                      <option disabled></option>
+                      <option *ngFor="let job of user.jobs"  [ngValue]="job">{{job.title}}</option>
+                    </select>
+                  </div>
+                  <button class="btn btn-info" *ngIf="tempJob" (click)="addToJob()" (click)="attachJob = false" >Add Supply</button>
+              </div>
+            </div>              
         </div>
+        
         <div class="modal-footer" id="editFooter">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#editModal">Edit</button>
@@ -159,7 +173,7 @@
                 <div class="input-group-append">
                 </div>
               </div>                    
-        </div>
+          </div>
         <div class="modal-footer" id="editFooter">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addSupply()">Add</button>
