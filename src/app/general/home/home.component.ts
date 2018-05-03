@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.slideNum = 1;
     this.slideTitle = "Welcome to HoneyScape";
-    this.slideDesc = "A place for suppliers and construcion companies to connect. \n If you do not have an account, Please sign up.\nAlready have an account? Log in";
+    this.slideDesc = "A place for suppliers and construction companies to connect. \nIf you do not have an account, Please sign up.\nAlready have an account? Log in";
   }
 
   goRight() {
