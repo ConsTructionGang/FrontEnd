@@ -65,7 +65,7 @@ export class DisplayProductsComponent implements OnInit {
             this.supplyTypes.push(resp.body.results[i])
             let stored = false;
             for(let j = 0; j < this.supplyTypes.length; j++){
-              if(this.supplyTypes[i].Name == resp.body.results[i].Name){
+              if(this.supplyTypes[j].Name == resp.body.results[i].Name){
                 stored = true;
                 break;
               }
@@ -87,33 +87,36 @@ export class DisplayProductsComponent implements OnInit {
         break;
       }
     }
-
+    let id;
     this.activatedRoute.params.subscribe((params: any) => {
-      this.supplierSuppliesRepository.addtosupplier(+params.userId, this.addProductTemp).subscribe(resp => {
+      id =Number(params.userId);
+      this.supplierSuppliesRepository.addtosupplier(id, this.addProductTemp).subscribe(resp => {
         if (resp.status == 200) {
+          this.supplier.supply.push(this.addProductTemp);
           this.addProductTemp = {
             id: 0,
             name: "Default",
           };
-          this.activatedRoute.params.subscribe((params: any) => {
-            this.supplierSuppliesRepository.getbysupplierid(+params.userId).subscribe(resp => {
-              if (resp.status == 200) {
-                for(let i = 0; i < resp.body.length; i++){
-                  if(i == resp.body.length-1){
-                    this.supplier.supply.push(
-                    {
-                      id: resp.body[i].supply_id,
-                      name: resp.body[i].product_name,
-                      cost: resp.body[i].Price
-                    });
-                  }
-                }
-              }
-            });
-          });
         }
       });
     });
+    //console.log(id);
+    /*this.activatedRoute.params.subscribe((params: any) => {
+      this.supplierSuppliesRepository.getbysupplierid(id).subscribe(resp => {
+        if (resp.status == 200) {
+          for(let i = 0; i < resp.body.length; i++){
+            if(i == resp.body.length-1){
+              this.supplier.supply.push(
+              {
+                id: resp.body[i].supply_id,
+                name: resp.body[i].product_name,
+                cost: resp.body[i].Price
+              });
+            }
+          }
+        }
+      });
+    });*/
   }
 
   fillTemp(i){

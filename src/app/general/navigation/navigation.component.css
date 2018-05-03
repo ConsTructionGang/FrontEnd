@@ -5,3 +5,7 @@ img:hover{
 img:focus{
     outline:none;
 }
+
+* {
+    font-family: Georgia, serif;
+}

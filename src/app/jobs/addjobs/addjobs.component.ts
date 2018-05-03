@@ -140,6 +140,7 @@ export class AddjobsComponent implements OnInit {
       });
     } else{ //addjob
       this.tempJob.status = "In Progress";
+      console.log(this.tempJob);
       this.activatedRoute.params.subscribe((params: any) => {
         this.jobsHttpService.addJob(+params.userId, this.tempJob).subscribe(resp => {
           if (resp.status == 200) {

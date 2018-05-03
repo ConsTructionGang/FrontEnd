@@ -26,7 +26,9 @@ export class ReviewsHttpService extends HttpGeneric<any> {
     }
 
     public getReviews(id: number) {
-      this.endPoint = this.endPoint.replace("[userId]", id.toString());
+      console.log(id);
+      this.endPoint = 'http://ec2-34-227-162-95.compute-1.amazonaws.com/suppliers/' + id + '/reviews';
+      console.log(this.endPoint);
       return this.get();
     }
 
