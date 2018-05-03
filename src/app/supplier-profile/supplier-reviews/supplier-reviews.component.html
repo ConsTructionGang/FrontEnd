@@ -67,13 +67,13 @@
           </div>
           <p>{{review.title}}</p>
           <p id ="reviewComment" class="card-text">"{{review.comment}}"</p>
-          <div *ngIf="review.response">
+          <div *ngIf="review.response" class="text-muted">
             <hr>
-            <h6>{{supplier.name}}</h6>
+            <h5>{{supplier.name}}</h5>
             <p class="indent">"{{review.response}}"</p>
           </div>
           <div>
-            <button *ngIf="fromHome" class="btn btn-outline-secondary btn-sm float-right" (click)="review.hideResponse = !review.hideResponse" (click)="print(i)">Respond</button>
+            <button *ngIf="fromHome && !review.response" class="btn btn-outline-secondary btn-sm float-right" (click)="review.hideResponse = !review.hideResponse">Respond</button>
             <br>
             <div *ngIf="review.hideResponse && fromHome">
                 <div class="form-group">

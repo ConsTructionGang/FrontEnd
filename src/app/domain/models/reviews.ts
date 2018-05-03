@@ -6,6 +6,8 @@ export class Reviews {
   title?:string;
   comment?: string;
   response?:string;
+  responseDate?: Date;
   hideResponse?:boolean;
   author_id?:number;
+  review_id?:number;
 }
