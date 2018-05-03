@@ -24,7 +24,7 @@
           <tbody>
             <tr *ngFor="let supply of sortedSupplies">
               <td *ngIf="supply.name">{{supply.name}}</td>
-              <td *ngIf="supply.supplier"><a [routerLink]="['/supplierpage', supply.supplierId]">{{supply.supplier.name}}</a></td>
+              <td *ngIf="supply.supplier"><a [routerLink]="['/supplierpage', supply.supplierId, account.id]">{{supply.supplier.name}}</a></td>
               <td *ngIf="!supply.supplier">No supplier name stored.</td>
               <td *ngIf="supply.cost">{{supply.cost | currency}}</td>
               <td *ngIf="!supply.cost">No cost stored.</td>
@@ -32,7 +32,7 @@
               <td *ngIf="!supply.date">No date stored.</td>
             </tr>
           </tbody>
-            
+
     </table>
     <div *ngIf="sortedSupplies.length == 0">
         <div class="alert alert-dark" role="alert">
