@@ -57,6 +57,11 @@ a{
 	color: #D3D3D3;
 }
 
+.badLogin{
+	color: #fdd378;
+	position:absolute;
+}
+
 /*.btn-primary, .btn-primary:active, .btn-primary:visited {
     background-color: 	#A0A0A0;
     border-color: 	#A0A0A0;

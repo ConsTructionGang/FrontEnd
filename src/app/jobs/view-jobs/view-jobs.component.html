@@ -60,64 +60,70 @@
             
             <!-- Modal -->
             <div class="modal fade" id="jobModal" tabindex="-1" role="dialog" aria-hidden="true" *ngIf="tempJob.title">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <div *ngIf="editModal">
-                      <h5 class="modal-title" id="exampleModalLabel">Edit {{tempJob.title}} Job</h5>
-                    </div>
-                    <div *ngIf="!editModal">
-                      <h5 class="modal-title" id="exampleModalLabel"><strong>Job Details</strong></h5>
-                    </div>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div *ngIf="editModal" class="modal-body">
-                    <div id="editApp">
-                      <app-addjobs [indexJob]="i" [tempJob]="tempJob" [fromView]="true"></app-addjobs>
-                    </div>
-                  </div>
-                  <div *ngIf="!editModal" class="modal-body">
-                    <p><strong>Title: </strong>{{tempJob.title}}</p>
-                    <p><strong>Address: </strong>{{tempJob.address}}</p>
-                    <p><strong>City: </strong>{{tempJob.city}}</p>
-                    <p><strong>State: </strong>{{tempJob.state}}</p>
-                    <p><strong>Est. Cost: </strong>{{tempJob.cost | currency}}</p>
-                    <p><strong>Start Date: </strong>{{tempJob.startDate}}</p>
-                    <p><strong>End Date: </strong>{{tempJob.endDate}}</p>
-                    <span><strong>Supplies:</strong></span>
-                    <div *ngIf="tempJob.supplies.length == 0">
-                      <p>This job has no supplies.</p>
-                    </div>
-                    <table class="table">
-                        <tbody>
-                          <tr *ngFor="let supply of tempJob.supplies; let i = index">
-                            <td class="clearfix">
-                              {{supply.name}}
-                              <div class="float-right">
-                                <h6 *ngIf="!supply.supplier"> No supplier </h6>
-                                <h6 *ngIf="supply.supplier"> <a data-dismiss="modal" [routerLink]="['/supplierpage', supply.supplierId, this.account.id]">{{supply.supplier.name}}</a></h6>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                  </div>              
-                  <div class="modal-footer" id="editFooter">
-                    <div *ngIf="editModal">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearTempJob()">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateJob(i)">Save changes</button>
-                    </div>
-                    <div *ngIf="!editModal">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearTempJob()">Close</button>
-                      <button type="button" class="btn btn-primary" data-dismiss="modal"data-toggle="modal" aria-hidden="true" (click)="editModal = true">
-                          Edit
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <div *ngIf="editModal">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit {{tempJob.title}} Job</h5>
+                      </div>
+                      <div *ngIf="!editModal">
+                        <h5 class="modal-title" id="exampleModalLabel"><strong>Job Details</strong></h5>
+                      </div>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                       </button>
-                    </div>    
+                    </div>
+                    <div *ngIf="editModal" class="modal-body">
+                      <div id="editApp">
+                        <app-addjobs [indexJob]="i" [tempJob]="tempJob" [fromView]="true"></app-addjobs>
+                      </div>
+                    </div>
+                    <div *ngIf="!editModal" class="modal-body">
+                      <p><strong>Title: </strong>{{tempJob.title}}</p>
+                      <p><strong>Address: </strong>{{tempJob.address}}</p>
+                      <p><strong>City: </strong>{{tempJob.city}}</p>
+                      <p><strong>State: </strong>{{tempJob.state}}</p>
+                      <p><strong>Est. Cost: </strong>{{tempJob.cost | currency}}</p>
+                      <p><strong>Start Date: </strong>{{tempJob.startDate}}</p>
+                      <p><strong>End Date: </strong>{{tempJob.endDate}}</p>
+                      <span><strong>Supplies:</strong></span>
+                      <div *ngIf="tempJob.supplies.length == 0">
+                        <p>This job has no supplies.</p>
+                      </div>
+                      <table class="table">
+                          <tbody>
+                            <tr *ngFor="let supply of tempJob.supplies; let i = index">
+                              <td class="clearfix">
+                                {{supply.name}}
+                                <div class="float-right">
+                                  <h6 *ngIf="!supply.supplier"> No supplier </h6>
+                                  <h6 *ngIf="supply.supplier"> <a data-dismiss="modal" [routerLink]="['/supplierpage', supply.supplierId, this.account.id]">{{supply.supplier.name}}</a></h6>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>              
+                    <div class="modal-footer" id="editFooter">
+                      <div *ngIf="editModal">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearTempJob()">Close</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateJob(i)">Save changes</button>
+                      </div>
+                      <div *ngIf="!editModal">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearTempJob()">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"data-toggle="modal" aria-hidden="true" (click)="editModal = true">
+                            Edit
+                        </button>
+                      </div>    
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <!-- Modal -->
+              <!-- Modal -->
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+      <button id="create" type="button" class="btn btn-primary" routerLink="/addjobs/{{this.account.id}}">Create a new job</button>
+    </div>
   </div>
