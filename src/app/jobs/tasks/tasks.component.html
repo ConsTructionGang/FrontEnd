@@ -114,8 +114,8 @@
                 <tr *ngFor="let task of deletedTasks; let i = index">
                   <td>{{task.title}}</td>
                   <td>{{task.description}}</td>
-                  <td>{{task.startDate | date:"longDate"}}</td>
-                  <td>{{task.endDate | date:"longDate"}}</td>
+                  <td>{{task.startDate | date}}</td>
+                  <td>{{task.endDate }}</td>
                   <td>
                     <button type="button" class="btn btn-dark" (click)="undelete(i)">Restore Task</button>             
                   </td>

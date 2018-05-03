@@ -1,0 +1,60 @@
+<div *ngIf="account">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img id="img" width="40" class="mr-2"src="\assets\images\Logo.png" [routerLink]="['/userpage', account.id]">
+        <a class="navbar-brand" [routerLink]="['/userpage', account.id]">HoneyScape</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown float-right">
+              <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="24" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"/></svg>
+                </span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <div *ngIf="this.account.type=='User'">
+                  <a  class="dropdown-item" [routerLink]="['/userpage', account.id]">User Page</a>
+                  <a  class="dropdown-item" [routerLink]="['/addjobs', account.id]">Add Jobs</a>
+                </div>
+                <div *ngIf="this.account.type=='Supplier'">
+                  <a class="dropdown-item" [routerLink]="['/supplierhome', account.id]">User Page</a>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" [routerLink]="['/home']">Logout</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+</div>
+<div *ngIf="!account">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img id="img" width="40" class="mr-2"src="\assets\images\Logo.png" [routerLink]="['/home']">
+        <a class="navbar-brand" [routerLink]="['/home']">HoneyScape</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown float-right">
+            <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="24" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"/></svg>
+            </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/home']">Home Page</a>
+            <a class="dropdown-item" [routerLink]="['/useraccount']">Sign Up</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" [routerLink]="['/login']">Login</a>
+            </div>
+          </li>
+          </ul>
+        </div>
+      </nav>
+</div>
+

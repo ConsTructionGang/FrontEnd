@@ -1,4 +1,5 @@
-<div class="container-fluid" *ngIf="user">
+<app-navigation [account] = "user"></app-navigation>
+<div class="container-fluid" *ngIf="user">     
   <div class="row">
     <div class="nav flex-column col-md-3 nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
       <a class="nav-link active" id="v-pills-jobs-tab" data-toggle="pill" href="#v-pills-jobs" role="tab" aria-controls="v-pills-jobs" aria-selected="false">View Jobs</a>
@@ -15,7 +16,7 @@
           <div class= "card-body">
             <p> <strong>Name:</strong> {{user.name}}</p>
             <p> <strong>Email:</strong> {{user.email}}</p>
-            <a [routerLink]="['/password', user.id]">Change Password</a>
+            <a [routerLink]="['/password', user.type, user.id]">Change Password</a>
           </div>
         </div>
       </div>

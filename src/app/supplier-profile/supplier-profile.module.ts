@@ -8,12 +8,13 @@ import { SupplierReviewsComponent } from './supplier-reviews/supplier-reviews.co
 import { DisplayProductsComponent } from './display-products/display-products.component';
 import { ViewSupplierComponent } from './view-supplier/view-supplier.component';
 import { PhoneNumberPipe } from './phone-number.pipe';
+import { GeneralModule } from '../general/general.module'
 
 @NgModule({
   imports: [
-    CommonModule, RouterModule, FormsModule
+    CommonModule, RouterModule, FormsModule, GeneralModule
   ],
-  declarations: [SupplierPageComponent, RatingComponent, SupplierReviewsComponent, DisplayProductsComponent, ViewSupplierComponent, PhoneNumberPipe],
+  declarations: [SupplierPageComponent, RatingComponent, SupplierReviewsComponent, DisplayProductsComponent, ViewSupplierComponent, PhoneNumberPipe,],
   exports: [SupplierPageComponent, ViewSupplierComponent]
 })
 export class SupplierProfileModule { }

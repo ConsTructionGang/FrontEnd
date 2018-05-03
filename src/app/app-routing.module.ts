@@ -1,9 +1,7 @@
 import { SupplierProductsComponent } from './products/supplier-products/supplier-products.component';
-import { SupplierReviewsComponent } from './reviews/supplier-reviews/supplier-reviews.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './accounts/login/login.component';
-import { CreatesupplieraccountComponent } from './accounts/createsupplieraccount/createsupplieraccount.component';
 import { CreateuseraccountComponent } from './accounts/createuseraccount/createuseraccount.component';
 import { ForgotpasswordComponent } from './accounts/forgotpassword/forgotpassword.component';
 import { ChangePasswordComponent } from './accounts/change-password/change-password.component';
@@ -18,7 +16,7 @@ import { ViewSupplierComponent } from './supplier-profile/view-supplier/view-sup
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent},
-  { path: 'password/:userId', component: ChangePasswordComponent },
+  { path: 'password/:type/:userId', component: ChangePasswordComponent },
   { path: 'userpage/:userId', component: UserPageComponent },
   { path: 'supplierhome/:supplierId', component: SupplierPageComponent },
   { path: 'supplierpage/:supplierId/:userId', component: ViewSupplierComponent },

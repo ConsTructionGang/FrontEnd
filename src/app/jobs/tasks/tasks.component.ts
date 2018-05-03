@@ -131,7 +131,6 @@ export class TasksComponent implements OnInit {
   }
 
   undelete(i) {
-    console.log(this.deletedTasks[i]);
     this.activatedRoute.params.subscribe((params: any) => {
       this.taskHttpService.addTask(+params.userId, this.deletedTasks[i]).subscribe(resp => {
         if(resp.status == 200) {
@@ -140,9 +139,5 @@ export class TasksComponent implements OnInit {
         }
       });
     });
-  }
-
-  print() {
-    console.log(this.tempTask);
   }
 }

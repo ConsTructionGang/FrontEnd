@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Supplier } from '../../domain/models/supplier';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JobsHttpService, SupplyListService, UserpageHttpService } from '../../domain';
+import { JobsHttpService, SupplyListService, UserpageHttpService, SupplierService } from '../../domain';
 import { Account, Supply, Job } from '../../domain';
 
 import { DataService } from "../data.service";
@@ -36,7 +36,8 @@ export class AddjobsComponent implements OnInit {
     private supplylistService: SupplyListService,
     public userpageRepository: UserpageHttpService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public supplierRepository: SupplierService,
   ) { }
 
   ngOnInit() {
@@ -79,6 +80,7 @@ export class AddjobsComponent implements OnInit {
             }
             this.account = resp.body;
             this.account.id = params.userId;
+            this.account.type="User";
             this.tempJob.accountId = this.account.id;
             this.indexJob = this.account.jobs.length;
           }
@@ -98,24 +100,22 @@ export class AddjobsComponent implements OnInit {
       };
       this.fromView = false;
       this.title = 'Create A New Job';
-      console.log("if not fromview")
     }
-    console.log(this.tempJob);
-    console.log(this.account.id);
+    this.attachSupplierLink();
   }
 
   addSupply() {
-    this.tempJob.supplies.push({ id: this.supplies[this.tempSupply - 1].id, name: this.supplies[this.tempSupply - 1].name });
+    for(let i = 0; i < this.supplies.length; i++){
+      if(this.supplies[i].id == this.tempSupply){
+        this.tempJob.supplies.push(this.supplies[i]);
+      }
+    }
 
   }
 
   addJob() {
-    // this.account.jobs[this.indexJob]=this.tempJob;
-    // this.indexJob=this.account.jobs.length;
-
     //send http request to add job
     if(this.loadJob){ //edit job
-      console.log(this.tempJob.id);
       this.activatedRoute.params.subscribe((params: any) => {
         this.jobsHttpService.updateJob(this.tempJob.id, this.tempJob).subscribe(resp => {
           if (resp.status == 200) {
@@ -160,8 +160,6 @@ export class AddjobsComponent implements OnInit {
             };
             this.title = 'Create A New Job';
             this.loadJob = false;
-          } else {
-            console.log("not 200");
           }
         });
       });
@@ -237,7 +235,7 @@ export class AddjobsComponent implements OnInit {
     this.showSuppliers=false;
   }
   onAddSupplier(newSupplier: Supplier) {
-    console.log("Received new supplier!");
+
     this.showSuppliers=false;
     let j: number;
     for (j = 0; j < this.tempJob.supplies.length; j++) {
@@ -247,13 +245,20 @@ export class AddjobsComponent implements OnInit {
        this.tempJob.supplies[j].SupplierID = newSupplier.id;
       }
     }
-    // console.log(newReview);
-
   }
-  onViewSupplier(supplierId: number) {
-    console.log("Viewing supplier!");
-    //this.activatedRoute.params.subscribe((params: any) => {
-    //this.router.navigateByUrl(`/supplierpage/${supplierId}/${params.id}`);
-    //});
+
+  attachSupplierLink(){
+    for(let i = 0; i < this.tempJob.supplies.length;i++){
+      if(this.tempJob.supplies[i].supplierId){
+        this.activatedRoute.params.subscribe(() => {
+          this.supplierRepository.getById(+this.tempJob.supplies[i].supplierId).subscribe(resp => {
+            if (resp.status == 200) {
+              this.tempJob.supplies[i].supplier = resp.body;
+              this.tempJob.supplies[i].supplier.id = this.tempJob.supplies[i].supplierId;
+            }
+          });
+        });
+      }
+    }
   }
 }

@@ -63,13 +63,13 @@ export class PurchaseHistoryComponent implements OnInit {
     for(let i = 0; i < this.sortedSupplies.length; i++){
       if(this.sortedSupplies[i].date){
         for(let j = 0; j < this.sortedSupplies.length; j++){
-          if( i != j && this.sortedSupplies[j].date && this.sortedSupplies[j].date.getFullYear() < this.sortedSupplies[i].date.getFullYear()){
+          if( i != j && this.sortedSupplies[j].date && this.sortedSupplies[j].date.getFullYear() > this.sortedSupplies[i].date.getFullYear()){
               let tempSupply = this.sortedSupplies[i];
               this.sortedSupplies[i] = this.sortedSupplies[j];
               this.sortedSupplies[j] = tempSupply;
           } if( i != j && this.sortedSupplies[j].date && this.sortedSupplies[j].date.getFullYear() == this.sortedSupplies[i].date.getFullYear()){
-              if(this.sortedSupplies[j].date.getMonth() <= this.sortedSupplies[i].date.getMonth()){
-                if(this.sortedSupplies[j].date.getDate() < this.sortedSupplies[i].date.getDate()){
+              if(this.sortedSupplies[j].date.getMonth() >= this.sortedSupplies[i].date.getMonth()){
+                if(this.sortedSupplies[j].date.getDate() > this.sortedSupplies[i].date.getDate()){
                   let tempSupply = this.sortedSupplies[i];
                   this.sortedSupplies[i] = this.sortedSupplies[j];
                   this.sortedSupplies[j] = tempSupply;
@@ -77,7 +77,10 @@ export class PurchaseHistoryComponent implements OnInit {
               }
             }
         }
-      }
+      } else {
+        this.sortedSupplies.unshift(this.sortedSupplies[i]);
+        this.sortedSupplies.splice(i+1, 1);
+    }
     }
   }
 
@@ -89,8 +92,12 @@ export class PurchaseHistoryComponent implements OnInit {
             let tempSupply = this.sortedSupplies[i];
             this.sortedSupplies[i] = this.sortedSupplies[j];
             this.sortedSupplies[j] = tempSupply;
-          }
+          } 
         }
+      } 
+      else {
+        this.sortedSupplies.unshift(this.sortedSupplies[i]);
+        this.sortedSupplies.splice(i+1, 1);
       }
     }
   }

@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
     this.logginHttpService.update(this.account).subscribe(resp => {
       if(resp.status === 200) {                    // login succesful
         // print http response body
-        console.log(resp.body);
         this.badLogin = false;
 
         // change route
@@ -44,13 +43,7 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl(`userpage/${resp.body.id}`);
         else if(resp.body.type=="Supplier")
           this.router.navigateByUrl(`supplierhome/${resp.body.id}`);
-      } else {     
-        // login failed
-        this.badLogin = true;
-        console.log(typeof resp);
-        // check http status code for more info
-        console.log(this.badLogin);
-      }
+      } 
     },
     err => {
       this.badLogin = true;

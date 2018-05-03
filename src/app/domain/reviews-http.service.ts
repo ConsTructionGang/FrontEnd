@@ -17,13 +17,11 @@ export class ReviewsHttpService extends HttpGeneric<any> {
 
     public addreview(id: number, item:any) {
       this.endPoint = this.endPoint.replace("[userId]", id.toString());
-      console.log(item);
       return this.update(item);
     }
 
     public disputereview(id: number, item:any) {
       this.endPoint = this.endPoint.replace("[userId]", id.toString());
-      console.log(item);
       return this.add(item);
     }
 
@@ -36,13 +34,4 @@ export class ReviewsHttpService extends HttpGeneric<any> {
       this.endPoint = this.endPoint.replace("[userId]", id.toString());
       return this.delete(author_id);
     }
-
-    //title
-    //author id
-    //body
-    //rating
-
-    // /author_id
-
-
 }

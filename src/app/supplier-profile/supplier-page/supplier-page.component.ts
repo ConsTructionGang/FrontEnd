@@ -38,6 +38,7 @@ export class SupplierPageComponent implements OnInit {
       this.supplierRepository.getById(+params.supplierId).subscribe(resp => {
         if (resp.status == 200) {
           this.supplier = resp.body;
+          this.supplier.type = "Supplier";
           this.supplier.id = params.supplierId;
           if(!this.supplier.supply){
             this.supplier.supply = [];

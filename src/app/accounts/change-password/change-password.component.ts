@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoginHttpService } from '../../domain';
 import { Router } from '@angular/router';
@@ -17,7 +17,11 @@ export class ChangePasswordComponent implements OnInit {
   public newpass:string;
   public reenter: string;
   public badPassword: boolean;
-  public type: string;
+
+  @Input()
+  public type:string;
+
+
 
   constructor(
     public userpageRepository: UserpageHttpService,
@@ -41,6 +45,8 @@ export class ChangePasswordComponent implements OnInit {
         if (resp.status == 200) {
           this.account = resp.body;
           this.account.password = "";
+          this.account.type = params.type;
+          this.account.id = params.userId;
         }
       });
     });

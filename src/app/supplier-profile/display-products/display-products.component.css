@@ -62,9 +62,20 @@ tbody {
 }
 .btn{
     fill:currentColor;
+    max-height:2.25rem;
+}
+
+#addBtn{
+    position: relative;
+    top:.05rem;
 }
 
 .icon{
     position:relative;
     top:.2rem;
+}
+
+#selectField{
+    position: relative;
+    right:.8rem;
 }

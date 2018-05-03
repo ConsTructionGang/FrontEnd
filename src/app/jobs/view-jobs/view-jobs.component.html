@@ -1,4 +1,3 @@
-
   <div class="card">
     <div class="card-header bg-dark text-white">
         <div *ngIf="visibleJobs=='In Progress'" class="d-flex">
@@ -64,7 +63,7 @@
                   <div class="modal-content">
                     <div class="modal-header">
                       <div *ngIf="editModal">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit {{tempJob.title}} Job</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><strong>Edit Job</strong></h5>
                       </div>
                       <div *ngIf="!editModal">
                         <h5 class="modal-title" id="exampleModalLabel"><strong>Job Details</strong></h5>
@@ -84,8 +83,8 @@
                       <p><strong>City: </strong>{{tempJob.city}}</p>
                       <p><strong>State: </strong>{{tempJob.state}}</p>
                       <p><strong>Est. Cost: </strong>{{tempJob.cost | currency}}</p>
-                      <p><strong>Start Date: </strong>{{tempJob.startDate}}</p>
-                      <p><strong>End Date: </strong>{{tempJob.endDate}}</p>
+                      <p><strong>Start Date: </strong>{{tempJob.startDate | date}}</p>
+                      <p><strong>End Date: </strong>{{tempJob.endDate | date}}</p>
                       <span><strong>Supplies:</strong></span>
                       <div *ngIf="tempJob.supplies.length == 0">
                         <p>This job has no supplies.</p>
