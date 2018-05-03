@@ -4,6 +4,7 @@ export class Supply {
   name: string;
   cost?:number;
   supplierId?: number;
+  SupplierID?: number;
   supplier?: Supplier;
   date?: Date;
 }

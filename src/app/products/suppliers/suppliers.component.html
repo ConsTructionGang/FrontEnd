@@ -12,7 +12,7 @@
           <button class="btn btn-secondary" (click)="addSupplier(i)">Add Supplier</button>
         </td>
         <td>
-          <button class="btn btn-secondary">Details</button>
+          <button class="btn btn-secondary" data-dismiss="modal" [routerLink]="['/supplierpage', supplier.id, this.account.id]">Details</button>
         </td>
       </tr>
     </tbody>
