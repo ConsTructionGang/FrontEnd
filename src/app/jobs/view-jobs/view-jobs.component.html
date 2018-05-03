@@ -57,7 +57,7 @@
                   </span>
               </button>
             </td>
-            
+
             <!-- Modal -->
             <div class="modal fade" id="jobModal" tabindex="-1" role="dialog" aria-hidden="true" *ngIf="tempJob.title">
                 <div class="modal-dialog" role="document">
@@ -75,7 +75,7 @@
                     </div>
                     <div *ngIf="editModal" class="modal-body">
                       <div id="editApp">
-                        <app-addjobs [indexJob]="i" [tempJob]="tempJob" [fromView]="true"></app-addjobs>
+                        <app-addjobs [indexJob]="i" [tempJob]="tempJob" [account]="account" [fromView]="true"></app-addjobs>
                       </div>
                     </div>
                     <div *ngIf="!editModal" class="modal-body">
@@ -103,7 +103,7 @@
                             </tr>
                           </tbody>
                         </table>
-                    </div>              
+                    </div>
                     <div class="modal-footer" id="editFooter">
                       <div *ngIf="editModal">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearTempJob()">Close</button>
@@ -114,7 +114,7 @@
                         <button type="button" class="btn btn-primary" data-dismiss="modal"data-toggle="modal" aria-hidden="true" (click)="editModal = true">
                             Edit
                         </button>
-                      </div>    
+                      </div>
                     </div>
                   </div>
                 </div>
