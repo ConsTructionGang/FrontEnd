@@ -19,6 +19,7 @@ export class AddjobsComponent implements OnInit {
   public supplies: Supply[];
   public account: Account;
   public tempSupply: any;
+  public loadJob: boolean;
 
   public supSupply: any;
   public x : any[];
@@ -107,35 +108,46 @@ export class AddjobsComponent implements OnInit {
   }
 
   addJob() {
-    this.tempJob.status = "In Progress";
     // this.account.jobs[this.indexJob]=this.tempJob;
     // this.indexJob=this.account.jobs.length;
 
     //send http request to add job
-    this.activatedRoute.params.subscribe((params: any) => {
-      this.jobsHttpService.addJob(+params.userId, this.tempJob).subscribe(resp => {
-        if (resp.status == 200) {
-          this.router.navigateByUrl(`/userpage/${+params.userId}`);
-        }
+    if(this.loadJob){ //edit job
+      console.log(this.tempJob.id);
+      this.activatedRoute.params.subscribe((params: any) => {
+        this.jobsHttpService.updateJob(this.tempJob.id, this.tempJob).subscribe(resp => {
+          if (resp.status == 200) {
+            this.account.jobs[this. indexJob] = this.tempJob;
+            this.indexJob = this.account.jobs.length;
+            this.tempJob = {
+              id: this.indexJob,
+              title: '',
+              address: "",
+              city: " ",
+              state: '',
+              cost: 0,
+              startDate: new Date(),
+              endDate: new Date(),
+              status: "",
+              supplies: []
+            };
+            this.title = 'Create A New Job';
+            this.loadJob = false;
+          }
+        });
       });
-    });
+    } else{ //addjob
+      this.tempJob.status = "In Progress";
+      this.activatedRoute.params.subscribe((params: any) => {
+        this.jobsHttpService.addJob(+params.userId, this.tempJob).subscribe(resp => {
+          if (resp.status == 200) {
+            this.router.navigateByUrl(`/userpage/${+params.userId}`);
+          }
+        });
+      });
+    }
 
-
-
-    //Clear job formstatusString
-    // this.tempJob={
-    //   id:this.indexJob,
-    //   title:'',
-    //   location:"",
-    //   cost:0,
-    //   startDate: new Date(),
-    //   endDate: new Date(),
-    //   status: "",
-    //   supplies:[]
-    // };
-    // this.title = 'Create A New Job';
-
-    //route user to active jobs page
+    
   }
 
   editJob(i) {
@@ -160,6 +172,7 @@ export class AddjobsComponent implements OnInit {
         this.indexJob = i;
       }
     }
+    this.loadJob = true;
   }
 
   emptyJob() {
@@ -179,6 +192,7 @@ export class AddjobsComponent implements OnInit {
         supplies: []
       };
       this.title = 'Create A New Job';
+      this.loadJob = false;
     }
   }
 
