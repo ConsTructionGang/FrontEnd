@@ -80,7 +80,21 @@ export class SupplierReviewsComponent implements OnInit {
      
       this.reviewRepository.getReviews(Number(this.supplier.id)).subscribe(resp => {
         if (resp.status == 200) {
-          this.supplier.review.push({
+          this.supplier.review = [];
+          for(let i = 0; i < resp.body.results.length; i++){
+            this.supplier.review.push(
+              {
+                author_id: resp.body.results[i].Author_ID,
+                title: resp.body.results[i].Title,
+                userName: resp.body.results[i].Name,
+                comment: resp.body.results[i].Body,
+                rating: resp.body.results[i].Rating,
+                dateObject: new Date(resp.body.results[i].Date_Created.replace(/-/g, '\/').replace(/T.+/, '')),
+                response: resp.body.results[i].Comment,
+              }
+            );
+          }
+          /*this.supplier.review.push({
             author_id: resp.body.results[resp.body.results.length-1].Author_ID,
             title: resp.body.results[resp.body.results.length-1].Title,
             userName: resp.body.results[resp.body.results.length-1].Name,
@@ -88,7 +102,7 @@ export class SupplierReviewsComponent implements OnInit {
             rating: resp.body.results[resp.body.results.length-1].Rating,
             dateObject: new Date(resp.body.results[resp.body.results.length-1].Date_Created.replace(/-/g, '\/').replace(/T.+/, '')),
             response: resp.body.results[resp.body.results.length-1].Comment,
-          });
+          });*/
         }
       });
 
