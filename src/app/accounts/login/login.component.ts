@@ -52,6 +52,8 @@ export class LoginComponent implements OnInit {
         console.log(this.badLogin);
       }
     },
-    err => console.log(err),);
+    err => {
+      this.badLogin = true;
+    },);
   }
 }

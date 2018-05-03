@@ -147,7 +147,15 @@ export class ViewJobsComponent implements OnInit {
       this.completeJobs--;
       this.incompleteJobs++;
     }
-    this.updateVisibleTasks();
+
+    console.log(this.account.jobs[i]);
+
+    this.jobsHttpService.updateJob(this.account.jobs[i].id, this.account.jobs[i]).subscribe(resp => {
+      if (resp.status == '200') {
+        this.updateVisibleTasks();
+      }
+    });
+
   }
 
   changeVisible() {
