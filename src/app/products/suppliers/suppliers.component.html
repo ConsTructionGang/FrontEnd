@@ -1,6 +1,6 @@
 <div *ngIf="supply">
   <h5> Suppliers for {{supply.name}}
-      <div class="dropdown float-right"> 
+      <div class="dropdown float-right">
           <button class="btn btn-light ml-3 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Sort by
           </button>
@@ -15,8 +15,8 @@
     </thead>
       <tbody>
       <tr *ngFor="let supplier of suppliers; let i = index">
-        <td> 
-          <a [routerLink]="['/supplierpage', supplier.id, this.account.id]">{{supplier.name}} </a>
+        <td>
+          <a data-dismiss="modal" [routerLink]="['/supplierpage', supplier.id, this.account.id]">{{supplier.name}} </a>
         </td>
         <td *ngIf="supplier.cost">{{supplier.cost|currency}}</td>
         <td *ngIf="!supplier.cost">$: N/A</td>
@@ -39,7 +39,7 @@
                 </span>
           </button>
         </td>
-        
+
       </tr>
     </tbody>
   </table>
