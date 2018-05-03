@@ -1,7 +1,6 @@
 
-*{
-    font-size:100%;
-    /*fdd378*/
+* {
+    font-family: Georgia, serif;
 }
 .btn-outline-dark, btn-outline-dark:hover, btn-outline-dark:active, btn-outline-dark:visited {
     background-color: #fdd378;

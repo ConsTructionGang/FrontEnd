@@ -84,7 +84,6 @@ export class ViewJobsComponent implements OnInit {
   }
 
   fillTempJob(i) {
-    console.log("filltempjob");
     this.tempJob.title = this.account.jobs[i].title;
     this.tempJob.cost = this.account.jobs[i].cost;
     this.tempJob.endDate = this.account.jobs[i].endDate;

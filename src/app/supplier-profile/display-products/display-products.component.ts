@@ -178,14 +178,15 @@ export class DisplayProductsComponent implements OnInit {
         break;
       }
     }
+    var tempCost = this.tempProduct.cost;
     this.tempProduct.supplierId= this.supplier.id;
+    this.tempProduct.SupplierID = this.supplier.id;
 
     this.tempJob.supplies.push(this.tempProduct);
-    console.log(this.tempJob);
     this.activatedRoute.params.subscribe((params: any) => {
       this.jobsHttpService.updateJob(this.tempJob.id, this.tempJob).subscribe(resp => {
         if (resp.status == 200) {
-          console.log("added");
+          delete this.tempJob;
         }
       });
     });

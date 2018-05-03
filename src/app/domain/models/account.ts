@@ -20,4 +20,5 @@ export class Account {
   phonenumber?: number;
   website?:string;
   description?:string;
+  rating?:number;
 }

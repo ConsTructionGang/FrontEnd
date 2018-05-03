@@ -1,7 +1,7 @@
 
 .fill{
     font-family: Georgia, serif;
-    font-size:100%;
+	font-size:100%;
 }
 
 .d-flex{
@@ -62,17 +62,11 @@ a{
 	position:absolute;
 }
 
-/*.btn-primary, .btn-primary:active, .btn-primary:visited {
-    background-color: 	#A0A0A0;
-    border-color: 	#A0A0A0;
-}
-
-.btn-primary:hover{
-	background-color:	#787878;
-	border-color:	#787878;
-}*/
-
 #password{
 	padding-left: 3%;
+}
+
+.dropdown-item{
+	color:black;
 }
 

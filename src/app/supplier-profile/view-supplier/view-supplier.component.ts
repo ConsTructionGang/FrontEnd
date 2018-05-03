@@ -40,6 +40,7 @@ export class ViewSupplierComponent implements OnInit {
         if (resp.status == 200) {
           this.user = resp.body;
           this.user.id = params.userId;
+          this.user.type="User";
         }
       });
     });

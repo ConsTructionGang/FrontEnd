@@ -19,7 +19,7 @@ export class SupplierSuppliesHttpService extends HttpGeneric<any>{
   }
 
   public getbysupplierid(id: number) {
-    this.endPoint = this.endPoint.replace("[userId]", id.toString());
+    this.endPoint = 'http://ec2-34-227-162-95.compute-1.amazonaws.com/suppliers/' + id + '/supplies';
     return this.get();
   }
 
@@ -29,7 +29,6 @@ export class SupplierSuppliesHttpService extends HttpGeneric<any>{
       supply_id: supply.id,
       price: supply.cost
     }
-    console.log(item);
     return this.update(item);
   }
 
@@ -45,7 +44,6 @@ export class SupplierSuppliesHttpService extends HttpGeneric<any>{
   public deleteSupplyofSupplier(id: number, supply: Supply){
     this.endPoint = this.endPoint.replace("[userId]", id.toString());
     this.endPoint = this.endPoint + "/remove"
-    console.log(supply.id);
     let item={
       supply_id: supply.id
     }

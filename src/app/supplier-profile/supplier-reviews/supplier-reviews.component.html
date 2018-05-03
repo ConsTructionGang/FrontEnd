@@ -1,7 +1,12 @@
 
   <h4> Customer Reviews ({{supplier.review.length}})
-    <button class="btn btn-light" *ngIf="supplier.review.length != 0 && !fromHome" (click)="showHide = !showHide">Add Review</button>
+    <app-rating [rating]="supplier.rating"></app-rating>
+    <div class="float-right">
+      <button class="btn btn-primary" *ngIf="supplier.review.length != 0 && !fromHome && !previousReview"  (click)="showHide = !showHide">Add Review</button>
+      <button class="btn btn-danger" *ngIf="supplier.review.length != 0 && !fromHome && previousReview"  (click)="deleteFromTop()">Delete Review</button>
+    </div>
   </h4>
+  <br>
   <div>
       <div *ngIf="showHide == true" class="card">
           <div class="card-header text-white bg-secondary">Add Review</div>

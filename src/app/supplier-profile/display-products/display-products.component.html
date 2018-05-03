@@ -12,7 +12,7 @@
           </button>
         </form>  
       </div>
-      <button *ngIf="fromHome" type="button" class="btn btn-outline-light my-2 my-sm-0" data-toggle="modal" data-target="#productModal">
+      <button id="addBtn"*ngIf="fromHome" type="button" class="btn btn-outline-light my-2 my-sm-0" data-toggle="modal" data-target="#productModal">
         <span class="icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M12 9H7v5H5V9H0V7h5V2h2v5h5v2z"/></svg>
         </span>
@@ -84,7 +84,7 @@
              <div *ngIf="!fromHome && user">
               <button *ngIf="!attachJob" class="btn btn-secondary" (click)="attachJob = true">Attach to Job</button>
               <div *ngIf="attachJob">
-                <div class="form-group col-md-6">
+                <div id="selectField" class="form-group col-md-6">
                     <label for="attachJobs">Your jobs</label>
                     <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="tempJob">
                       <option disabled></option>

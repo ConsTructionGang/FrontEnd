@@ -1,3 +1,32 @@
 .card {
   margin: 1rem;
 }
+.btn{
+  fill:currentColor;
+}
+
+.icon{
+  position:relative;
+  top:.2rem;
+}
+
+.stars {
+  position: relative;
+  top:.25rem;
+  font-size: 1.5rem;;
+  color: black;
+}
+
+.full-star:after {
+  content: "\2605";
+  color: darkorange;
+}
+
+.empty-star:after {
+  content: "\2606";
+}
+
+.starMove{
+  position: relative;
+  top:-.5rem;
+}

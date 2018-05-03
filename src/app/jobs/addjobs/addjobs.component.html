@@ -1,3 +1,7 @@
+<div *ngIf="!fromView">
+    <app-navigation [account] = "account"></app-navigation>
+</div>
+
 <div class="container-fluid">
   <div class="d-flex justify-content-center">
     <div class="row flex-nowrap">
@@ -86,17 +90,26 @@
                     <tr *ngFor="let supply of tempJob.supplies; let i = index">
                       <td>
                         <button type="button" class="btn btn-outline-light btn-sm" (click)="removeSupply(i)">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16">
-                            <path fill-rule="evenodd" d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"
-                            />
-                          </svg>
+                          <span class="icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"/></svg>
+                          </span>
                         </button>
                         {{supply.name}}
                         <div class="float-right">
-                          <h6 *ngIf="!supply.supplier"> No supplier </h6>
-                          <button *ngIf="!supply.supplier" type="button" class="btn" (click)="suppliers(supply)"> Add </button>
-                          <h6 *ngIf="supply.supplier"> {{supply.supplier.name}} </h6>
-                          <button *ngIf="supply.supplier" type="button" class="btn" (click)="removeSuppliers(supply)"> Remove </button>
+                          <h6 *ngIf="!supply.supplier"> No supplier 
+                              <button *ngIf="!supply.supplier" type="button" class="btn btn-sm btn-outline-light" (click)="suppliers(supply)">
+                                  <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M12 9H7v5H5V9H0V7h5V2h2v5h5v2z"/></svg>
+                                  </span>
+                              </button>
+                          </h6>
+                          <h6 *ngIf="supply.supplier"> <a data-dismiss="modal" [routerLink]="['/supplierpage', supply.supplier.id, this.account.id]">{{supply.supplier.name}} </a>
+                              <button *ngIf="supply.supplier" type="button" class="btn btn-outline-light btn-sm" (click)="removeSuppliers(supply)"> 
+                                  <span class="icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"/></svg>
+                                  </span>
+                              </button>
+                          </h6>
                         </div>
                       </td>
                     </tr>
@@ -104,12 +117,16 @@
                 </table>
               </div>
               <div class="clearfix" *ngIf="showSuppliers">
-                <button type="button" class="btn btn-outline-light btn-sm float-right" (click)="hideSuppliers()">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16">
-                    <path fill-rule="evenodd" d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"
-                    />
-                  </svg>
+                <hr>
+                <button type="button" id="removeSupplierList" class="btn btn-outline-light btn-sm float-right" (click)="hideSuppliers()" (click)="showSuppliers=false">
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16">
+                        <path fill-rule="evenodd" d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"
+                        />
+                        </svg>
+                      </span>
                 </button>
+                <br>
                 <app-suppliers [supply]=supSupply [account]="account" (onAddSupplier)="onAddSupplier($event)"></app-suppliers>
               </div>
             </div>
@@ -119,7 +136,7 @@
             </div>
             <div *ngIf="fromView != true && this.account">
               <button id="sumbit" type="submit" class="btn btn-success endbtn" (click)="addJob()">Save</button>
-              <button [routerLink]="['/userpage', this.account.id]" id="cancel" type="cancel" class="btn btn-danger endbtn">Cancel</button>
+              <button title="All changes will be lost." [routerLink]="['/userpage', this.account.id]" id="cancel" type="cancel" class="btn btn-danger endbtn">Cancel</button>
             </div>
           </div>
         </div>

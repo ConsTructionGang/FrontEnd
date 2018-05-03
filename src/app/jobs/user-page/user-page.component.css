@@ -5,11 +5,11 @@
     font-family: Georgia, serif;
 }
 
-.nav{
+row > .nav{
     min-width:16rem;
     max-width:16rem;
 }
-.nav-link{
+.nav-pills > .nav-link{
     border-radius:0;
     background-color:#909090;
     color:white;
@@ -18,11 +18,17 @@
     
 }
 
-.nav-link:hover{
+.nav-pills > .nav-link:hover{
     background-color:gray;
 }
 
-.nav > .active{
+.nav-pills > .active{
     background-color:#536872;
     font-size:1.65rem;
+}
+
+.icon{
+    fill:currentColor;
+    position:relative;
+    top:.2rem;
 }
