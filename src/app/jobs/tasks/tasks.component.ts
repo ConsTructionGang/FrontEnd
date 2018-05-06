@@ -93,8 +93,8 @@ export class TasksComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: any) => {
       this.taskHttpService.addTask(+params.userId, this.tempTask).subscribe(resp => {
         if (resp.status == 200) {
+          this.tempTask.status=false;
           this.account.tasks.push(this.tempTask);
-
           this.tempTask = {
             title: '',
             description: '',

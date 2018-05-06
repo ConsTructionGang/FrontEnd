@@ -49,11 +49,12 @@ export class PurchaseHistoryComponent implements OnInit {
               });
             }
           });
-          if(this.account.jobs[i].startDate)
-            this.account.jobs[i].supplies[j].date = this.account.jobs[i].startDate;  
-            this.sortedSupplies.push(this.account.jobs[i].supplies[j]);
-            
-          
+          if(this.account.jobs[i].startDate){
+            if ( !isNaN( this.account.jobs[i].startDate.getTime() ) ) {
+              this.account.jobs[i].supplies[j].date = this.account.jobs[i].startDate;
+            }
+          }
+          this.sortedSupplies.push(this.account.jobs[i].supplies[j]);
         }
       }
     }

@@ -53,6 +53,12 @@ export class ViewJobsComponent implements OnInit {
     this.viewJobs = this.incompleteJobs;
 
     for(let i = 0; i < this.account.jobs.length; i++){
+      if(isNaN(this.account.jobs[i].startDate.getTime())){
+        delete this.account.jobs[i].startDate;
+      }
+      if(isNaN(this.account.jobs[i].endDate.getTime())){
+        delete this.account.jobs[i].endDate;
+      }
       for(let j = 0; j < this.account.jobs[i].supplies.length; j++){
         if(this.account.jobs[i].supplies[j].supplierId){
           this.activatedRoute.params.subscribe(() => {
