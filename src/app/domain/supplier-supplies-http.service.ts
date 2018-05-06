@@ -19,9 +19,7 @@ export class SupplierSuppliesHttpService extends HttpGeneric<any>{
   }
 
   public getbysupplierid(id: number) {
-    console.log(id);
     this.endPoint = 'http://ec2-34-227-162-95.compute-1.amazonaws.com/suppliers/' + id + '/supplies';
-    console.log(this.endPoint);
     return this.get();
   }
 

@@ -38,8 +38,17 @@
     position:relative;
     top:.2rem;
 }
+.status-icon{
+    position:relative;
+    left:1.2rem;
+}
 
 #editApp{
     position: relative;
     top:-2.5rem;
+}
+
+.btn-col{
+    min-width:2rem;
+    max-width:2rem;
 }
